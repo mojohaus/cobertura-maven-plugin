@@ -48,7 +48,9 @@ Maven 2 Cobertura Plugin
  If you want to adjust the classes that are instrumented, use the instrumentation configuration option.
 
  The following example specifies ...
+
   * That the classes with names <<<org.apache.maven.*>>> and <<<org.apache.commons.*>>> are to be ignored during the instrument and report goals
+
   * That all of the files in the <<<org/codehaus/plexus/**/*>>> and <<<org/codehaus/doxia/**/*>>> directories are to be excluded during the instrument goal.
 
 -------------------
