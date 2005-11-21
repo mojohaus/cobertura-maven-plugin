@@ -1,0 +1,1968 @@
+<html>
+<head>
+<title>Coverage Report</title>
+<link title="Style" type="text/css" rel="stylesheet" href="css/main.css" />
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+<h5>Coverage Report - org.apache.maven.jxr.DirectoryIndexer</h5>
+<p>
+<table class="report">
+<thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
+  <tr><td class="text"><a href="org.apache.maven.jxr.DirectoryIndexer.html">DirectoryIndexer</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>91%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="90"></td><td class="uncovered" width="9"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>100%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="100"></td><td class="uncovered" width="0"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">1.6666666666666667;</span>1.667</td></tr>
+</table>
+</p>
+<p>
+<table cellspacing="0" cellpadding="0" class="src">
+<tr>
+  <td class="numLine">&nbsp;1</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> org.apache.maven.jxr;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;2</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;3</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/* ====================================================================</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;4</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   Copyright 2001-2004 The Apache Software Foundation.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;5</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;6</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   Licensed under the Apache License, Version 2.0 (the "License");</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;7</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   you may not use this file except in compliance with the License.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;8</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   You may obtain a copy of the License at</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;9</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;10</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *       http://www.apache.org/licenses/LICENSE-2.0</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;11</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;12</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   Unless required by applicable law or agreed to in writing, software</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;13</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   distributed under the License is distributed on an "AS IS" BASIS,</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;14</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;15</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   See the License for the specific language governing permissions and</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;16</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *   limitations under the License.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;17</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * ====================================================================</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;18</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;19</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;20</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.maven.jxr.pacman.ClassType;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;21</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.maven.jxr.pacman.PackageManager;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;22</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.maven.jxr.pacman.PackageType;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;23</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.maven.jxr.log.VelocityLogger;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;24</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.maven.jxr.log.Log;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;25</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.oro.text.perl.Perl5Util;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;26</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.Template;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;27</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.VelocityContext;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;28</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.exception.ParseErrorException;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;29</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.exception.MethodInvocationException;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;30</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.exception.ResourceNotFoundException;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;31</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.app.VelocityEngine;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;32</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.codehaus.plexus.util.IOUtil;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;33</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;34</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.File;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;35</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.FileWriter;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;36</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.IOException;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;37</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Enumeration;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;38</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.HashMap;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;39</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Iterator;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;40</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Map;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;41</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.TreeMap;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;42</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;43</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;44</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * This class creates the navigational pages for jxr's cross-referenced source</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;45</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * files.  The navigation is inspired by javadoc, so it should have a familiar feel.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;46</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;47</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Creates the following files:</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;48</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;ul&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;49</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;index.html            main index containing the frameset&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;50</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;overview-frame.html   list of the project's packages              (top left)&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;51</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;allclasses-frame.html list of all classes in the project          (bottom left)&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;52</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;overview-summary.html top-level listing of the project's packages (main frame)&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;53</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;54</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;ul&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;55</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Package specific:</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;56</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;package-summary.html listing of all classes in this package    (main frame)&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;57</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;li&gt;package-frame.html   listing of all classes in this package    (bottom left)&lt;/li&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;58</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;/ul&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;59</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * &lt;/ul&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;60</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;61</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author &lt;a href="mailto:bellingard@gmail.com"&gt;Fabrice Bellingard &lt;/a&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;62</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author &lt;a href="mailto:brian@brainslug.org"&gt;Brian Leonard&lt;/a&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;63</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;64</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;65</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> DirectoryIndexer</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;66</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;{</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;67</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;68</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * CodeTransform uses this to cross-reference package references</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;69</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * with that package's main summary page.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;70</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;71</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">final</span> <span class="keyword">static</span> String INDEX = <span class="string">"package-summary.html"</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;72</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;73</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;74</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Path to the root output directory.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;75</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;76</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String root;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;77</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;78</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;79</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Package Manager for this project.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;80</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;81</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> PackageManager packageManager;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;82</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;83</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;84</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see the getter/setter docs for these properties</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;85</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;86</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String outputEncoding;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;87</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;88</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String templateDir;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;89</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;90</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String windowTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;91</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;92</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String docTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;93</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;94</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String bottom;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;95</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;96</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;97</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Constructor for the DirectoryIndexer object</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;98</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;99</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param packageManager PackageManager for this project</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;100</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param root Path of the root output directory</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;101</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;102</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> DirectoryIndexer( PackageManager packageManager, String root )</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;103</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;104</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.packageManager = packageManager;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;105</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.root = root;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;106</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;107</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;108</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;109</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * OutputEncoding is the encoding of output files.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;110</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;111</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param outputEncoding output Encoding</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;112</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;113</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setOutputEncoding( String outputEncoding )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;114</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;115</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.outputEncoding = outputEncoding;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;116</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;117</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;118</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;119</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see setOutputEncoding(String)</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;120</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;121</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getOutputEncoding()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;122</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;123</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> outputEncoding;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;124</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;125</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;126</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;127</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * TemplateDir is the location of the jelly template files used</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;128</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * to generate the navigation pages.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;129</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;130</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param templateDir location of the template directory</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;131</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;132</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setTemplateDir( String templateDir )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;133</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;134</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.templateDir = templateDir;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;135</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;136</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;137</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;138</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see setTemplateDir(String)</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;139</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;140</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getTemplateDir()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;141</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;142</td>
+  <td class="nbHitsCovered">&nbsp;13</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> templateDir;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;143</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;144</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;145</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;146</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * WindowTitle is used in the output's &amp;lt;title&amp;gt; tags</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;147</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see the javadoc documentation for the property of the same name</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;148</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;149</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param windowTitle the &amp;lt;title&amp;gt; attribute</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;150</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;151</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setWindowTitle( String windowTitle )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;152</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;153</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.windowTitle = windowTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;154</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;155</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;156</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;157</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see setWindowTitle(String)</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;158</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;159</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @see #setWindowTitle(String) setWindowTitle</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;160</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;161</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getWindowTitle()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;162</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;163</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> windowTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;164</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;165</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;166</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;167</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * DocTitle is used as a page heading for the summary files</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;168</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see the javadoc documentation for the property of the same name</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;169</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;170</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param docTitle major page heading</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;171</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;172</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setDocTitle( String docTitle )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;173</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;174</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.docTitle = docTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;175</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;176</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;177</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;178</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see setDocTitle(String)</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;179</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;180</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @see #setDocTitle(String) setDocTitle</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;181</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;182</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getDocTitle()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;183</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;184</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> docTitle;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;185</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;186</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;187</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;188</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Bottom is a footer for the navigation pages, usually a copyright</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;189</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see the javadoc documentation for the property of the same name</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;190</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;191</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @param bottom page footer</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;192</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;193</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setBottom( String bottom )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;194</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;195</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.bottom = bottom;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;196</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;197</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;198</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;199</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * see setBottom(String)</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;200</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;201</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @see #setBottom(String) setBottom</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;202</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;203</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> String getBottom()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;204</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;205</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> bottom;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;206</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;207</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;208</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;209</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Does the actual indexing.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;210</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;211</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * @throws JxrException If something went wrong</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;212</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;213</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> process( Log log )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;214</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">throws</span> JxrException</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;215</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;216</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        Map info = getPackageInfo();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;217</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;218</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        VelocityEngine engine = <span class="keyword">new</span> VelocityEngine();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;219</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        setProperties( engine, log );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;220</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;221</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;222</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            engine.init();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;223</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;224</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">catch</span> ( Exception e )</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;225</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;226</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> JxrException( <span class="string">"Error initialising Velocity"</span>, e );</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;227</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;228</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;229</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        VelocityContext context = <span class="keyword">new</span> VelocityContext();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;230</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        context.put( <span class="string">"outputEncoding"</span>, getOutputEncoding() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;231</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        context.put( <span class="string">"windowTitle"</span>, getWindowTitle() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;232</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        context.put( <span class="string">"docTitle"</span>, getDocTitle() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;233</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        context.put( <span class="string">"bottom"</span>, getBottom() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;234</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        context.put( <span class="string">"info"</span>, info );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;235</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;236</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        doVelocity( <span class="string">"index"</span>, root, context, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;237</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        doVelocity( <span class="string">"overview-frame"</span>, root, context, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;238</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        doVelocity( <span class="string">"allclasses-frame"</span>, root, context, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;239</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        doVelocity( <span class="string">"overview-summary"</span>, root, context, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;240</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;241</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        Iterator iter = ( (Map) info.get( <span class="string">"allPackages"</span> ) ).values().iterator();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;242</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">while</span> ( iter.hasNext() )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;243</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;244</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            Map pkgInfo = (Map) iter.next();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;245</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;246</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            VelocityContext subContext = <span class="keyword">new</span> VelocityContext( context );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;247</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            subContext.put( <span class="string">"pkgInfo"</span>, pkgInfo );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;248</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;249</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            String outDir = root + <span class="string">"/"</span> + (String) pkgInfo.get( <span class="string">"dir"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;250</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            doVelocity( <span class="string">"package-summary"</span>, outDir, subContext, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;251</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            doVelocity( <span class="string">"package-frame"</span>, outDir, subContext, engine );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;252</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;253</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;254</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;255</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;256</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Set Velocity properties to find templates</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;257</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;258</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> setProperties( VelocityEngine engine, Log log )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;259</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;260</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        File templateDirFile = <span class="keyword">new</span> File( getTemplateDir() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;261</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">if</span> ( templateDirFile.isAbsolute() )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;262</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;263</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// the property has been overriden: need to use a FileResourceLoader</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;264</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            engine.setProperty( <span class="string">"resource.loader"</span>, <span class="string">"file"</span> );</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;265</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            engine.setProperty( <span class="string">"file.resource.loader.class"</span>,</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;266</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                <span class="string">"org.apache.velocity.runtime.resource.loader.FileResourceLoader"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;267</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            engine.setProperty( <span class="string">"file.resource.loader.path"</span>, templateDirFile.toString() );</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;268</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;269</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">else</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;270</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;271</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// use of the default templates</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;272</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            engine.setProperty( <span class="string">"resource.loader"</span>, <span class="string">"classpath"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;273</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            engine.setProperty( <span class="string">"classpath.resource.loader.class"</span>,</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;274</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                                <span class="string">"org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;275</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;276</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;        engine.setProperty( Log.<span class="keyword">class</span>.getName(), log );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;277</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        engine.setProperty( <span class="string">"runtime.log.logsystem.class"</span>, VelocityLogger.<span class="keyword">class</span>.getName() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;278</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;279</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;280</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;281</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Generate the HTML file according to the Velocity template</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;282</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;283</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">void</span> doVelocity( String templateName, String outDir, VelocityContext context, VelocityEngine engine )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;284</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">throws</span> JxrException</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;285</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;286</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="comment">// output file</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;287</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;        File file = <span class="keyword">new</span> File( outDir, templateName + <span class="string">".html"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;288</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;        file.getParentFile().mkdirs();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;289</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;        FileWriter writer = <span class="keyword">null</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;290</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;291</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">try</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;292</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;293</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            writer = <span class="keyword">new</span> FileWriter( file );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;294</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;295</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// template file</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;296</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            StringBuffer templateFile = <span class="keyword">new</span> StringBuffer();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;297</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            File templateDirFile = <span class="keyword">new</span> File( getTemplateDir() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;298</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> ( !templateDirFile.isAbsolute() )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;299</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;300</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="comment">// default templates</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;301</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;                templateFile.append( getTemplateDir() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;302</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;                templateFile.append( <span class="string">"/"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;303</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;304</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            templateFile.append( templateName );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;305</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            templateFile.append( <span class="string">".vm"</span> );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;306</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            Template template = engine.getTemplate( templateFile.toString() );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;307</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;308</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// do the merge</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;309</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            template.merge( context, writer );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;310</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            writer.flush();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;311</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;312</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">catch</span> ( Exception e )</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;313</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;314</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> JxrException( <span class="string">"Error merging velocity template"</span>, e );</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;315</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;316</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">finally</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;317</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;318</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;            IOUtil.close( writer );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;319</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;320</td>
+  <td class="nbHitsCovered">&nbsp;6</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;321</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;322</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;323</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * Creates a Map of other Maps containing information about</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;324</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * this project's packages and classes, obtained from the PackageManager.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;325</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;326</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * allPackages collection of Maps with package info, with the following format</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;327</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *   {name}    package name (e.g., "org.apache.maven.jxr")</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;328</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *   {dir}     package dir relative to the root output dir (e.g., "org/apache/maven/jxr")</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;329</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *   {rootRef} relative link to root output dir (e.g., "../../../../") note trailing slash</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;330</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *   {classes} collection of Maps with class info</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;331</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *      {name}  class name (e.g., "DirectoryIndexer")</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;332</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *      {dir}   duplicate of package {dir}</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;333</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;334</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     * allClasses collection of Maps with class info, format as above</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;335</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;336</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;337</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> Map getPackageInfo()</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;338</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;339</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        TreeMap allPackages = <span class="keyword">new</span> TreeMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;340</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        TreeMap allClasses = <span class="keyword">new</span> TreeMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;341</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        Perl5Util perl = <span class="keyword">new</span> Perl5Util();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;342</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;343</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        Enumeration packages = packageManager.getPackageTypes();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;344</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">while</span> ( packages.hasMoreElements() )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;345</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;346</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            PackageType pkg = (PackageType) packages.nextElement();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;347</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            String pkgName = pkg.getName();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;348</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            String pkgDir = perl.substitute( <span class="string">"s/\\./\\//g"</span>, pkgName );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;349</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            String rootRef = perl.substitute( <span class="string">"s/[^\\.]*(\\.|$)/\\.\\.\\//g"</span>, pkgName );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;350</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;351</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// special case for the default package</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;352</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="comment">// javadoc doesn't deal with it, but it's easy for us</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;353</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">if</span> ( pkgName.length() == 0 )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;354</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;355</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                pkgName = <span class="string">"(default package)"</span>;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;356</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                pkgDir = <span class="string">"."</span>;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;357</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                rootRef = <span class="string">"./"</span>;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;358</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;359</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;360</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            TreeMap pkgClasses = <span class="keyword">new</span> TreeMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;361</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            Enumeration classes = pkg.getClassTypes();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;362</td>
+  <td class="nbHitsCovered">&nbsp;4</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">while</span> ( classes.hasMoreElements() )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;363</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;364</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                ClassType clazz = (ClassType) classes.nextElement();</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;365</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;366</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                String className = clazz.getName();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;367</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                Map classInfo = <span class="keyword">new</span> HashMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;368</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                classInfo.put( <span class="string">"name"</span>, className );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;369</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                classInfo.put( <span class="string">"dir"</span>, pkgDir );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;370</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;371</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                pkgClasses.put( className, classInfo );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;372</td>
+  <td class="nbHitsCovered">&nbsp;3</td>
+  <td class="src"><pre class="src">&nbsp;                allClasses.put( className, classInfo );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;373</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;374</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;375</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            Map pkgInfo = <span class="keyword">new</span> HashMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;376</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            pkgInfo.put( <span class="string">"name"</span>, pkgName );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;377</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            pkgInfo.put( <span class="string">"dir"</span>, pkgDir );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;378</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            pkgInfo.put( <span class="string">"classes"</span>, pkgClasses );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;379</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            pkgInfo.put( <span class="string">"rootRef"</span>, rootRef );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;380</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;            allPackages.put( pkgName, pkgInfo );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;381</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;382</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;383</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        Map info = <span class="keyword">new</span> HashMap();</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;384</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        info.put( <span class="string">"allPackages"</span>, allPackages );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;385</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        info.put( <span class="string">"allClasses"</span>, allClasses );</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;386</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;387</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> info;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;388</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;389</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;}</pre></td>
+</tr>
+</table>
+</p>
+<div class="footer">
+Reports generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a>.
+</div>
+</body>
+</html>

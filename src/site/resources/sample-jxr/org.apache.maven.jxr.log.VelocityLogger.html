@@ -1,0 +1,323 @@
+<html>
+<head>
+<title>Coverage Report</title>
+<link title="Style" type="text/css" rel="stylesheet" href="css/main.css" />
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+<h5>Coverage Report - org.apache.maven.jxr.log.VelocityLogger</h5>
+<p>
+<table class="report">
+<thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
+  <tr><td class="text"><a href="org.apache.maven.jxr.log.VelocityLogger.html">VelocityLogger</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>92%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="91"></td><td class="uncovered" width="8"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>100%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="100"></td><td class="uncovered" width="0"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">3.0;</span>3</td></tr>
+</table>
+</p>
+<p>
+<table cellspacing="0" cellpadding="0" class="src">
+<tr>
+  <td class="numLine">&nbsp;1</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> org.apache.maven.jxr.log;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;2</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;3</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/*</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;4</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Copyright 2001-2005 The Apache Software Foundation.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;5</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;6</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Licensed under the Apache License, Version 2.0 (the "License");</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;7</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * you may not use this file except in compliance with the License.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;8</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * You may obtain a copy of the License at</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;9</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;10</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;11</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;12</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;13</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * distributed under the License is distributed on an "AS IS" BASIS,</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;14</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;15</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * See the License for the specific language governing permissions and</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;16</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * limitations under the License.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;17</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;18</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;19</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.runtime.RuntimeServices;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;20</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> org.apache.velocity.runtime.log.LogSystem;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;21</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;22</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;23</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Logging interface for Velocity.</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;24</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;25</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author &lt;a href="mailto:brett@apache.org"&gt;Brett Porter&lt;/a&gt;</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;26</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;27</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;28</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> VelocityLogger</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;29</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">implements</span> LogSystem</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;30</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;{</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;31</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> Log log;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;32</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;33</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> init( RuntimeServices runtimeServices )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;34</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;35</td>
+  <td class="nbHitsCovered">&nbsp;2</td>
+  <td class="src"><pre class="src">&nbsp;        log = (Log) runtimeServices.getProperty( Log.<span class="keyword">class</span>.getName() );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;36</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;37</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;38</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> logVelocityMessage( <span class="keyword">int</span> level, String msg )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;39</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;40</td>
+  <td class="nbHitsCovered">&nbsp;37</td>
+  <td class="src"><pre class="src">&nbsp;        <span class="keyword">switch</span> ( level )</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;41</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        {</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;42</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">case</span> INFO_ID:</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;43</td>
+  <td class="nbHitsCovered">&nbsp;35</td>
+  <td class="src"><pre class="src">&nbsp;                log.info( msg );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;44</td>
+  <td class="nbHitsCovered">&nbsp;35</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;45</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;46</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">case</span> WARN_ID:</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;47</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;                log.warn( msg );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;48</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;49</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;50</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">case</span> ERROR_ID:</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;51</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;                log.error( msg );</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;52</td>
+  <td class="nbHitsCovered">&nbsp;1</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;53</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;54</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">default</span>:</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;55</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;            <span class="keyword">case</span> DEBUG_ID:</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;56</td>
+  <td class="nbHitsUncovered">&nbsp;0</td>
+  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                log.debug( msg );</span></pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;57</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;58</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;        }</pre></td>
+</tr>
+<tr>
+  <td class="numLineCover">&nbsp;59</td>
+  <td class="nbHitsCovered">&nbsp;37</td>
+  <td class="src"><pre class="src">&nbsp;    }</pre></td>
+</tr>
+<tr>
+  <td class="numLine">&nbsp;60</td>
+  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;}</pre></td>
+</tr>
+</table>
+</p>
+<div class="footer">
+Reports generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a>.
+</div>
+</body>
+</html>
