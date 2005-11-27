@@ -22,7 +22,8 @@
       <item name="mojo" href="http://mojo.codehaus.org/" />
     </menu>
 
-    <menu name="Cobertura Plugin Quickstart">
+    <menu name="Cobertura Plugin Docs">
+      <item name="Goals" href="plugin-info.html" />
       <item name="Usage" href="usage.html" />
       <item name="Sample Cobertura Report" href="sample-jxr/index.html" />
     </menu>

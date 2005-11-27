@@ -29,46 +29,58 @@ import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
 /**
- * The Cobertura Report generation.
+ * Instruments, Tests, and Generates a Cobertura Report.
  * 
- * @goal report
- * @configurator override
- *
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
+ * 
+ * @goal cobertura
+ * @configurator override
+ * @execute phase="test" lifecycle="cobertura"
  */
 public class CoberturaReportMojo
     extends AbstractMavenReport
 {
     /**
+     * The format of the report.
+     * (supports 'html' or 'xml'. defaults to 'html')
+     * 
      * @parameter expression="${cobertura.report.format}"
      */
     private String format;
 
     /**
+     * Maximum memory to pass JVM of Cobertura processes.
+     * 
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
 
     /**
+     * <p>The Datafile Location.</p>
+     * 
+     * <p>
+     * Due to a bug in Cobertura v1.6, this location cannot be changed.
+     * </p>
+     * 
      * @parameter expression="${basedir}/cobertura.ser"
      * @required
+     * @readonly
      */
     protected File dataFile;
 
     /**
-     * @parameter expression="${project.compileClasspathElements}"
-     * @required
-     */
-    protected List compileClasspathList;
-
-    /**
+     * <i>Maven Internal</i>: List of artifacts for the plugin.
+     * 
      * @parameter expression="${plugin.artifacts}"
      * @required
+     * @readonly
      */
     protected List pluginClasspathList;
 
     /**
+     * The source directory for generating report from.
+     * 
      * @parameter expression="${project.build.sourceDirectory}"
      * @required
      * @readonly
@@ -76,12 +88,16 @@ public class CoberturaReportMojo
     private File sourceDirectory;
 
     /**
+     * The output directory for the report.
+     * 
      * @parameter expression="${project.reporting.outputDirectory}/cobertura"
      * @required
      */
     private String outputDirectory;
 
     /**
+     * <i>Maven Internal</i>: The Doxia Site Renderer.
+     * 
      * @parameter expression="${component.org.codehaus.doxia.site.renderer.SiteRenderer}"
      * @required
      * @readonly
@@ -89,6 +105,8 @@ public class CoberturaReportMojo
     private SiteRenderer siteRenderer;
 
     /**
+     * <i>Maven Internal</i>: Project to interact with.
+     * 
      * @parameter expression="${project}"
      * @required
      * @readonly
@@ -153,7 +171,6 @@ public class CoberturaReportMojo
         ReportTask task = new ReportTask();
         // task defaults
         task.setLog( getLog() );
-        task.setCompileClasspathList( compileClasspathList );
         task.setPluginClasspathList( pluginClasspathList );
 
         // task specifics

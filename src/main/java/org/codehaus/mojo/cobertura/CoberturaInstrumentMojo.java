@@ -17,6 +17,7 @@ package org.codehaus.mojo.cobertura;
  */
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -27,6 +28,7 @@ import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
+import org.codehaus.plexus.util.FileUtils;
 
 /**
  * Instrument the compiled classes.
@@ -34,25 +36,19 @@ import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * 
  * @goal instrument
- * @phase generate-sources
- * @requiresDependencyResolution test
- * @description instrument the code
  */
 public class CoberturaInstrumentMojo
     extends AbstractCoberturaMojo
 {
 
     /**
+     * <i>Maven Internal</i>
+     * 
      * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
      * @required
      * @readonly
      */
     private ArtifactFactory factory;
-
-    /**
-     * @parameter expression="${project.build.directory}/classes-instrumented"
-     */
-    private File instrumentedDirectory;
 
     /**
      * build up a command line from the parameters and run
@@ -61,6 +57,8 @@ public class CoberturaInstrumentMojo
     public void execute()
         throws MojoExecutionException
     {
+        File instrumentedDirectory = new File(project.getBuild().getDirectory(), "generated-classes/cobertura");
+        
         if ( !instrumentedDirectory.exists() )
         {
             instrumentedDirectory.mkdirs();
@@ -80,8 +78,20 @@ public class CoberturaInstrumentMojo
             instrumentation.addInclude( "**/*.class" );
         }
 
-        instrumentation.setBasedir( new File( project.getBuild().getOutputDirectory() ) );
-
+        
+        // Copy all of the classes into the instrumentation basedir.
+        try
+        {
+            FileUtils.copyDirectoryStructure( new File( project.getBuild().getOutputDirectory() ), instrumentedDirectory );
+        }
+        catch ( IOException e )
+        {
+            throw new MojoExecutionException( "Unable to prepare instrumentation directory.", e );
+        }
+        
+        instrumentation.setBasedir( instrumentedDirectory );
+        
+        // Execute the instrumentation task.
         InstrumentTask task = new InstrumentTask();
         setTaskDefaults( task );
         task.setConfig( instrumentation );
@@ -92,13 +102,11 @@ public class CoberturaInstrumentMojo
 
         addCoberturaDependenciesToTestClasspath();
 
-        System.setProperty( ORIGINAL_CLASS_DIRECTORY, project.getBuild().getOutputDirectory() );
         System.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
         project.getBuild().setOutputDirectory( instrumentedDirectory.getPath() );
         System.setProperty( "project.build.outputDirectory", instrumentedDirectory.getPath() );
-        // TODO: ensure surefire operates in forked mode.
     }
-
+    
     private void addCoberturaDependenciesToTestClasspath()
         throws MojoExecutionException
     {

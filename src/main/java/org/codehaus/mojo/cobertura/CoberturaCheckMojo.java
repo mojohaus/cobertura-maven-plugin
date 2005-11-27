@@ -23,9 +23,9 @@ import org.codehaus.mojo.cobertura.tasks.CheckTask;
  * Check the Last Instrumentation Results.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
+ * 
  * @goal check
  * @phase test
- * @description Check the results of the last instrumentation.
  */
 public class CoberturaCheckMojo
     extends AbstractCoberturaMojo

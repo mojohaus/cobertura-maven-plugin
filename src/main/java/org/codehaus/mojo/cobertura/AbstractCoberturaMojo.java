@@ -36,45 +36,55 @@ import org.codehaus.mojo.cobertura.tasks.AbstractTask;
 public abstract class AbstractCoberturaMojo
     extends AbstractMojo
 {
-    protected static final String ORIGINAL_CLASS_DIRECTORY = "cobertura.original.build.outputDirectory";
-
     /**
+     * <i>Maven Internal</i>: Project to interact with.
+     * 
      * @parameter expression="${project}"
      * @required
+     * @readonly
      */
     protected MavenProject project;
     
     /**
-     * @parameter expression="${cobertura.maxmem}"
+     * Maximum memory to pass JVM of Cobertura processes.
      * 
+     * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
 
     /**
+     * <p>The Datafile Location.</p>
+     * 
+     * <p>
+     * Due to a bug in Cobertura v1.6, this location cannot be changed.
+     * </p>
+     * 
      * @parameter expression="${basedir}/cobertura.ser"
      * @required
+     * @readonly
      */
     protected File dataFile;
 
     /**
+     * The <a href="usage.html#Check">Check Configuration</a>.
+     * 
      * @parameter expression="${check}"
      */
     protected ConfigCheck check;
 
     /**
+     * The <a href="usage.html#Instrumentation">Instrumentation Configuration</a>.
+     * 
      * @parameter expression="${instrumentation}"
      */
     protected ConfigInstrumentation instrumentation;
 
     /**
-     * @parameter expression="${project.compileClasspathElements}"
-     * @required
-     */
-    protected List compileClasspathList;
-
-    /**
+     * <i>Maven Internal</i>: List of artifacts for the plugin.
+     * 
      * @parameter expression="${plugin.artifacts}"
      * @required
+     * @readonly
      */
     protected List pluginClasspathList;
 
@@ -89,7 +99,6 @@ public abstract class AbstractCoberturaMojo
     public void setTaskDefaults( AbstractTask task )
     {
         task.setLog( getLog() );
-        task.setCompileClasspathList( compileClasspathList );
         task.setPluginClasspathList( pluginClasspathList );
 
         task.setMaxmem( maxmem );

@@ -18,7 +18,6 @@ package org.codehaus.mojo.cobertura.tasks;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -41,8 +40,6 @@ public abstract class AbstractTask
 {
     protected CommandLineArguments cmdLineArgs;
 
-    private List compileClasspathList;
-
     private Log log;
 
     private String maxmem;
@@ -51,8 +48,6 @@ public abstract class AbstractTask
 
     private String taskClass;
     
-    private static File log4jconfigFile = null;
-
     /**
      * Initialize AbstractTask.
      * 
@@ -63,19 +58,6 @@ public abstract class AbstractTask
         this.taskClass = taskClassname;
         this.cmdLineArgs = new CommandLineArguments();
         this.maxmem = "64m";
-        
-        if(log4jconfigFile == null) {
-            try
-            {
-                log4jconfigFile = File.createTempFile("log4j", "config.properties");
-                URL log4jurl = this.getClass().getClassLoader().getResource("cobertura-plugin/log4j-debug.properties");
-                FileUtils.copyURLToFile(log4jurl, log4jconfigFile);
-            }
-            catch ( IOException e )
-            {
-                log4jconfigFile = null;
-            }
-        }
     }
 
     /**
@@ -92,16 +74,6 @@ public abstract class AbstractTask
     {
 
         StringBuffer cpBuffer = new StringBuffer();
-
-        for ( Iterator it = compileClasspathList.iterator(); it.hasNext(); )
-        {
-            cpBuffer.append( (String) it.next() );
-
-            if ( it.hasNext() )
-            {
-                cpBuffer.append( File.pathSeparator );
-            }
-        }
 
         for ( Iterator it = pluginClasspathList.iterator(); it.hasNext(); )
         {
@@ -120,6 +92,27 @@ public abstract class AbstractTask
 
         return cpBuffer.toString();
     }
+    
+    private String getLog4jConfigFile()
+    {
+        String resourceName = "cobertura-plugin/log4j-info.properties";
+        if ( getLog().isDebugEnabled() )
+        {
+            resourceName = "cobertura-plugin/log4j-debug.properties";
+        }
+        try
+        {
+            File log4jconfigFile = File.createTempFile( "log4j", "config.properties" );
+            URL log4jurl = this.getClass().getClassLoader().getResource( resourceName );
+            FileUtils.copyURLToFile( log4jurl, log4jconfigFile );
+            log4jconfigFile.deleteOnExit();
+            return log4jconfigFile.toURL().toExternalForm();
+        }
+        catch ( IOException e )
+        {
+            return null;
+        }
+    }
 
     public abstract void execute()
         throws MojoExecutionException;
@@ -131,16 +124,10 @@ public abstract class AbstractTask
         cl.setExecutable( "java" );
         cl.createArgument().setValue( "-cp" );
         cl.createArgument().setValue( createClasspath() );
-        
-        if(log4jconfigFile != null) {
-            try
-            {
-                cl.createArgument().setValue("-Dlog4j.configuration=" + log4jconfigFile.toURL().toExternalForm());
-            }
-            catch ( MalformedURLException e )
-            {
-                // ignore
-            }
+
+        String log4jConfig = getLog4jConfigFile();
+        if(log4jConfig != null) {
+            cl.createArgument().setValue("-Dlog4j.configuration=" + log4jConfig);
         }
         
         cl.createArgument().setValue( "-Xmx" + maxmem );
@@ -174,10 +161,9 @@ public abstract class AbstractTask
 
         CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
 
-        // TODO: drop these to debug level.
-        getLog().info( "Working Directory: " + cl.getWorkingDirectory() );
-        getLog().info( "Executing command line:" );
-        getLog().info( cl.toString() );
+        getLog().debug( "Working Directory: " + cl.getWorkingDirectory() );
+        getLog().debug( "Executing command line:" );
+        getLog().debug( cl.toString() );
 
         int exitCode;
         try
@@ -216,14 +202,6 @@ public abstract class AbstractTask
         return cmdLineArgs;
     }
 
-    /**
-     * @return Returns the compileClasspathList.
-     */
-    public List getCompileClasspathList()
-    {
-        return compileClasspathList;
-    }
-
     public Log getLog()
     {
         if ( log == null )
@@ -250,14 +228,6 @@ public abstract class AbstractTask
     public void setCmdLineArgs( CommandLineArguments cmdLineArgs )
     {
         this.cmdLineArgs = cmdLineArgs;
-    }
-
-    /**
-     * @param compileClasspathList The compileClasspathList to set.
-     */
-    public void setCompileClasspathList( List compileClasspathList )
-    {
-        this.compileClasspathList = compileClasspathList;
     }
 
     public void setLog( Log log )
