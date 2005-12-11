@@ -16,6 +16,9 @@
         <id>test</id>
         <executions>
           <execution>
+            <goals>
+              <goal>org.apache.maven.plugins:maven-surefire-plugin:test</goal>
+            </goals>
             <configuration>
               <classesDirectory>${project.build.directory}/generated-classes/cobertura</classesDirectory>
               <ignoreFailures>true</ignoreFailures>
