@@ -203,4 +203,9 @@ public class CoberturaReportMojo
     {
         return true;
     }
+
+    public boolean canGenerateReport()
+    {
+        return sourceDirectory.exists();
+    }
 }
