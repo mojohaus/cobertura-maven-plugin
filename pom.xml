@@ -24,6 +24,12 @@
 
   <inceptionYear>2005</inceptionYear>
 
+  <scm>
+    <connection>scm:svn:svn://svn.codehaus.org/mojo/scm/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</developerConnection>
+    <url>http://svn.mojo.codehaus.org/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</url>
+  </scm>
+
   <licenses>
     <license>
       <name>Apache License 2</name>
