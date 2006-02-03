@@ -65,6 +65,19 @@
       <artifactId>cobertura</artifactId>
       <version>1.7</version>
     </dependency>
+	<!-- 
+	runtime has no 3rd party deps.  This allows us to
+	pass this dependency into the project's classpath
+	at runtime without risk of introducing dep version 
+	clashes e.g. projects which require an older version of
+	asm (namely Hibernate).
+	-->
+    <dependency>
+      <groupId>cobertura</groupId>
+      <artifactId>cobertura-runtime</artifactId>
+      <version>1.7</version>
+      <type>pom</type>
+    </dependency>
     <dependency>
       <groupId>urbanophile</groupId>
       <artifactId>java-getopt</artifactId>

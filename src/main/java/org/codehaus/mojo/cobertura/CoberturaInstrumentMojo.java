@@ -110,40 +110,21 @@ public class CoberturaInstrumentMojo
     private void addCoberturaDependenciesToTestClasspath()
         throws MojoExecutionException
     {
-        Artifact coberturaArtifact = null;
-        Artifact log4jArtifact = null;
-
         Map pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspathList );
-
-        coberturaArtifact = (Artifact) pluginArtifactMap.get( "cobertura:cobertura" );
-        log4jArtifact = (Artifact) pluginArtifactMap.get( "log4j:log4j" );
+        Artifact coberturaArtifact = (Artifact) pluginArtifactMap.get( "cobertura:cobertura-runtime" );
 
         if ( coberturaArtifact == null )
         {
             throw new MojoExecutionException( "Couldn't find 'cobertura' artifact in plugin dependencies" );
         }
 
-        if ( log4jArtifact == null )
-        {
-            throw new MojoExecutionException( "Couldn't find 'log4j' artifact in plugin dependencies" );
-        }
-
-        Map projectArtifactMap = ArtifactUtils.artifactMapByArtifactId( project.getDependencyArtifacts() );
-
-        // This step is done in order to set scope to test.
         coberturaArtifact = artifactScopeToTest( coberturaArtifact );
-        log4jArtifact = artifactScopeToTest( log4jArtifact );
 
         Set set = new HashSet( this.project.getDependencyArtifacts() );
         set.add( coberturaArtifact );
-        if ( !projectArtifactMap.containsKey( "log4j" ) )
-        {
-            // Add only if it's not there.
-            set.add( log4jArtifact );
-        }
         this.project.setDependencyArtifacts( set );
     }
-
+    
     private Artifact artifactScopeToTest( Artifact artifact )
     {
         return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),
