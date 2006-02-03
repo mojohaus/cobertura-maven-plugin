@@ -66,6 +66,8 @@ public class CoberturaReportMojo
      * @parameter expression="${basedir}/cobertura.ser"
      * @required
      * @readonly
+     * TODO Please link a Cobertura issue URL so other developers understand
+     * what the problem is and can fix this once the underlying Cobertura bug is fixed. 
      */
     protected File dataFile;
 
