@@ -13,7 +13,7 @@
   </parent>
 
   <prerequisites>
-    <maven>2.0.1</maven>
+    <maven>2.0.3-SNAPSHOT</maven>
   </prerequisites>
   
   <artifactId>cobertura-maven-plugin</artifactId>
