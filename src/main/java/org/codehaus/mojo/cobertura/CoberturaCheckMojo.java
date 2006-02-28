@@ -25,7 +25,8 @@ import org.codehaus.mojo.cobertura.tasks.CheckTask;
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * 
  * @goal check
- * @phase test
+ * @execute phase="test" lifecycle="cobertura"
+ * @phase verify
  */
 public class CoberturaCheckMojo
     extends AbstractCoberturaMojo
