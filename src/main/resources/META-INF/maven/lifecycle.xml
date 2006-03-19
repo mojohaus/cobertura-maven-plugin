@@ -16,7 +16,7 @@
         <id>test</id>
         <configuration>
           <classesDirectory>${project.build.directory}/generated-classes/cobertura</classesDirectory>
-          <ignoreFailures>true</ignoreFailures>
+          <testFailureIgnore>true</testFailureIgnore>
           <forkMode>once</forkMode>
         </configuration>
       </phase>
