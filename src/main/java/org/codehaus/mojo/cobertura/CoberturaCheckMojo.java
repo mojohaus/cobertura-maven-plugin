@@ -16,6 +16,7 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
+import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.mojo.cobertura.tasks.CheckTask;
 
@@ -23,7 +24,6 @@ import org.codehaus.mojo.cobertura.tasks.CheckTask;
  * Check the Last Instrumentation Results.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
- * 
  * @goal check
  * @execute phase="test" lifecycle="cobertura"
  * @phase verify
@@ -40,16 +40,25 @@ public class CoberturaCheckMojo
             throw new MojoExecutionException( "The Check configuration is missing." );
         }
 
-        if ( !dataFile.exists() )
+        ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();
+        if ( !"java".equals( artifactHandler.getLanguage() ) )
         {
-            throw new MojoExecutionException( "Cannot perform check, instrumentation not performed." );
+            getLog().info(
+                "Not executing cobertura:instrument as the project is not a Java classpath-capable package" );
         }
+        else
+        {
+            if ( !dataFile.exists() )
+            {
+                throw new MojoExecutionException( "Cannot perform check, instrumentation not performed." );
+            }
 
-        CheckTask task = new CheckTask();
-        setTaskDefaults( task );
-        task.setConfig( check );
-        task.setDataFile( dataFile.getAbsolutePath() );
+            CheckTask task = new CheckTask();
+            setTaskDefaults( task );
+            task.setConfig( check );
+            task.setDataFile( dataFile.getAbsolutePath() );
 
-        task.execute();
+            task.execute();
+        }
     }
 }
