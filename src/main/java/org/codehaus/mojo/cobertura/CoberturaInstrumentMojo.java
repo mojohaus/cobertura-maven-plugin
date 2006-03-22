@@ -19,6 +19,7 @@ package org.codehaus.mojo.cobertura;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.ArtifactUtils;
 import org.apache.maven.artifact.factory.ArtifactFactory;
+import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
@@ -39,13 +40,10 @@ import java.util.Set;
 public class CoberturaInstrumentMojo
     extends AbstractCoberturaMojo
 {
-
     /**
-     * <i>Maven Internal</i>
+     * Artifact factory.
      *
-     * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
-     * @required
-     * @readonly
+     * @component
      */
     private ArtifactFactory factory;
 
@@ -56,59 +54,67 @@ public class CoberturaInstrumentMojo
     public void execute()
         throws MojoExecutionException
     {
-        File instrumentedDirectory = new File( project.getBuild().getDirectory(), "generated-classes/cobertura" );
-
-        if ( !instrumentedDirectory.exists() )
+        ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();
+        if ( !"java".equals( artifactHandler.getLanguage() ) )
         {
-            instrumentedDirectory.mkdirs();
+            getLog().info(
+                "Not executing cobertura:instrument as the project is not a Java classpath-capable package" );
         }
-
-        /* ensure that instrumentation config is set here, not via maven
-         * plugin api @required attribute, as this is not a required
-         * object from the pom configuration's point of view. */
-        if ( instrumentation == null )
+        else
         {
-            instrumentation = new ConfigInstrumentation();
+            File instrumentedDirectory = new File( project.getBuild().getDirectory(), "generated-classes/cobertura" );
+
+            if ( !instrumentedDirectory.exists() )
+            {
+                instrumentedDirectory.mkdirs();
+            }
+
+            // ensure that instrumentation config is set here, not via maven plugin api @required attribute, as this is
+            // not a required object from the pom configuration's point of view.
+            if ( instrumentation == null )
+            {
+                instrumentation = new ConfigInstrumentation();
+            }
+
+            /* ensure that the default includes is set */
+            if ( instrumentation.getIncludes().isEmpty() )
+            {
+                instrumentation.addInclude( "**/*.class" );
+            }
+
+            File outputDirectory = new File( project.getBuild().getOutputDirectory() );
+            if ( !outputDirectory.exists() )
+            {
+                outputDirectory.mkdirs();
+            }
+
+            // Copy all of the classes into the instrumentation basedir.
+            try
+            {
+                FileUtils.copyDirectoryStructure( outputDirectory, instrumentedDirectory );
+            }
+            catch ( IOException e )
+            {
+                throw new MojoExecutionException( "Unable to prepare instrumentation directory.", e );
+            }
+
+            instrumentation.setBasedir( instrumentedDirectory );
+
+            // Execute the instrumentation task.
+            InstrumentTask task = new InstrumentTask();
+            setTaskDefaults( task );
+            task.setConfig( instrumentation );
+            task.setDestinationDir( instrumentedDirectory );
+            task.setDataFile( dataFile );
+
+            task.execute();
+
+            addCoberturaDependenciesToTestClasspath();
+
+            System.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
+            project.getBuild().setOutputDirectory( instrumentedDirectory.getPath() );
+            System.setProperty( "project.build.outputDirectory", instrumentedDirectory.getPath() );
         }
-
-        /* ensure that the default includes is set */
-        if ( instrumentation.getIncludes().isEmpty() )
-        {
-            instrumentation.addInclude( "**/*.class" );
-        }
-
-        File outputDirectory = new File( project.getBuild().getOutputDirectory() );
-        if ( !outputDirectory.exists() )
-        {
-            outputDirectory.mkdirs();
-        }
-
-        // Copy all of the classes into the instrumentation basedir.
-        try
-        {
-            FileUtils.copyDirectoryStructure( outputDirectory, instrumentedDirectory );
-        }
-        catch ( IOException e )
-        {
-            throw new MojoExecutionException( "Unable to prepare instrumentation directory.", e );
-        }
-
-        instrumentation.setBasedir( instrumentedDirectory );
-
-        // Execute the instrumentation task.
-        InstrumentTask task = new InstrumentTask();
-        setTaskDefaults( task );
-        task.setConfig( instrumentation );
-        task.setDestinationDir( instrumentedDirectory );
-        task.setDataFile( dataFile );
-
-        task.execute();
-
-        addCoberturaDependenciesToTestClasspath();
-
-        System.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
-        project.getBuild().setOutputDirectory( instrumentedDirectory.getPath() );
-        System.setProperty( "project.build.outputDirectory", instrumentedDirectory.getPath() );
     }
 
     private void addCoberturaDependenciesToTestClasspath()
