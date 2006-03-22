@@ -16,12 +16,6 @@ package org.codehaus.mojo.cobertura;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.ArtifactUtils;
 import org.apache.maven.artifact.factory.ArtifactFactory;
@@ -30,11 +24,16 @@ import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
 import org.codehaus.plexus.util.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * Instrument the compiled classes.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
- * 
  * @goal instrument
  */
 public class CoberturaInstrumentMojo
@@ -43,7 +42,7 @@ public class CoberturaInstrumentMojo
 
     /**
      * <i>Maven Internal</i>
-     * 
+     *
      * @parameter expression="${component.org.apache.maven.artifact.factory.ArtifactFactory}"
      * @required
      * @readonly
@@ -57,15 +56,15 @@ public class CoberturaInstrumentMojo
     public void execute()
         throws MojoExecutionException
     {
-        File instrumentedDirectory = new File(project.getBuild().getDirectory(), "generated-classes/cobertura");
-        
+        File instrumentedDirectory = new File( project.getBuild().getDirectory(), "generated-classes/cobertura" );
+
         if ( !instrumentedDirectory.exists() )
         {
             instrumentedDirectory.mkdirs();
         }
 
         /* ensure that instrumentation config is set here, not via maven
-         * plugin api @required attribute, as this is not a required 
+         * plugin api @required attribute, as this is not a required
          * object from the pom configuration's point of view. */
         if ( instrumentation == null )
         {
@@ -78,19 +77,24 @@ public class CoberturaInstrumentMojo
             instrumentation.addInclude( "**/*.class" );
         }
 
-        
+        File outputDirectory = new File( project.getBuild().getOutputDirectory() );
+        if ( !outputDirectory.exists() )
+        {
+            outputDirectory.mkdirs();
+        }
+
         // Copy all of the classes into the instrumentation basedir.
         try
         {
-            FileUtils.copyDirectoryStructure( new File( project.getBuild().getOutputDirectory() ), instrumentedDirectory );
+            FileUtils.copyDirectoryStructure( outputDirectory, instrumentedDirectory );
         }
         catch ( IOException e )
         {
             throw new MojoExecutionException( "Unable to prepare instrumentation directory.", e );
         }
-        
+
         instrumentation.setBasedir( instrumentedDirectory );
-        
+
         // Execute the instrumentation task.
         InstrumentTask task = new InstrumentTask();
         setTaskDefaults( task );
@@ -106,7 +110,7 @@ public class CoberturaInstrumentMojo
         project.getBuild().setOutputDirectory( instrumentedDirectory.getPath() );
         System.setProperty( "project.build.outputDirectory", instrumentedDirectory.getPath() );
     }
-    
+
     private void addCoberturaDependenciesToTestClasspath()
         throws MojoExecutionException
     {
@@ -120,11 +124,14 @@ public class CoberturaInstrumentMojo
 
         coberturaArtifact = artifactScopeToTest( coberturaArtifact );
 
-        Set set = new HashSet( this.project.getDependencyArtifacts() );
-        set.add( coberturaArtifact );
-        this.project.setDependencyArtifacts( set );
+        if ( this.project.getDependencyArtifacts() != null )
+        {
+            Set set = new HashSet( this.project.getDependencyArtifacts() );
+            set.add( coberturaArtifact );
+            this.project.setDependencyArtifacts( set );
+        }
     }
-    
+
     private Artifact artifactScopeToTest( Artifact artifact )
     {
         return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),
