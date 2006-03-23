@@ -20,6 +20,9 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.plexus.util.StringUtils;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * The Report Task.
@@ -35,7 +38,7 @@ public class ReportTask
 
     private String outputFormat;
 
-    private File sourceDirectory;
+    private List compileSourceRoots;
 
     /**
      * Create ReportTask.
@@ -50,9 +53,10 @@ public class ReportTask
     {
         outputDirectory.mkdirs();
 
-        if ( sourceDirectory != null )
+        for ( Iterator i = compileSourceRoots.iterator(); i.hasNext(); )
         {
-            cmdLineArgs.addArg( "--source", sourceDirectory.getAbsolutePath() );
+            String directory = (String) i.next();
+            cmdLineArgs.addArg( "--source", directory );
         }
 
         if ( outputDirectory != null )
@@ -108,14 +112,6 @@ public class ReportTask
     }
 
     /**
-     * @return Returns the sourceDirectory.
-     */
-    public File getSourceDirectory()
-    {
-        return sourceDirectory;
-    }
-
-    /**
      * @param dataFile The dataFile to set.
      */
     public void setDataFile( File dataFile )
@@ -139,11 +135,8 @@ public class ReportTask
         this.outputFormat = outputFormat;
     }
 
-    /**
-     * @param sourceDirectory The sourceDirectory to set.
-     */
-    public void setSourceDirectory( File sourceDirectory )
+    public void setCompileSourceRoots( List compileSourceRoots )
     {
-        this.sourceDirectory = sourceDirectory;
+        this.compileSourceRoots = Collections.unmodifiableList( compileSourceRoots );
     }
 }

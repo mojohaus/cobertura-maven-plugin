@@ -25,6 +25,7 @@ import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -78,15 +79,6 @@ public class CoberturaReportMojo
     protected List pluginClasspathList;
 
     /**
-     * The source directory for generating report from.
-     *
-     * @parameter expression="${project.build.sourceDirectory}"
-     * @required
-     * @readonly
-     */
-    private File sourceDirectory;
-
-    /**
      * The output directory for the report.
      *
      * @parameter expression="${project.reporting.outputDirectory}/cobertura"
@@ -97,11 +89,18 @@ public class CoberturaReportMojo
     /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
      *
-     * @parameter expression="${component.org.codehaus.doxia.site.renderer.SiteRenderer}"
+     * @component
+     */
+    private SiteRenderer siteRenderer;
+
+    /**
+     * <i>Maven Internal</i>: Project to interact with.
+     *
+     * @parameter expression="${executedProject}"
      * @required
      * @readonly
      */
-    private SiteRenderer siteRenderer;
+    private MavenProject executedProject;
 
     /**
      * <i>Maven Internal</i>: Project to interact with.
@@ -176,7 +175,7 @@ public class CoberturaReportMojo
         task.setMaxmem( maxmem );
         task.setDataFile( dataFile );
         task.setOutputDirectory( new File( outputDirectory ) );
-        task.setSourceDirectory( sourceDirectory );
+        task.setCompileSourceRoots( executedProject.getCompileSourceRoots() );
         task.setOutputFormat( format );
 
         // execute task
@@ -205,6 +204,12 @@ public class CoberturaReportMojo
 
     public boolean canGenerateReport()
     {
-        return sourceDirectory.exists();
+        boolean canGenerate = false;
+        for ( Iterator i = executedProject.getCompileSourceRoots().iterator(); i.hasNext() && !canGenerate; )
+        {
+            String sourceDirectory = (String) i.next();
+            canGenerate = new File( sourceDirectory ).exists();
+        }
+        return canGenerate;
     }
 }
