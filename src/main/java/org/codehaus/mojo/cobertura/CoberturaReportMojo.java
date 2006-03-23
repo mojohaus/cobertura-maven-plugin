@@ -16,10 +16,6 @@ package org.codehaus.mojo.cobertura;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.util.List;
-import java.util.Locale;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
@@ -28,14 +24,16 @@ import org.codehaus.doxia.sink.Sink;
 import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
+import java.io.File;
+import java.util.List;
+import java.util.Locale;
+
 /**
  * Instruments, Tests, and Generates a Cobertura Report.
- * 
+ *
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
- * 
  * @goal cobertura
- * @configurator override
  * @execute phase="test" lifecycle="cobertura"
  */
 public class CoberturaReportMojo
@@ -44,36 +42,35 @@ public class CoberturaReportMojo
     /**
      * The format of the report.
      * (supports 'html' or 'xml'. defaults to 'html')
-     * 
+     *
      * @parameter expression="${cobertura.report.format}"
      */
     private String format;
 
     /**
      * Maximum memory to pass JVM of Cobertura processes.
-     * 
+     *
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
 
     /**
      * <p>The Datafile Location.</p>
-     * 
-     * <p>
+     * <p/>
+     * <p/>
      * Due to a bug in Cobertura v1.6, this location cannot be changed.
      * </p>
-     * 
+     *
      * @parameter expression="${basedir}/cobertura.ser"
      * @required
-     * @readonly
-     * TODO Please link a Cobertura issue URL so other developers understand
-     * what the problem is and can fix this once the underlying Cobertura bug is fixed. 
+     * @readonly TODO Please link a Cobertura issue URL so other developers understand
+     * what the problem is and can fix this once the underlying Cobertura bug is fixed.
      */
     protected File dataFile;
 
     /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
-     * 
+     *
      * @parameter expression="${plugin.artifacts}"
      * @required
      * @readonly
@@ -82,7 +79,7 @@ public class CoberturaReportMojo
 
     /**
      * The source directory for generating report from.
-     * 
+     *
      * @parameter expression="${project.build.sourceDirectory}"
      * @required
      * @readonly
@@ -91,7 +88,7 @@ public class CoberturaReportMojo
 
     /**
      * The output directory for the report.
-     * 
+     *
      * @parameter expression="${project.reporting.outputDirectory}/cobertura"
      * @required
      */
@@ -99,7 +96,7 @@ public class CoberturaReportMojo
 
     /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
-     * 
+     *
      * @parameter expression="${component.org.codehaus.doxia.site.renderer.SiteRenderer}"
      * @required
      * @readonly
@@ -108,7 +105,7 @@ public class CoberturaReportMojo
 
     /**
      * <i>Maven Internal</i>: Project to interact with.
-     * 
+     *
      * @parameter expression="${project}"
      * @required
      * @readonly

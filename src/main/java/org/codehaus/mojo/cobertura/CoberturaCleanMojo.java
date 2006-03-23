@@ -20,13 +20,11 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Clean up rogue files that cobertura maven plugin is tracking. 
- * 
+ * Clean up rogue files that cobertura maven plugin is tracking.
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
- * 
  * @goal clean
  * @phase clean
- * @executePhase clean
  */
 public class CoberturaCleanMojo
     extends AbstractCoberturaMojo
@@ -34,7 +32,8 @@ public class CoberturaCleanMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
-        if(dataFile.exists()) {
+        if ( dataFile.exists() )
+        {
             dataFile.delete();
         }
     }

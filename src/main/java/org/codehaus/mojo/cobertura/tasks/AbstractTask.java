@@ -16,12 +16,6 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
@@ -31,9 +25,17 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.cli.Commandline;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Base Abstract Class for all of the Tasks.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public abstract class AbstractTask
@@ -47,13 +49,13 @@ public abstract class AbstractTask
     private List pluginClasspathList;
 
     private String taskClass;
-    
+
     /**
      * Initialize AbstractTask.
-     * 
+     *
      * @param taskClassname the classname for the task.
      */
-    public AbstractTask( String taskClassname )
+    protected AbstractTask( String taskClassname )
     {
         this.taskClass = taskClassname;
         this.cmdLineArgs = new CommandLineArguments();
@@ -64,10 +66,10 @@ public abstract class AbstractTask
      * Using the <code>${project.compileClasspathElements}</code> and the
      * <code>${plugin.artifacts}</code>, create a classpath string that is
      * suitable to be used from a forked cobertura process.
-     * 
+     *
      * @return the classpath string
      * @throws MojoExecutionException if the pluginArtifacts cannot be properly
-     *             resolved to a full system path.
+     *                                resolved to a full system path.
      */
     public String createClasspath()
         throws MojoExecutionException
@@ -85,14 +87,14 @@ public abstract class AbstractTask
             }
             catch ( IOException e )
             {
-                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile()
-                    + "'.", e );
+                throw new MojoExecutionException(
+                    "Error while creating the canonical path for '" + artifact.getFile() + "'.", e );
             }
         }
 
         return cpBuffer.toString();
     }
-    
+
     private String getLog4jConfigFile()
     {
         String resourceName = "cobertura-plugin/log4j-info.properties";
@@ -100,18 +102,25 @@ public abstract class AbstractTask
         {
             resourceName = "cobertura-plugin/log4j-debug.properties";
         }
+
+        String path = null;
         try
         {
             File log4jconfigFile = File.createTempFile( "log4j", "config.properties" );
             URL log4jurl = this.getClass().getClassLoader().getResource( resourceName );
             FileUtils.copyURLToFile( log4jurl, log4jconfigFile );
             log4jconfigFile.deleteOnExit();
-            return log4jconfigFile.toURL().toExternalForm();
+            path = log4jconfigFile.toURL().toExternalForm();
+        }
+        catch ( MalformedURLException e )
+        {
+            // ignore
         }
         catch ( IOException e )
         {
-            return null;
+            // ignore
         }
+        return path;
     }
 
     public abstract void execute()
@@ -126,14 +135,15 @@ public abstract class AbstractTask
         cl.createArgument().setValue( createClasspath() );
 
         String log4jConfig = getLog4jConfigFile();
-        if(log4jConfig != null) {
-            cl.createArgument().setValue("-Dlog4j.configuration=" + log4jConfig);
+        if ( log4jConfig != null )
+        {
+            cl.createArgument().setValue( "-Dlog4j.configuration=" + log4jConfig );
         }
-        
+
         cl.createArgument().setValue( "-Xmx" + maxmem );
 
         cl.createArgument().setValue( this.taskClass );
-        
+
         if ( this.cmdLineArgs.useCommandsFile() )
         {
             cl.createArgument().setValue( "--commandsfile" );
@@ -245,6 +255,6 @@ public abstract class AbstractTask
      */
     public void setPluginClasspathList( List pluginClasspathList )
     {
-        this.pluginClasspathList = pluginClasspathList;
+        this.pluginClasspathList = Collections.unmodifiableList( pluginClasspathList );
     }
 }

@@ -13,19 +13,19 @@
   </bannerRight>
   <body>
     <links>
-      <item name="Mojo" href="http://mojo.codehaus.org/" />
-      <item name="Maven" href="http://maven.apache.org/maven2/" />
-      <item name="Cobertura" href="http://cobertura.sourceforge.net/" />
+      <item name="Mojo" href="http://mojo.codehaus.org/"/>
+      <item name="Maven" href="http://maven.apache.org/maven2/"/>
+      <item name="Cobertura" href="http://cobertura.sourceforge.net/"/>
     </links>
 
     <menu name="Mojo">
-      <item name="mojo" href="http://mojo.codehaus.org/" />
+      <item name="mojo" href="http://mojo.codehaus.org/"/>
     </menu>
 
     <menu name="Cobertura Plugin Docs">
-      <item name="Goals" href="plugin-info.html" />
-      <item name="Usage" href="usage.html" />
-      <item name="Sample Cobertura Report" href="sample-jxr/index.html" />
+      <item name="Goals" href="plugin-info.html"/>
+      <item name="Usage" href="usage.html"/>
+      <item name="Sample Cobertura Report" href="sample-jxr/index.html"/>
     </menu>
 
     ${reports}

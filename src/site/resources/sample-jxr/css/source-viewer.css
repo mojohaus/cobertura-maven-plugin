@@ -5,8 +5,8 @@ pre.src {
 }
 
 table.src {
-	border: #dcdcdc 1px solid;
-	font-size: 16px;
+    border: #dcdcdc 1px solid;
+    font-size: 16px;
 }
 
 td.numLine {
@@ -69,6 +69,6 @@ span.string {
 }
 
 span.text_italic {
-	font-size: 12px;
+    font-size: 12px;
     font-style: italic;
 }

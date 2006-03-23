@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * The Configuration for the Instrumentation.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ConfigInstrumentation
@@ -49,7 +49,7 @@ public class ConfigInstrumentation
 
     /**
      * Add an Exclude to the underlying list.
-     * 
+     *
      * @param exclude the exlude string.
      */
     public void addExclude( String exclude )
@@ -59,7 +59,7 @@ public class ConfigInstrumentation
 
     /**
      * Add an Ignore to the underlying list.
-     * 
+     *
      * @param ignore the ignore string.
      */
     public void addIgnore( String ignore )
@@ -69,7 +69,7 @@ public class ConfigInstrumentation
 
     /**
      * Add an Include ot the underlying list.
-     * 
+     *
      * @param include the include string.
      */
     public void addInclude( String include )
@@ -87,7 +87,7 @@ public class ConfigInstrumentation
 
     /**
      * Get the Exclude List.
-     * 
+     *
      * @return the exlude list.
      */
     public List getExcludes()
@@ -97,7 +97,7 @@ public class ConfigInstrumentation
 
     /**
      * Get the Ignore List.
-     * 
+     *
      * @return the ignore list.
      */
     public List getIgnores()
@@ -107,7 +107,7 @@ public class ConfigInstrumentation
 
     /**
      * Get the Include List.
-     * 
+     *
      * @return the include list.
      */
     public List getIncludes()
@@ -121,36 +121,6 @@ public class ConfigInstrumentation
     public void setBasedir( File basedir )
     {
         this.basedir = basedir;
-    }
-
-    /**
-     * Set the Exclude List.
-     * 
-     * @param excludes the exclude list to set.
-     */
-    public void setExcludes( List excludes )
-    {
-        this.excludes = excludes;
-    }
-
-    /**
-     * Set the Ignore List.
-     * 
-     * @param ignores the ignore list to set.
-     */
-    public void setIgnores( List ignores )
-    {
-        this.ignores = ignores;
-    }
-
-    /**
-     * Set the Include List.
-     * 
-     * @param includes the include list to set.
-     */
-    public void setIncludes( List includes )
-    {
-        this.includes = includes;
     }
 
     public String toString()

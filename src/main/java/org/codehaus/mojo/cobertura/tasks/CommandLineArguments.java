@@ -16,12 +16,12 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
+import net.sourceforge.cobertura.util.CommandLineBuilder;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import net.sourceforge.cobertura.util.CommandLineBuilder;
 
 /**
  * CommandLineArguments allows for arbitraily long command line argument lists.
@@ -58,7 +58,7 @@ public class CommandLineArguments
 
     /**
      * Generate the Commands file and return the filename to it.
-     * 
+     *
      * @return the commands filename.
      * @throws IOException
      */

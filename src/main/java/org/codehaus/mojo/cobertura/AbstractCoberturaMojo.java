@@ -17,8 +17,6 @@ package org.codehaus.mojo.cobertura;
  */
 
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
@@ -87,9 +85,6 @@ public abstract class AbstractCoberturaMojo
      * @readonly
      */
     protected List pluginClasspathList;
-
-    public abstract void execute()
-        throws MojoExecutionException, MojoFailureException;
 
     /**
      * Setup the Task defaults.

@@ -1,183 +1,222 @@
 <html>
 <head>
-<title>Coverage Report</title>
-<link title="Style" type="text/css" rel="stylesheet" href="css/main.css" />
-<script type="text/javascript" src="js/popup.js"></script>
+    <title>Coverage Report</title>
+    <link title="Style" type="text/css" rel="stylesheet" href="css/main.css" />
+    <script type="text/javascript" src="js/popup.js"></script>
 </head>
+
 <body>
 <h5>Coverage Report - org.apache.maven.jxr.JxrException</h5>
+
 <p>
-<table class="report">
-<thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
-  <tr><td class="text"><a href="org.apache.maven.jxr.JxrException.html">JxrException</a></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td>0%&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered" width="0"></td><td class="uncovered" width="100"></td></tr></table></td></tr></table></td><td class="value"><table cellpadding="0" cellspacing="0" align="right"><tr><td><a class="dfn" href="help.html" onClick="popupwindow('help.html'); return false;">N/A</a>&nbsp;</td><td><table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="NA" width="100"></td></tr></table></td></tr></table></td><td class="value"><span class="hidden">1.0;</span>1</td></tr>
-</table>
+    <table class="report">
+        <thead><tr><td class="heading">Classes in this File</td>  <td class="heading" width="20%"><a class="dfn"
+                                                                                                     href="help.html"
+                                                                                                     onClick="popupwindow('help.html'); return false;">Line
+            Coverage</a></td>  <td class="heading" width="20%"><a class="dfn" href="help.html"
+                                                                  onClick="popupwindow('help.html'); return false;">Branch
+            Coverage</a></td>  <td class="heading" width="10%"><a class="dfn" href="help.html"
+                                                                  onClick="popupwindow('help.html'); return false;">Complexity</a>
+        </td></tr></thead>
+        <tr><td class="text"><a href="org.apache.maven.jxr.JxrException.html">JxrException</a></td><td class="value">
+            <table cellpadding="0" cellspacing="0" align="right"><tr><td>0%&nbsp;</td><td>
+                <table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="covered"
+                                                                                                width="0"></td><td
+                        class="uncovered" width="100"></td></tr></table>
+            </td></tr></table>
+        </td><td class="value">
+            <table cellpadding="0" cellspacing="0" align="right"><tr><td><a class="dfn" href="help.html"
+                                                                            onClick="popupwindow('help.html'); return false;">N/A</a>&nbsp;
+            </td><td>
+                <table class="percentGraph" cellpadding="0" cellspacing="0" width="100"><tr><td class="NA"
+                                                                                                width="100"></td></tr>
+                </table>
+            </td></tr></table>
+        </td><td class="value"><span class="hidden">1.0;</span>1</td></tr>
+    </table>
 </p>
+
 <p>
 <table cellspacing="0" cellpadding="0" class="src">
 <tr>
-  <td class="numLine">&nbsp;1</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> org.apache.maven.jxr;</pre></td>
+    <td class="numLine">&nbsp;1</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> org.apache.maven.jxr;</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;2</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;</pre></td>
+    <td class="numLine">&nbsp;2</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;3</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment">/*</span></pre></td>
+    <td class="numLine">&nbsp;3</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment">/*</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;4</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Copyright 2001-2005 The Apache Software Foundation.</span></pre></td>
+    <td class="numLine">&nbsp;4</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span
+            class="comment"> * Copyright 2001-2005 The Apache Software Foundation.</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;5</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+    <td class="numLine">&nbsp;5</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;6</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Licensed under the Apache License, Version 2.0 (the "License");</span></pre></td>
+    <td class="numLine">&nbsp;6</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * Licensed under the Apache License, Version 2.0 (the "License");</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;7</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * you may not use this file except in compliance with the License.</span></pre></td>
+    <td class="numLine">&nbsp;7</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * you may not use this file except in compliance with the License.</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;8</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * You may obtain a copy of the License at</span></pre></td>
+    <td class="numLine">&nbsp;8</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * You may obtain a copy of the License at</span></pre>
+    </td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;9</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+    <td class="numLine">&nbsp;9</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;10</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td>
+    <td class="numLine">&nbsp;10</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span
+            class="comment"> *      http://www.apache.org/licenses/LICENSE-2.0</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;11</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+    <td class="numLine">&nbsp;11</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;12</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></pre></td>
+    <td class="numLine">&nbsp;12</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * Unless required by applicable law or agreed to in writing, software</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;13</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * distributed under the License is distributed on an "AS IS" BASIS,</span></pre></td>
+    <td class="numLine">&nbsp;13</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * distributed under the License is distributed on an "AS IS" BASIS,</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;14</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td>
+    <td class="numLine">&nbsp;14</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;15</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * See the License for the specific language governing permissions and</span></pre></td>
+    <td class="numLine">&nbsp;15</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * See the License for the specific language governing permissions and</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;16</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * limitations under the License.</span></pre></td>
+    <td class="numLine">&nbsp;16</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * limitations under the License.</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;17</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+    <td class="numLine">&nbsp;17</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;18</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;</pre></td>
+    <td class="numLine">&nbsp;18</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;19</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
+    <td class="numLine">&nbsp;19</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment">/**</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;20</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * Exception occuring in JXR.</span></pre></td>
+    <td class="numLine">&nbsp;20</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * Exception occuring in JXR.</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;21</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
+    <td class="numLine">&nbsp;21</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> *</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;22</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author &lt;a href="mailto:brett@apache.org"&gt;Brett Porter&lt;/a&gt;</span></pre></td>
+    <td class="numLine">&nbsp;22</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * @author &lt;a href="mailto:brett@apache.org"&gt;Brett Porter&lt;/a&gt;</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;23</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span></pre></td>
+    <td class="numLine">&nbsp;23</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;24</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
+    <td class="numLine">&nbsp;24</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;25</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> JxrException</pre></td>
+    <td class="numLine">&nbsp;25</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span>
+        JxrException</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;26</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;    <span class="keyword">extends</span> Exception</pre></td>
+    <td class="numLine">&nbsp;26</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp; <span class="keyword">extends</span> Exception</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;27</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;{</pre></td>
+    <td class="numLine">&nbsp;27</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;{</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;28</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> JxrException( String message, Exception e )</pre></td>
+    <td class="numLine">&nbsp;28</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp; <span class="keyword">public</span> JxrException( String message, Exception
+        e )</pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;29</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;    {</pre></td>
+    <td class="numLine">&nbsp;29</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp; {</pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;30</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">super</span>( message, e );</span></pre></td>
+    <td class="numLineCover">&nbsp;30</td>
+    <td class="nbHitsUncovered">&nbsp;0</td>
+    <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;        <span class="keyword">super</span>( message, e );</span>
+    </pre></td>
 </tr>
 <tr>
-  <td class="numLineCover">&nbsp;31</td>
-  <td class="nbHitsUncovered">&nbsp;0</td>
-  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    }</span></pre></td>
+    <td class="numLineCover">&nbsp;31</td>
+    <td class="nbHitsUncovered">&nbsp;0</td>
+    <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    }</span></pre></td>
 </tr>
 <tr>
-  <td class="numLine">&nbsp;32</td>
-  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;}</pre></td>
+    <td class="numLine">&nbsp;32</td>
+    <td class="nbHits">&nbsp;</td>
+    <td class="src"><pre class="src">&nbsp;}</pre></td>
 </tr>
 </table>
 </p>
+
 <div class="footer">
-Reports generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a>.
+    Reports generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a>.
 </div>
 </body>
 </html>

@@ -16,26 +16,25 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
-import java.util.Iterator;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.plexus.util.StringUtils;
 
+import java.util.Iterator;
+
 /**
  * The Check Task.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class CheckTask
     extends AbstractTask
 {
-    private ConfigCheck config = null;
+    private ConfigCheck config;
 
-    private String dataFile = null;
+    private String dataFile;
 
     public CheckTask()
-        throws MojoExecutionException
     {
         super( "net.sourceforge.cobertura.check.Main" );
     }

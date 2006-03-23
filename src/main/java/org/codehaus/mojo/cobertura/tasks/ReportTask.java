@@ -16,26 +16,26 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.plexus.util.StringUtils;
 
+import java.io.File;
+
 /**
- * The Report Task. 
+ * The Report Task.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ReportTask
     extends AbstractTask
 {
-    private File dataFile = null;
+    private File dataFile;
 
-    private File outputDirectory = null;
+    private File outputDirectory;
 
     private String outputFormat;
 
-    private File sourceDirectory = null;
+    private File sourceDirectory;
 
     /**
      * Create ReportTask.
@@ -48,14 +48,7 @@ public class ReportTask
     public void execute()
         throws MojoExecutionException
     {
-        try
-        {
-            outputDirectory.mkdirs();
-        }
-        catch ( Exception e )
-        {
-            throw new MojoExecutionException( "Error invoking Cobertura, unable to create output directory.", e );
-        }
+        outputDirectory.mkdirs();
 
         if ( sourceDirectory != null )
         {

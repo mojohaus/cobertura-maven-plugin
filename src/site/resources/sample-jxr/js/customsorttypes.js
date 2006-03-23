@@ -20,27 +20,25 @@
  * USA
  */
 
-
-
 function percentageSortType( s )
 {
-	var ret;
-	var i = s.indexOf( "%" );
+    var ret;
+    var i = s.indexOf("%");
 
-	if (i != -1) {
-		s = s.substr( 0, i );
-	}
-	ret = parseFloat(s);
-	if (isNaN(ret)) {
-		ret = -1;
-	}
+    if ( i != -1 )
+    {
+        s = s.substr(0, i);
+    }
+    ret = parseFloat(s);
+    if ( isNaN(ret) )
+    {
+        ret = -1;
+    }
 
-	return ret;
+    return ret;
 }
 
-SortableTable.prototype.addSortType( "Percentage", percentageSortType );
-
-
+SortableTable.prototype.addSortType("Percentage", percentageSortType);
 
 // This is needed for correctly sorting numbers in different
 // locales.  The stock number converter only expects to sort
@@ -48,18 +46,20 @@ SortableTable.prototype.addSortType( "Percentage", percentageSortType );
 // comma (like French).
 function formattedNumberSortType( s )
 {
-	var ret;
-	var i = s.indexOf(';');
+    var ret;
+    var i = s.indexOf(';');
 
-	if (i != -1) {
-		s = s.substring(0, i);
-	}
-	ret = parseFloat(s);
-	if (isNaN(ret)) {
-		return -1;
-	}
+    if ( i != -1 )
+    {
+        s = s.substring(0, i);
+    }
+    ret = parseFloat(s);
+    if ( isNaN(ret) )
+    {
+        return -1;
+    }
 
-	return ret;
+    return ret;
 }
 
-SortableTable.prototype.addSortType( "FormattedNumber", formattedNumberSortType );
+SortableTable.prototype.addSortType("FormattedNumber", formattedNumberSortType);
