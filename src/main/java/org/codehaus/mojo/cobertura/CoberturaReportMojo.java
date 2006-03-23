@@ -96,15 +96,6 @@ public class CoberturaReportMojo
     /**
      * <i>Maven Internal</i>: Project to interact with.
      *
-     * @parameter expression="${executedProject}"
-     * @required
-     * @readonly
-     */
-    private MavenProject executedProject;
-
-    /**
-     * <i>Maven Internal</i>: Project to interact with.
-     *
      * @parameter expression="${project}"
      * @required
      * @readonly
@@ -175,7 +166,7 @@ public class CoberturaReportMojo
         task.setMaxmem( maxmem );
         task.setDataFile( dataFile );
         task.setOutputDirectory( new File( outputDirectory ) );
-        task.setCompileSourceRoots( executedProject.getCompileSourceRoots() );
+        task.setCompileSourceRoots( getCompileSourceRoots() );
         task.setOutputFormat( format );
 
         // execute task
@@ -205,11 +196,16 @@ public class CoberturaReportMojo
     public boolean canGenerateReport()
     {
         boolean canGenerate = false;
-        for ( Iterator i = executedProject.getCompileSourceRoots().iterator(); i.hasNext() && !canGenerate; )
+        for ( Iterator i = getCompileSourceRoots().iterator(); i.hasNext() && !canGenerate; )
         {
             String sourceDirectory = (String) i.next();
             canGenerate = new File( sourceDirectory ).exists();
         }
         return canGenerate;
+    }
+
+    private List getCompileSourceRoots()
+    {
+        return project.getExecutionProject().getCompileSourceRoots();
     }
 }
