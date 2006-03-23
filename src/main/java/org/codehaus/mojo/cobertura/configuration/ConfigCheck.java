@@ -16,39 +16,29 @@ package org.codehaus.mojo.cobertura.configuration;
  * the License.
  */
 
+import net.sourceforge.cobertura.ant.Regex;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sourceforge.cobertura.ant.Regex;
-
 /**
  * The Configuration for Check Settings.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ConfigCheck
 {
     private String branchRate;
 
-    private boolean haltOnFailure;
+    private boolean haltOnFailure = true;
 
     private String lineRate;
 
-    private Set regexes;
+    private Set regexes = new HashSet();
 
     private String totalBranchRate;
 
     private String totalLineRate;
-
-    public ConfigCheck()
-    {
-        regexes = new HashSet();
-        branchRate = "0";
-        lineRate = "0";
-        totalBranchRate = "0";
-        totalLineRate = "0";
-        haltOnFailure = true;
-    }
 
     public void addRegex( Regex regex )
     {
@@ -139,7 +129,7 @@ public class ConfigCheck
      */
     public void setRegexes( Set regexes )
     {
-        this.regexes = regexes;
+        this.regexes = new HashSet( regexes );
     }
 
     /**
