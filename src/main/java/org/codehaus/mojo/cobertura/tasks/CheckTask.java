@@ -67,6 +67,16 @@ public class CheckTask
             cmdLineArgs.addArg( "--totalline", config.getTotalLineRate() );
         }
 
+        if ( StringUtils.isNotEmpty( config.getPackageBranchRate() ) )
+        {
+            cmdLineArgs.addArg( "--packagebranch", config.getPackageBranchRate() );
+        }
+
+        if ( StringUtils.isNotEmpty( config.getPackageLineRate() ) )
+        {
+            cmdLineArgs.addArg( "--packageline", config.getPackageLineRate() );
+        }
+
         Iterator iter = config.getRegexes().iterator();
         while ( iter.hasNext() )
         {

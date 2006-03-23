@@ -40,6 +40,10 @@ public class ConfigCheck
 
     private String totalLineRate;
 
+    private String packageBranchRate;
+
+    private String packageLineRate;
+
     public void addRegex( Regex regex )
     {
         this.regexes.add( regex );
@@ -148,4 +152,13 @@ public class ConfigCheck
         this.totalLineRate = totalLineRate;
     }
 
+    public String getPackageBranchRate()
+    {
+        return packageBranchRate;
+    }
+
+    public String getPackageLineRate()
+    {
+        return packageLineRate;
+    }
 }
