@@ -90,10 +90,10 @@ public class CoberturaReportMojo
     /**
      * The output directory for the report.
      *
-     * @parameter expression="${project.reporting.outputDirectory}/cobertura"
+     * @parameter default-value="${project.reporting.outputDirectory}/cobertura"
      * @required
      */
-    private String outputDirectory;
+    private File outputDirectory;
 
     /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
@@ -132,7 +132,7 @@ public class CoberturaReportMojo
      */
     protected String getOutputDirectory()
     {
-        return outputDirectory;
+        return outputDirectory.getAbsolutePath();
     }
 
     /**
@@ -191,7 +191,7 @@ public class CoberturaReportMojo
         // task specifics
         task.setMaxmem( maxmem );
         task.setDataFile( dataFile );
-        task.setOutputDirectory( new File( outputDirectory ) );
+        task.setOutputDirectory( outputDirectory );
         task.setCompileSourceRoots( getCompileSourceRoots() );
 
         if ( format != null )
