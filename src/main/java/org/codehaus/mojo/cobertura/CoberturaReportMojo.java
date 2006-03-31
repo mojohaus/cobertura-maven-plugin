@@ -45,8 +45,17 @@ public class CoberturaReportMojo
      * (supports 'html' or 'xml'. defaults to 'html')
      *
      * @parameter expression="${cobertura.report.format}"
+     * @deprecated
      */
     private String format;
+
+    /**
+     * The format of the report.
+     * (can be 'html' and/or 'xml'. defaults to 'html')
+     *
+     * @parameter
+     */
+    private String[] formats = new String[]{"html"};
 
     /**
      * Maximum memory to pass JVM of Cobertura processes.
@@ -151,22 +160,9 @@ public class CoberturaReportMojo
         executeReport( locale );
     }
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
-     */
-    protected void executeReport( Locale locale )
+    private void executeReportTask( ReportTask task, String format )
         throws MavenReportException
     {
-        ReportTask task = new ReportTask();
-        // task defaults
-        task.setLog( getLog() );
-        task.setPluginClasspathList( pluginClasspathList );
-
-        // task specifics
-        task.setMaxmem( maxmem );
-        task.setDataFile( dataFile );
-        task.setOutputDirectory( new File( outputDirectory ) );
-        task.setCompileSourceRoots( getCompileSourceRoots() );
         task.setOutputFormat( format );
 
         // execute task
@@ -176,7 +172,38 @@ public class CoberturaReportMojo
         }
         catch ( MojoExecutionException e )
         {
-            throw new MavenReportException( "Error in Cobertura Report generation.", e );
+            throw new MavenReportException( "Error in Cobertura Report generation: " + e.getMessage(), e );
+        }
+    }
+
+    /**
+     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
+     */
+    protected void executeReport( Locale locale )
+        throws MavenReportException
+    {
+        ReportTask task = new ReportTask();
+
+        // task defaults
+        task.setLog( getLog() );
+        task.setPluginClasspathList( pluginClasspathList );
+
+        // task specifics
+        task.setMaxmem( maxmem );
+        task.setDataFile( dataFile );
+        task.setOutputDirectory( new File( outputDirectory ) );
+        task.setCompileSourceRoots( getCompileSourceRoots() );
+
+        if ( format != null )
+        {
+            executeReportTask( task, format );
+        }
+        else
+        {
+            for ( int i = 0; i < formats.length; i++ )
+            {
+                executeReportTask( task, formats[i] );
+            }
         }
     }
 
