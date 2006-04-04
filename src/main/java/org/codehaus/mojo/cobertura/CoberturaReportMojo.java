@@ -66,8 +66,8 @@ public class CoberturaReportMojo
 
     /**
      * <p>The Datafile Location.</p>
-     * <p/>
-     * <p/>
+     * 
+     * <p>
      * Due to a bug in Cobertura v1.6, this location cannot be changed.
      * </p>
      *
