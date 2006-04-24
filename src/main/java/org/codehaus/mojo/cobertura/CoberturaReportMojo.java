@@ -66,7 +66,7 @@ public class CoberturaReportMojo
 
     /**
      * <p>The Datafile Location.</p>
-     * 
+     *
      * <p>
      * Due to a bug in Cobertura v1.6, this location cannot be changed.
      * </p>
@@ -196,14 +196,12 @@ public class CoberturaReportMojo
 
         if ( format != null )
         {
-            executeReportTask( task, format );
+            formats = new String[] { format };
         }
-        else
+
+        for ( int i = 0; i < formats.length; i++ )
         {
-            for ( int i = 0; i < formats.length; i++ )
-            {
-                executeReportTask( task, formats[i] );
-            }
+            executeReportTask( task, formats[i] );
         }
     }
 
