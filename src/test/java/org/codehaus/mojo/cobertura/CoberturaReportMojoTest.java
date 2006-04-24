@@ -45,7 +45,13 @@ public class CoberturaReportMojoTest
 
         assertTrue( "Should be able to generate a report", reportMojo.canGenerateReport() );
 
+        assertTrue( "Should be an externale report", reportMojo.isExternalReport() );
+
         mojo.execute();
+
+        File outputHtml = new File( reportMojo.getReportOutputDirectory(), reportMojo.getOutputName() + ".html" );
+
+        assertTrue( "Test for generated html file", outputHtml.exists() );
     }
 
     private void setMojoPluginClasspath( Mojo mojo )

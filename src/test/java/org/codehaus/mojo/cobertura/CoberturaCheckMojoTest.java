@@ -44,6 +44,54 @@ public class CoberturaCheckMojoTest
         mojo.execute();
     }
 
+    public void testCheckFailure()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-halt-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        try
+        {
+            mojo.execute();
+
+            fail( "Should fail when rates are not satisfied" );
+        }
+        catch ( MojoExecutionException e )
+        {
+            if ( !e.getMessage().equals( "Coverage check failed. See messages above." ) )
+            {
+                fail( "Unexpected exception thrown" );
+            }
+        }
+    }
+
+    public void testCheckFailureNoHalt()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-no-halt-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        try
+        {
+            mojo.execute();
+        }
+        catch ( MojoExecutionException e )
+        {
+            if ( e.getMessage().equals( "Coverage check failed. See messages above." ) )
+            {
+                fail( "Should fail when rates are not satisfied" );
+            }
+            else
+            {
+                fail( "Unexpected exception" );
+            }
+        }
+    }
+
     public void testNoCheckParameter()
         throws Exception
     {

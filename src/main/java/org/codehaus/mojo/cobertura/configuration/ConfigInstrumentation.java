@@ -18,8 +18,8 @@ package org.codehaus.mojo.cobertura.configuration;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
 
 /**
  * The Configuration for the Instrumentation.

@@ -18,6 +18,8 @@ package org.codehaus.mojo.cobertura;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.Mojo;
+import org.apache.maven.plugin.logging.SystemStreamLog;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.mojo.cobertura.stubs.ArtifactStub;
@@ -69,8 +71,60 @@ public class CoberturaInstrumentMojoTest
         File instrumentedDir = new File( project.getBuild().getOutputDirectory() );
 
         assertTrue( "Test instrumented class exists", new File( instrumentedDir, "Circle.class" ).exists() );
-//        assertTrue( "Test instrumented test class exists", new File( instrumentedDir, "CircleTest.class" ).exists() );
-    }
+   }
+
+    public void testDebugEnabled()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "instrument",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/instrument-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        Log log = new SystemStreamLog(){
+            public boolean isDebugEnabled()
+            {
+                return true;
+            }
+        };
+
+        setVariableValueToObject( mojo, "log", log );
+
+        mojo.execute();
+
+        MavenProject project = (MavenProject) getVariableValueFromObject( mojo, "project" );
+
+        File instrumentedDir = new File( project.getBuild().getOutputDirectory() );
+
+        assertTrue( "Test instrumented class exists", new File( instrumentedDir, "Circle.class" ).exists() );
+   }
+
+    public void testInstrumentation()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "instrument",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/" +
+                                "instrument-instrumentation-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        Log log = new SystemStreamLog(){
+            public boolean isDebugEnabled()
+            {
+                return true;
+            }
+        };
+
+        setVariableValueToObject( mojo, "log", log );
+
+        mojo.execute();
+
+        MavenProject project = (MavenProject) getVariableValueFromObject( mojo, "project" );
+
+        File instrumentedDir = new File( project.getBuild().getOutputDirectory() );
+
+        assertTrue( "Test instrumented class exists", new File( instrumentedDir, "Circle.class" ).exists() );
+   }
 
     private List getPluginClasspath()
         throws Exception
