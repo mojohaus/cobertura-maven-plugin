@@ -99,12 +99,26 @@ Maven 2 Cobertura Plugin
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
         <configuration>
-          <check branchrate="80" linerate="70" haltonerror="true"
-                 totalbranchrate="80" totallinerate="70">
-            <regex pattern="com.example.reallyimportant.*" 
-                   branchrate="80" linerate="90"/>
-            <regex pattern="com.example.boringcode.*" 
-                   branchrate="40" linerate="30"/>
+          <check>
+            <branchRate>85</branchRate>
+            <lineRate>85</lineRate>
+            <haltOnFailure>true</haltOnFailure>
+            <totalBranchRate>85</totalBranchRate>
+            <totalLineRate>85</totalLineRate>
+            <packageLineRate>85</packageLineRate>
+            <packageBranchRate>85</packageBranchRate>
+            <regexes>
+              <regex>
+                <pattern>com.example.reallyimportant.*</pattern>
+                <branchRate>90</branchRate>
+                <lineRate>80</lineRate>
+              </regex>
+              <regex>
+                <pattern>com.example.boringcode.*</pattern>
+                <branchRate>40</branchRate>
+                <lineRate>30</lineRate>
+              </regex>
+            </regexes>
           </check>
         </configuration>
         <executions>

@@ -44,6 +44,40 @@ public class CoberturaCheckMojoTest
         mojo.execute();
     }
 
+    public void testCheckWithRegexPassing()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check", PlexusTestCase.getBasedir() +
+                                "/src/test/plugin-configs/check-regex-pass-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        mojo.execute();
+    }
+
+    public void testCheckWithRegexFailing()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check", PlexusTestCase.getBasedir() +
+                                "/src/test/plugin-configs/check-regex-fail-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        try
+        {
+            mojo.execute();
+
+            fail( "regex should fail at < 100% coverage" );
+        }
+        catch ( MojoExecutionException e )
+        {
+            if ( !e.getMessage().equals( "Coverage check failed. See messages above." ) )
+            {
+                fail( "Unexpected exception thrown" );
+            }
+        }
+    }
+
     public void testCheckFailure()
         throws Exception
     {
