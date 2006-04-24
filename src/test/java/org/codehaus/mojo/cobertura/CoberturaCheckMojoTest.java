@@ -18,6 +18,7 @@ package org.codehaus.mojo.cobertura;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.Mojo;
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.codehaus.mojo.cobertura.stubs.ArtifactStub;
 import org.codehaus.plexus.PlexusTestCase;
@@ -32,7 +33,7 @@ import java.util.List;
 public class CoberturaCheckMojoTest
     extends AbstractMojoTestCase
 {
-    public void testCheck()
+    public void testMojo()
         throws Exception
     {
         Mojo mojo = lookupMojo( "check",
@@ -41,6 +42,51 @@ public class CoberturaCheckMojoTest
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
         mojo.execute();
+    }
+
+    public void testNoCheckParameter()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        setVariableValueToObject( mojo, "check", null );
+
+        try
+        {
+            mojo.execute();
+
+            fail( "Should fail on null check parameter" );
+        }
+        catch ( MojoExecutionException e )
+        {
+            if ( !e.getMessage().equals( "The Check configuration is missing." ) )
+            {
+                fail( "Unexpected exception" );
+            }
+        }
+    }
+
+    public void testNoDataFileParameter()
+        throws Exception
+    {
+        Mojo mojo = lookupMojo( "check",
+                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
+
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
+
+        setVariableValueToObject( mojo, "dataFile", new File( PlexusTestCase.getBasedir() + "/no/such/file" ) );
+
+        try
+        {
+            mojo.execute();
+        }
+        catch ( MojoExecutionException e )
+        {
+            fail( "Should not fail" );
+        }
     }
 
     private List getPluginClasspath()
