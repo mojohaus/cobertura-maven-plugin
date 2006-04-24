@@ -22,15 +22,14 @@
         <configuration>
           <project implementation="org.codehaus.mojo.cobertura.stubs.CheckMavenProjectStub"/>
           <dataFile>${basedir}/target/test-harness/check/cobertura.ser</dataFile>
-          <check branchrate="80" linerate="90" haltonerror="true"
-                 totalbranchrate="80" totallinerate="90">
-            <!--regexes>
-              <regex>
-                <pattern>*</pattern>
-                <branchRate>90</branchRate>
-                <lineRate>90</lineRate>
-              </regex>
-            </regexes-->
+          <check>
+            <branchRate>90</branchRate>
+            <lineRate>80</lineRate>
+            <haltOnFailure>true</haltOnFailure>
+            <totalBranchRate>90</totalBranchRate>
+            <totalLineRate>80</totalLineRate>
+            <packageLineRate>80</packageLineRate>
+            <packageBranchRate>90</packageBranchRate>
           </check>
         </configuration>
       </plugin>
