@@ -24,21 +24,6 @@
 
   <inceptionYear>2005</inceptionYear>
 
-  <scm>
-    <connection>scm:svn:svn://svn.codehaus.org/mojo/scm/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</connection>
-    <developerConnection>
-      scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</developerConnection>
-    <url>http://svn.mojo.codehaus.org/trunk/mojo/mojo-sandbox/cobertura-maven-plugin</url>
-  </scm>
-
-  <licenses>
-    <license>
-      <name>Apache License 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-
   <developers>
     <developer>
       <id>joakime</id>
@@ -134,9 +119,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.maven</groupId>
+      <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0-beta-1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
