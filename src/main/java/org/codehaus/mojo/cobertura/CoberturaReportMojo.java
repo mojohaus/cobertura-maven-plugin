@@ -182,6 +182,11 @@ public class CoberturaReportMojo
     protected void executeReport( Locale locale )
         throws MavenReportException
     {
+        if ( !canGenerateReport() )
+        {
+            return;
+        }
+
         ReportTask task = new ReportTask();
 
         // task defaults
