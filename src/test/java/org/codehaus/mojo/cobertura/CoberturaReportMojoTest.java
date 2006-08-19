@@ -54,6 +54,19 @@ public class CoberturaReportMojoTest
         assertTrue( "Test for generated html file", outputHtml.exists() );
     }
 
+    public void testReportEmptySourceDir()
+    throws Exception
+    {
+        Mojo mojo = lookupMojo( "cobertura",
+                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/report-empty-src-plugin-config.xml" );
+        
+        setMojoPluginClasspath( mojo );
+        
+        MavenReport reportMojo = (MavenReport) mojo;
+        
+        assertFalse( "Should not be able to generate a report", reportMojo.canGenerateReport() );
+    }
+    
     private void setMojoPluginClasspath( Mojo mojo )
         throws Exception
     {

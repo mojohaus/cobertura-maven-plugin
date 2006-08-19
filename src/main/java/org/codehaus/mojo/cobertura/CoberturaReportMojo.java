@@ -25,7 +25,6 @@ import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -225,13 +224,19 @@ public class CoberturaReportMojo
 
     public boolean canGenerateReport()
     {
-        boolean canGenerate = false;
-        for ( Iterator i = getCompileSourceRoots().iterator(); i.hasNext() && !canGenerate; )
+        // Don't have to check for source directories or java code or the like for report generation.
+        // Checks for source directories or java project classpath existance should only occur in the
+        // Instrument Mojo.
+        if ( dataFile == null || !dataFile.exists() )
         {
-            String sourceDirectory = (String) i.next();
-            canGenerate = new File( sourceDirectory ).exists();
+            getLog().info( "Not executing cobertura:report as the cobertura data file (" + dataFile
+                               + ") could not be found" );
+            return false;
         }
-        return canGenerate;
+        else
+        {
+            return true;
+        }
     }
 
     private List getCompileSourceRoots()
