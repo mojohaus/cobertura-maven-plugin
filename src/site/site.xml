@@ -25,7 +25,7 @@
     <menu name="Cobertura Plugin Docs">
       <item name="Goals" href="plugin-info.html"/>
       <item name="Usage" href="usage.html"/>
-      <item name="Sample Cobertura Report" href="sample-jxr/index.html"/>
+      <item name="Sample Cobertura Report" href="sample-maven-share-io-report/index.html"/>
     </menu>
 
     ${reports}
