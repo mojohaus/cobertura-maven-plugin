@@ -16,7 +16,6 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.Mojo;
 import org.codehaus.plexus.PlexusTestCase;
 
@@ -26,7 +25,7 @@ import java.io.File;
  * @author Edwin Punzalan
  */
 public class CoberturaCleanMojoTest
-    extends AbstractMojoTestCase
+    extends AbstractCoberturaTestCase
 {
     public void testClean()
         throws Exception

@@ -5,7 +5,8 @@ public class CircleTest
 {
     private Circle circle;
 
-    public void setup()
+    // Intentionally create bug here.
+    public void setUp()
     {
         circle = new Circle( 2, 3, 2.5 );
     }
@@ -24,6 +25,11 @@ public class CircleTest
     {
         assertEquals( "Test radius", 2.5, circle.getRadius(), 0.1 );
     }
+    
+    public void testDiameter()
+    {
+        assertEquals( "Test Diameter", 5, circle.getDiameter(), 0.1 );
+    }    
 
     public void tearDown()
     {

@@ -16,22 +16,17 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.Mojo;
-import org.apache.maven.artifact.Artifact;
 import org.apache.maven.reporting.MavenReport;
 import org.codehaus.plexus.PlexusTestCase;
-import org.codehaus.mojo.cobertura.stubs.ArtifactStub;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.io.File;
 
 /**
  * @author Edwin Punzalan
  */
 public class CoberturaReportMojoTest
-    extends AbstractMojoTestCase
+    extends AbstractCoberturaTestCase
 {
     public void testReport()
         throws Exception
@@ -70,34 +65,6 @@ public class CoberturaReportMojoTest
     private void setMojoPluginClasspath( Mojo mojo )
         throws Exception
     {
-        String localRepository = System.getProperty( "localRepository" );
-
-        List pluginClasspath = new ArrayList();
-
-        Artifact artifact = new ArtifactStub();
-        artifact.setFile( new File( localRepository + "/cobertura/cobertura/1.7/cobertura-1.7.jar" ) );
-        pluginClasspath.add( artifact );
-
-        artifact = new ArtifactStub();
-        artifact.setFile( new File( localRepository + "/log4j/log4j/1.2.9/log4j-1.2.9.jar" ) );
-        pluginClasspath.add( artifact );
-
-        artifact = new ArtifactStub();
-        artifact.setFile( new File( PlexusTestCase.getBasedir() + "/target/classes" ) );
-        pluginClasspath.add( artifact );
-
-        artifact = new ArtifactStub();
-        artifact.setFile( new File( localRepository + "/log4j/log4j/1.2.9/log4j-1.2.9.jar" ) );
-        pluginClasspath.add( artifact );
-
-        artifact = new ArtifactStub();
-        artifact.setFile( new File( localRepository + "/javancss/javancss/21.41/javancss-21.41.jar" ) );
-        pluginClasspath.add( artifact );
-
-        artifact = new ArtifactStub();
-        artifact.setFile( new File( localRepository + "/javancss/ccl/21.41/ccl-21.41.jar" ) );
-        pluginClasspath.add( artifact );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", pluginClasspath );
+        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
     }
 }

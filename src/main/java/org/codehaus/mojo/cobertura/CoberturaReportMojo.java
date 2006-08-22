@@ -23,8 +23,11 @@ import org.apache.maven.reporting.MavenReportException;
 import org.codehaus.doxia.sink.Sink;
 import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
+import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.IOUtil;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -66,14 +69,10 @@ public class CoberturaReportMojo
     /**
      * <p>The Datafile Location.</p>
      *
-     * <p>
-     * Due to a bug in Cobertura v1.6, this location cannot be changed.
-     * </p>
-     *
-     * @parameter expression="${basedir}/cobertura.ser"
+     * @parameter expression="${cobertura.datafile}"
+     *            default-value="${project.build.directory}/cobertura/cobertura.ser"
      * @required
-     * @readonly TODO Please link a Cobertura issue URL so other developers understand
-     * what the problem is and can fix this once the underlying Cobertura bug is fixed.
+     * @readonly
      */
     protected File dataFile;
 
@@ -224,9 +223,29 @@ public class CoberturaReportMojo
 
     public boolean canGenerateReport()
     {
-        // Don't have to check for source directories or java code or the like for report generation.
-        // Checks for source directories or java project classpath existance should only occur in the
-        // Instrument Mojo.
+        /* HACK to address the broken datafile location code in Cobertura
+         * See https://sourceforge.net/tracker/index.php?func=detail&aid=1543280&group_id=130558&atid=720017
+         * Until patch is commited, this hack will be in place.   
+         */
+        File brokenDatafile = new File( project.getBasedir(), "cobertura.ser" );
+        if ( brokenDatafile.exists() )
+        {
+            try
+            {
+                FileUtils.copyFile( brokenDatafile, dataFile );
+                brokenDatafile.delete();
+            }
+            catch ( IOException e )
+            {
+                getLog().error( "Unable to copy " + brokenDatafile.getAbsolutePath() + " to "
+                                    + dataFile.getAbsolutePath() + ".", e );
+            }
+        }
+
+        /* Don't have to check for source directories or java code or the like for report generation.
+         * Checks for source directories or java project classpath existance should only occur in the
+         * Instrument Mojo.
+         */
         if ( dataFile == null || !dataFile.exists() )
         {
             getLog().info( "Not executing cobertura:report as the cobertura data file (" + dataFile

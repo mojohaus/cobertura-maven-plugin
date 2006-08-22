@@ -25,4 +25,19 @@ public class Circle
     {
         return radius;
     }
+    
+    public double getDiameter()
+    {
+        return radius * 2;
+    }
+    
+    public double getArea()
+    {
+        return ( Math.PI * ( radius * radius ) );
+    }
+    
+    public double getCircumference()
+    {
+        return ( Math.PI * getDiameter() );
+    }
 }

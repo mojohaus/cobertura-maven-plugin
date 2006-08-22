@@ -52,14 +52,10 @@ public abstract class AbstractCoberturaMojo
     /**
      * <p>The Datafile Location.</p>
      * 
-     * <p>
-     * Due to a bug in Cobertura v1.6, this location cannot be changed.
-     * </p>
-     *
-     * @parameter expression="${basedir}/cobertura.ser"
+     * @parameter expression="${cobertura.datafile}"
+     *            default-value="${project.build.directory}/cobertura/cobertura.ser"
      * @required
-     * @readonly TODO Please link a Cobertura issue URL so other developers understand
-     * what the problem is and can fix this once the underlying Cobertura bug is fixed.
+     * @readonly
      */
     protected File dataFile;
 
