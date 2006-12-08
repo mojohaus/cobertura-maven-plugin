@@ -24,7 +24,6 @@ import org.codehaus.doxia.sink.Sink;
 import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -170,7 +169,9 @@ public class CoberturaReportMojo
         }
         catch ( MojoExecutionException e )
         {
-            throw new MavenReportException( "Error in Cobertura Report generation: " + e.getMessage(), e );
+            // throw new MavenReportException( "Error in Cobertura Report generation: " + e.getMessage(), e );
+            // better don't break the build if report is not generated, also due to the sporadic MCOBERTURA-56
+            getLog().error( "Error in Cobertura Report generation: " + e.getMessage(), e );
         }
     }
 
