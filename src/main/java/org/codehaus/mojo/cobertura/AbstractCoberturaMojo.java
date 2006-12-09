@@ -74,6 +74,13 @@ public abstract class AbstractCoberturaMojo
     protected ConfigInstrumentation instrumentation;
 
     /**
+     * Only output coberura errors, avoid info messages.
+     *
+     * @parameter expression="${quiet}" default-value="false"
+     */
+    private boolean quiet;
+
+    /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
      *
      * @parameter expression="${plugin.artifacts}"
@@ -91,7 +98,7 @@ public abstract class AbstractCoberturaMojo
     {
         task.setLog( getLog() );
         task.setPluginClasspathList( pluginClasspathList );
-
         task.setMaxmem( maxmem );
+        task.setQuiet( quiet );
     }
 }

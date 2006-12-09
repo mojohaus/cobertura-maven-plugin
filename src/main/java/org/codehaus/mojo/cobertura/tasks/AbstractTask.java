@@ -50,6 +50,8 @@ public abstract class AbstractTask
 
     private String taskClass;
 
+    private boolean quiet;
+
     /**
      * Initialize AbstractTask.
      *
@@ -60,6 +62,15 @@ public abstract class AbstractTask
         this.taskClass = taskClassname;
         this.cmdLineArgs = new CommandLineArguments();
         this.maxmem = "64m";
+    }
+
+    /**
+     * Setter for <code>quiet</code>.
+     * @param quiet The quiet to set.
+     */
+    public void setQuiet( boolean quiet )
+    {
+        this.quiet = quiet;
     }
 
     /**
@@ -101,6 +112,10 @@ public abstract class AbstractTask
         if ( getLog().isDebugEnabled() )
         {
             resourceName = "cobertura-plugin/log4j-debug.properties";
+        }
+        if ( quiet )
+        {
+            resourceName = "cobertura-plugin/log4j-error.properties";
         }
 
         String path = null;

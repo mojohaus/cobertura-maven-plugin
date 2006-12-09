@@ -93,6 +93,13 @@ public class CoberturaReportMojo
     private File outputDirectory;
 
     /**
+     * Only output coberura errors, avoid info messages.
+     *
+     * @parameter expression="${quiet}" default-value="false"
+     */
+    private boolean quiet;
+
+    /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
      *
      * @component
@@ -191,6 +198,7 @@ public class CoberturaReportMojo
         // task defaults
         task.setLog( getLog() );
         task.setPluginClasspathList( pluginClasspathList );
+        task.setQuiet( quiet );
 
         // task specifics
         task.setMaxmem( maxmem );
