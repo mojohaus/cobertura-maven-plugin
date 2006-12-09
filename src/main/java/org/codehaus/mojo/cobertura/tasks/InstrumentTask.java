@@ -124,7 +124,10 @@ public class InstrumentTask
         // Check the return code and print a message
         if ( returnCode == 0 )
         {
-            getLog().info( "Instrumentation was successful." );
+            if ( !isQuiet() )
+            {
+                getLog().info( "Instrumentation was successful." );
+            }
         }
         else
         {

@@ -74,6 +74,15 @@ public abstract class AbstractTask
     }
 
     /**
+     * Getter for <code>quiet</code>.
+     * @return Returns the quiet.
+     */
+    public boolean isQuiet()
+    {
+        return this.quiet;
+    }
+
+    /**
      * Using the <code>${project.compileClasspathElements}</code> and the
      * <code>${plugin.artifacts}</code>, create a classpath string that is
      * suitable to be used from a forked cobertura process.
@@ -185,6 +194,19 @@ public abstract class AbstractTask
         CommandLineUtils.StringStreamConsumer stdout = new CommandLineUtils.StringStreamConsumer();
 
         CommandLineUtils.StringStreamConsumer stderr = new CommandLineUtils.StringStreamConsumer();
+        
+        if ( quiet )
+        {
+            CommandLineUtils.StringStreamConsumer nullConsumer = new CommandLineUtils.StringStreamConsumer()
+            {
+                public void consumeLine( String line )
+                {
+                    // swallow
+                }
+            };
+            stdout = nullConsumer;
+            stderr = nullConsumer;
+        }
 
         getLog().debug( "Working Directory: " + cl.getWorkingDirectory() );
         getLog().debug( "Executing command line:" );
@@ -202,12 +224,17 @@ public abstract class AbstractTask
 
         getLog().debug( "exit code: " + exitCode );
 
-        getLog().debug( "--------------------" );
-        getLog().debug( " Standard output from the Cobertura task:" );
-        getLog().debug( "--------------------" );
-        getLog().info( stdout.getOutput() );
-        getLog().debug( "--------------------" );
+        String output = stdout.getOutput();
 
+        if ( output.trim().length() > 0 )
+        {
+            getLog().debug( "--------------------" );
+            getLog().debug( " Standard output from the Cobertura task:" );
+            getLog().debug( "--------------------" );
+            getLog().info( output );
+            getLog().debug( "--------------------" );
+        }
+        
         String stream = stderr.getOutput();
 
         if ( stream.trim().length() > 0 )
