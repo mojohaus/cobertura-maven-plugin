@@ -65,12 +65,19 @@
       </plugin>
     </plugins>
   </reporting>
+  <repositories>
+    <repository>
+      <!-- temporary, to aide in testing.  remove before release -->
+      <id>repo1.maven.org</id>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+  </repositories>
   <dependencies>
     <!-- cobertura plugin deps -->
     <dependency>
-      <groupId>cobertura</groupId>
+      <groupId>net.sourceforge.cobertura</groupId>
       <artifactId>cobertura</artifactId>
-      <version>1.8</version>
+      <version>1.9</version>
     </dependency>
     <!--
       runtime has no 3rd party deps.  This allows us to
@@ -80,9 +87,9 @@
       asm (namely Hibernate).
     -->
     <dependency>
-      <groupId>cobertura</groupId>
+      <groupId>net.sourceforge.cobertura</groupId>
       <artifactId>cobertura-runtime</artifactId>
-      <version>1.8</version>
+      <version>1.9</version>
       <type>pom</type>
     </dependency>
     <dependency>
