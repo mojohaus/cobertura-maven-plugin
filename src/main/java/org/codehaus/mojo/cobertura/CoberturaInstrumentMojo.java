@@ -104,7 +104,7 @@ public class CoberturaInstrumentMojo
 
             instrumentation.setBasedir( instrumentedDirectory );
 
-            // cobertura requires an existing dir
+            // Cobertura requires an existing dir
             if ( !dataFile.getParentFile().exists() )
             {
                 dataFile.getParentFile().mkdirs();
@@ -157,10 +157,12 @@ public class CoberturaInstrumentMojo
         throws MojoExecutionException
     {
         Map pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspathList );
-        Artifact coberturaArtifact = (Artifact) pluginArtifactMap.get( "cobertura:cobertura-runtime" );
+        Artifact coberturaArtifact = (Artifact) pluginArtifactMap.get( "net.sourceforge.cobertura:cobertura-runtime" );
 
         if ( coberturaArtifact == null )
         {
+        	System.out.println( "pluginArtifactMap: " + pluginArtifactMap );
+        	
             throw new MojoExecutionException( "Couldn't find 'cobertura' artifact in plugin dependencies" );
         }
 

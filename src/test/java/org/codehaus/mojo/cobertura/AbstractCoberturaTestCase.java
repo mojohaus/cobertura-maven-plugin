@@ -68,10 +68,10 @@ public abstract class AbstractCoberturaTestCase
 //        pluginClasspath.add( artifact );
 
         artifact = new ArtifactStub();
-        artifact.setGroupId( "cobertura" );
+        artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura" );
-        artifact.setVersion( "1.8" );
-        artifact.setFile( new File( localRepository + "/cobertura/cobertura/1.8/cobertura-1.8.jar" ) );
+        artifact.setVersion( "1.9" );
+        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9/cobertura-1.9.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
@@ -80,6 +80,22 @@ public abstract class AbstractCoberturaTestCase
         artifact.setArtifactId( "log4j" );
         artifact.setVersion( "1.2.9" );
         artifact.setFile( new File( localRepository + "/log4j/log4j/1.2.9/log4j-1.2.9.jar" ) );
+        assertArtifactExists( artifact );
+        pluginClasspath.add( artifact );
+
+        artifact = new ArtifactStub();
+        artifact.setGroupId( "org.apache.ant" );
+        artifact.setArtifactId( "ant" );
+        artifact.setVersion( "1.7.0" );
+        artifact.setFile( new File( localRepository + "/org/apache/ant/ant/1.7.0/ant-1.7.0.jar" ) );
+        assertArtifactExists( artifact );
+        pluginClasspath.add( artifact );
+
+        artifact = new ArtifactStub();
+        artifact.setGroupId( "org.apache.ant" );
+        artifact.setArtifactId( "ant-launcher" );
+        artifact.setVersion( "1.7.0" );
+        artifact.setFile( new File( localRepository + "/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
@@ -100,10 +116,18 @@ public abstract class AbstractCoberturaTestCase
         pluginClasspath.add( artifact );
 
         artifact = new ArtifactStub();
-        artifact.setGroupId( "cobertura" );
+        artifact.setGroupId( "asm" );
+        artifact.setArtifactId( "asm-tree" );
+        artifact.setVersion( "2.2.1" );
+        artifact.setFile( new File( localRepository + "/asm/asm-tree/2.2.1/asm-tree-2.2.1.jar" ) );
+        assertArtifactExists( artifact );
+        pluginClasspath.add( artifact );
+
+        artifact = new ArtifactStub();
+        artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura-runtime" );
         artifact.setVersion( "1.8" );
-        artifact.setFile( new File( localRepository + "/cobertura/cobertura-runtime/1.8/cobertura-runtime-1.8.pom" ) );
+        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura-runtime/1.9/cobertura-runtime-1.9.pom" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 

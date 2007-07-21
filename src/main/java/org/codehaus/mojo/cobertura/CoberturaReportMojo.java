@@ -234,26 +234,6 @@ public class CoberturaReportMojo
 
     public boolean canGenerateReport()
     {
-        /* HACK to address the broken datafile location code in Cobertura
-         * See https://sourceforge.net/tracker/index.php?func=detail&aid=1543280&group_id=130558&atid=720017
-         * Until patch is commited, this hack will be in place.   
-         */
-        File brokenDatafile = new File( project.getBasedir(), "cobertura.ser" );
-        if ( brokenDatafile.exists() )
-        {
-            try
-            {
-                FileUtils.copyFile( brokenDatafile, dataFile );
-                brokenDatafile.delete();
-            }
-            catch ( IOException e )
-            {
-                getLog().error(
-                                "Unable to copy " + brokenDatafile.getAbsolutePath() + " to "
-                                    + dataFile.getAbsolutePath() + ".", e );
-            }
-        }
-
         /* Don't have to check for source directories or java code or the like for report generation.
          * Checks for source directories or java project classpath existance should only occur in the
          * Instrument Mojo.
