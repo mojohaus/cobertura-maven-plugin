@@ -11,8 +11,7 @@
       <item name="Usage" href="usage.html"/>
     </menu>
     <menu name="Examples">
-      <item name="Sample Cobertura Report" href="sample-maven-share-io-report/index.html"/>
+      <item name="Sample Cobertura Report" href="sample-maven-shared-io-report/index.html"/>
     </menu>
-    <menu ref="reports" />
   </body>
 </project>
