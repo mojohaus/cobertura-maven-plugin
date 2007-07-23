@@ -47,9 +47,13 @@ Usage
         <artifactId>cobertura-maven-plugin</artifactId>
         <configuration>
           <instrumentation>
-            <ignore>com.example.boringcode.*</ignore>
-            <exclude>com/example/dullcode/**/*.class</exclude>
-            <exclude>com/example/**/*Test.class</exclude>
+            <ignores>
+              <ignore>com.example.boringcode.*</ignore>
+            </ignores>
+            <excludes>
+              <exclude>com/example/dullcode/**/*.class</exclude>
+              <exclude>com/example/**/*Test.class</exclude>
+            </excludes>
           </instrumentation>
         </configuration>
         <executions>
