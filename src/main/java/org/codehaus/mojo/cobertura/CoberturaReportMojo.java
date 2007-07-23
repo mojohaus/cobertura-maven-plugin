@@ -61,7 +61,7 @@ public class CoberturaReportMojo
     private String[] formats = new String[] { "html" };
 
     /**
-     * Maximum memory to pass JVM of Cobertura processes.
+     * Maximum memory to pass to JVM of Cobertura processes.
      *
      * @parameter expression="${cobertura.maxmem}"
      */
@@ -95,9 +95,10 @@ public class CoberturaReportMojo
     private File outputDirectory;
 
     /**
-     * Only output coberura errors, avoid info messages.
+     * Only output cobertura errors, avoid info messages.
      *
      * @parameter expression="${quiet}" default-value="false"
+     * @since 2.1
      */
     private boolean quiet;
 
