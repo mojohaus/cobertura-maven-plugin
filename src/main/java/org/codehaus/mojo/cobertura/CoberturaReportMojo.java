@@ -256,4 +256,19 @@ public class CoberturaReportMojo
     {
         return project.getExecutionProject().getCompileSourceRoots();
     }
+    
+    /**
+     * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
+     */
+    public void setReportOutputDirectory( File reportOutputDirectory )
+    {
+        if ( ( reportOutputDirectory != null ) && ( !reportOutputDirectory.getAbsolutePath().endsWith( "cobertura" ) ) )
+        {
+            this.outputDirectory = new File( reportOutputDirectory, "cobertura" );
+        }
+        else
+        {
+            this.outputDirectory = reportOutputDirectory;
+        }
+    }
 }
