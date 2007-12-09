@@ -28,7 +28,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  * The Report Task.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ReportTask

@@ -16,10 +16,10 @@ package org.codehaus.mojo.cobertura.stubs;
  * the License.
  */
 
+import java.io.File;
+
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.artifact.handler.DefaultArtifactHandler;
-
-import java.io.File;
 
 /**
  * @author Edwin Punzalan
@@ -28,8 +28,11 @@ public class ArtifactStub
     extends org.apache.maven.plugin.testing.stubs.ArtifactStub
 {
     private File artifactFile;
+
     private String groupId;
+
     private String artifactId;
+
     private String version;
 
     public void setFile( File file )

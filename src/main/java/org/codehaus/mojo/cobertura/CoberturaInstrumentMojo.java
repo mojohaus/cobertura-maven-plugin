@@ -38,7 +38,7 @@ import org.codehaus.plexus.util.IOUtil;
 
 /**
  * Instrument the compiled classes.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal instrument
  */
@@ -47,14 +47,13 @@ public class CoberturaInstrumentMojo
 {
     /**
      * Artifact factory.
-     *
+     * 
      * @component
      */
     private ArtifactFactory factory;
 
     /**
-     * build up a command line from the parameters and run
-     * Cobertura to instrument the code.
+     * build up a command line from the parameters and run Cobertura to instrument the code.
      */
     public void execute()
         throws MojoExecutionException
@@ -124,9 +123,10 @@ public class CoberturaInstrumentMojo
             // Old, Broken way
             System.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
 
-            /* New, Fixed way.
-             * See https://sourceforge.net/tracker/index.php?func=detail&aid=1543280&group_id=130558&atid=720017
-             * for patch to Cobertura 1.8 that fixes the datafile location.
+            /*
+             * New, Fixed way. See
+             * https://sourceforge.net/tracker/index.php?func=detail&aid=1543280&group_id=130558&atid=720017 for patch
+             * to Cobertura 1.8 that fixes the datafile location.
              */
             Properties props = new Properties();
             props.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
@@ -161,8 +161,8 @@ public class CoberturaInstrumentMojo
 
         if ( coberturaArtifact == null )
         {
-        	System.out.println( "pluginArtifactMap: " + pluginArtifactMap );
-        	
+            System.out.println( "pluginArtifactMap: " + pluginArtifactMap );
+
             throw new MojoExecutionException( "Couldn't find 'cobertura' artifact in plugin dependencies" );
         }
 

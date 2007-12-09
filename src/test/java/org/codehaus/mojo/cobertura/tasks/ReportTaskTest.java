@@ -16,9 +16,9 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
-import junit.framework.TestCase;
-
 import java.io.File;
+
+import junit.framework.TestCase;
 
 /**
  * @author Edwin Punzalan

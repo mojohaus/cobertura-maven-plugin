@@ -25,7 +25,7 @@ import net.sourceforge.cobertura.ant.Regex;
 
 /**
  * The Configuration for Check Settings.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ConfigCheck

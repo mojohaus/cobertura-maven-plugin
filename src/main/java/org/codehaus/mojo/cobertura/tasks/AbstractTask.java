@@ -37,7 +37,7 @@ import org.codehaus.plexus.util.cli.Commandline;
 
 /**
  * Base Abstract Class for all of the Tasks.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public abstract class AbstractTask
@@ -56,18 +56,19 @@ public abstract class AbstractTask
 
     /**
      * Initialize AbstractTask.
-     *
+     * 
      * @param taskClassname the classname for the task.
      */
     protected AbstractTask( String taskClassname )
     {
-        this.taskClass = taskClassname;
-        this.cmdLineArgs = new CommandLineArguments();
-        this.maxmem = "64m";
+        taskClass = taskClassname;
+        cmdLineArgs = new CommandLineArguments();
+        maxmem = "64m";
     }
 
     /**
      * Setter for <code>quiet</code>.
+     * 
      * @param quiet The quiet to set.
      */
     public void setQuiet( boolean quiet )
@@ -77,21 +78,20 @@ public abstract class AbstractTask
 
     /**
      * Getter for <code>quiet</code>.
+     * 
      * @return Returns the quiet.
      */
     public boolean isQuiet()
     {
-        return this.quiet;
+        return quiet;
     }
 
     /**
-     * Using the <code>${project.compileClasspathElements}</code> and the
-     * <code>${plugin.artifacts}</code>, create a classpath string that is
-     * suitable to be used from a forked cobertura process.
-     *
+     * Using the <code>${project.compileClasspathElements}</code> and the <code>${plugin.artifacts}</code>, create
+     * a classpath string that is suitable to be used from a forked cobertura process.
+     * 
      * @return the classpath string
-     * @throws MojoExecutionException if the pluginArtifacts cannot be properly
-     *                                resolved to a full system path.
+     * @throws MojoExecutionException if the pluginArtifacts cannot be properly resolved to a full system path.
      */
     public String createClasspath()
         throws MojoExecutionException
@@ -109,8 +109,8 @@ public abstract class AbstractTask
             }
             catch ( IOException e )
             {
-                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile()
-                    + "'.", e );
+                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile() +
+                    "'.", e );
             }
         }
 
@@ -168,14 +168,14 @@ public abstract class AbstractTask
 
         cl.createArgument().setValue( "-Xmx" + maxmem );
 
-        cl.createArgument().setValue( this.taskClass );
+        cl.createArgument().setValue( taskClass );
 
-        if ( this.cmdLineArgs.useCommandsFile() )
+        if ( cmdLineArgs.useCommandsFile() )
         {
             cl.createArgument().setValue( "--commandsfile" );
             try
             {
-                String commandsFile = this.cmdLineArgs.getCommandsFile();
+                String commandsFile = cmdLineArgs.getCommandsFile();
                 cl.createArgument().setValue( commandsFile );
                 FileUtils.copyFile( new File( commandsFile ), new File( commandsFile + ".bak" ) );
             }
@@ -186,7 +186,7 @@ public abstract class AbstractTask
         }
         else
         {
-            Iterator it = this.cmdLineArgs.iterator();
+            Iterator it = cmdLineArgs.iterator();
             while ( it.hasNext() )
             {
                 cl.createArgument().setValue( it.next().toString() );

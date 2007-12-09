@@ -16,11 +16,11 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
+import java.io.File;
+
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.reporting.MavenReport;
 import org.codehaus.plexus.PlexusTestCase;
-
-import java.io.File;
 
 /**
  * @author Edwin Punzalan
@@ -31,8 +31,8 @@ public class CoberturaReportMojoTest
     public void testReport()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "cobertura",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/report-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "cobertura", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/report-plugin-config.xml" );
 
         setMojoPluginClasspath( mojo );
 
@@ -50,18 +50,19 @@ public class CoberturaReportMojoTest
     }
 
     public void testReportEmptySourceDir()
-    throws Exception
+        throws Exception
     {
-        Mojo mojo = lookupMojo( "cobertura",
-                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/report-empty-src-plugin-config.xml" );
-        
+        Mojo mojo =
+            lookupMojo( "cobertura", PlexusTestCase.getBasedir() +
+                "/src/test/plugin-configs/report-empty-src-plugin-config.xml" );
+
         setMojoPluginClasspath( mojo );
-        
+
         MavenReport reportMojo = (MavenReport) mojo;
-        
+
         assertFalse( "Should not be able to generate a report", reportMojo.canGenerateReport() );
     }
-    
+
     private void setMojoPluginClasspath( Mojo mojo )
         throws Exception
     {

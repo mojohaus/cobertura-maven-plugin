@@ -16,10 +16,11 @@ package org.codehaus.mojo.cobertura.tasks;
  * the License.
  */
 
-import junit.framework.TestCase;
-import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
-
 import java.io.File;
+
+import junit.framework.TestCase;
+
+import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 
 /**
  * @author Edwin Punzalan

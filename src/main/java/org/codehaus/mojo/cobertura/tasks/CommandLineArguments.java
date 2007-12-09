@@ -27,7 +27,7 @@ import net.sourceforge.cobertura.util.CommandLineBuilder;
 
 /**
  * CommandLineArguments allows for arbitraily long command line argument lists.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class CommandLineArguments
@@ -60,7 +60,7 @@ public class CommandLineArguments
 
     /**
      * Generate the Commands file and return the filename to it.
-     *
+     * 
      * @return the commands filename.
      * @throws IOException
      */

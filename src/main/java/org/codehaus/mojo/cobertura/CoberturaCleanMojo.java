@@ -23,7 +23,7 @@ import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Clean up rogue files that cobertura maven plugin is tracking.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal clean
  * @phase clean

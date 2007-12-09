@@ -17,6 +17,7 @@ package org.codehaus.mojo.cobertura.tasks;
  */
 
 import junit.framework.TestCase;
+
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 
 /**

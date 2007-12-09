@@ -30,7 +30,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  * The Instrument Task.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class InstrumentTask

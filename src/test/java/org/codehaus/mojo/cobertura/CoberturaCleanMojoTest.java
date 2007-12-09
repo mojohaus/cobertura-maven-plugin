@@ -16,10 +16,10 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
+import java.io.File;
+
 import org.apache.maven.plugin.Mojo;
 import org.codehaus.plexus.PlexusTestCase;
-
-import java.io.File;
 
 /**
  * @author Edwin Punzalan
@@ -30,8 +30,8 @@ public class CoberturaCleanMojoTest
     public void testClean()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "clean",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/clean-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "clean", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/clean-plugin-config.xml" );
 
         File dataFile = (File) getVariableValueFromObject( mojo, "dataFile" );
 

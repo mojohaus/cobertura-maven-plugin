@@ -19,7 +19,6 @@
 package org.codehaus.mojo.cobertura;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,11 +29,10 @@ import org.apache.maven.reporting.MavenReportException;
 import org.codehaus.doxia.sink.Sink;
 import org.codehaus.doxia.site.renderer.SiteRenderer;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
-import org.codehaus.plexus.util.FileUtils;
 
 /**
  * Instruments, Tests, and Generates a Cobertura Report.
- *
+ * 
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal cobertura
@@ -44,34 +42,33 @@ public class CoberturaReportMojo
     extends AbstractMavenReport
 {
     /**
-     * The format of the report.
-     * (supports 'html' or 'xml'. defaults to 'html')
-     *
+     * The format of the report. (supports 'html' or 'xml'. defaults to 'html')
+     * 
      * @parameter expression="${cobertura.report.format}"
      * @deprecated
      */
     private String format;
 
     /**
-     * The format of the report.
-     * (can be 'html' and/or 'xml'. defaults to 'html')
-     *
+     * The format of the report. (can be 'html' and/or 'xml'. defaults to 'html')
+     * 
      * @parameter
      */
     private String[] formats = new String[] { "html" };
 
     /**
      * Maximum memory to pass to JVM of Cobertura processes.
-     *
+     * 
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
 
     /**
-     * <p>The Datafile Location.</p>
-     *
-     * @parameter expression="${cobertura.datafile}"
-     *            default-value="${project.build.directory}/cobertura/cobertura.ser"
+     * <p>
+     * The Datafile Location.
+     * </p>
+     * 
+     * @parameter expression="${cobertura.datafile}" default-value="${project.build.directory}/cobertura/cobertura.ser"
      * @required
      * @readonly
      */
@@ -79,7 +76,7 @@ public class CoberturaReportMojo
 
     /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
-     *
+     * 
      * @parameter expression="${plugin.artifacts}"
      * @required
      * @readonly
@@ -88,7 +85,7 @@ public class CoberturaReportMojo
 
     /**
      * The output directory for the report.
-     *
+     * 
      * @parameter default-value="${project.reporting.outputDirectory}/cobertura"
      * @required
      */
@@ -96,7 +93,7 @@ public class CoberturaReportMojo
 
     /**
      * Only output cobertura errors, avoid info messages.
-     *
+     * 
      * @parameter expression="${quiet}" default-value="false"
      * @since 2.1
      */
@@ -104,14 +101,14 @@ public class CoberturaReportMojo
 
     /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
-     *
+     * 
      * @component
      */
     private SiteRenderer siteRenderer;
 
     /**
      * <i>Maven Internal</i>: Project to interact with.
-     *
+     * 
      * @parameter expression="${project}"
      * @required
      * @readonly
@@ -235,15 +232,15 @@ public class CoberturaReportMojo
 
     public boolean canGenerateReport()
     {
-        /* Don't have to check for source directories or java code or the like for report generation.
-         * Checks for source directories or java project classpath existance should only occur in the
-         * Instrument Mojo.
+        /*
+         * Don't have to check for source directories or java code or the like for report generation. Checks for source
+         * directories or java project classpath existance should only occur in the Instrument Mojo.
          */
         if ( dataFile == null || !dataFile.exists() )
         {
             getLog().info(
-                           "Not executing cobertura:report as the cobertura data file (" + dataFile
-                               + ") could not be found" );
+                           "Not executing cobertura:report as the cobertura data file (" + dataFile +
+                               ") could not be found" );
             return false;
         }
         else
@@ -256,7 +253,7 @@ public class CoberturaReportMojo
     {
         return project.getExecutionProject().getCompileSourceRoots();
     }
-    
+
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
      */

@@ -16,14 +16,13 @@ package org.codehaus.mojo.cobertura;
  * limitations under the License.
  */
 
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.codehaus.mojo.cobertura.stubs.ArtifactStub;
-import org.codehaus.plexus.PlexusTestCase;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.codehaus.mojo.cobertura.stubs.ArtifactStub;
 
 /**
  * Base TestCase for all Cobertura Tests.
@@ -55,17 +54,17 @@ public abstract class AbstractCoberturaTestCase
         throws Exception
     {
         String localRepository = System.getProperty( "localRepository" );
-        
+
         assertNotNull( "System.property(localRepository) should not be null.", localRepository );
 
         List pluginClasspath = new ArrayList();
 
         Artifact artifact;
 
-//        artifact = new ArtifactStub();
-//        artifact.setFile( new File( PlexusTestCase.getBasedir() + "/target/classes" ) );
-//        assertArtifactExists( artifact );
-//        pluginClasspath.add( artifact );
+        // artifact = new ArtifactStub();
+        // artifact.setFile( new File( PlexusTestCase.getBasedir() + "/target/classes" ) );
+        // assertArtifactExists( artifact );
+        // pluginClasspath.add( artifact );
 
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
@@ -126,8 +125,9 @@ public abstract class AbstractCoberturaTestCase
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura-runtime" );
-        artifact.setVersion( "1.8" );
-        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura-runtime/1.9/cobertura-runtime-1.9.pom" ) );
+        artifact.setVersion( "1.9" );
+        artifact.setFile( new File( localRepository +
+            "/net/sourceforge/cobertura/cobertura-runtime/1.9/cobertura-runtime-1.9.pom" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 

@@ -24,7 +24,7 @@ import org.codehaus.mojo.cobertura.tasks.CheckTask;
 
 /**
  * Check the Last Instrumentation Results.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal check
  * @execute phase="test" lifecycle="cobertura"

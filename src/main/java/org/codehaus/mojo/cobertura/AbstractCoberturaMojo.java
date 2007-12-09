@@ -29,7 +29,7 @@ import org.codehaus.mojo.cobertura.tasks.AbstractTask;
 
 /**
  * Abstract Base for Cobertura Mojos.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public abstract class AbstractCoberturaMojo
@@ -37,7 +37,7 @@ public abstract class AbstractCoberturaMojo
 {
     /**
      * <i>Maven Internal</i>: Project to interact with.
-     *
+     * 
      * @parameter expression="${project}"
      * @required
      * @readonly
@@ -46,16 +46,17 @@ public abstract class AbstractCoberturaMojo
 
     /**
      * Maximum memory to pass JVM of Cobertura processes.
-     *
+     * 
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
 
     /**
-     * <p>The Datafile Location.</p>
+     * <p>
+     * The Datafile Location.
+     * </p>
      * 
-     * @parameter expression="${cobertura.datafile}"
-     *            default-value="${project.build.directory}/cobertura/cobertura.ser"
+     * @parameter expression="${cobertura.datafile}" default-value="${project.build.directory}/cobertura/cobertura.ser"
      * @required
      * @readonly
      */
@@ -63,28 +64,28 @@ public abstract class AbstractCoberturaMojo
 
     /**
      * The <a href="usage.html#Check">Check Configuration</a>.
-     *
+     * 
      * @parameter expression="${check}"
      */
     protected ConfigCheck check;
 
     /**
      * The <a href="usage.html#Instrumentation">Instrumentation Configuration</a>.
-     *
+     * 
      * @parameter expression="${instrumentation}"
      */
     protected ConfigInstrumentation instrumentation;
 
     /**
      * Only output coberura errors, avoid info messages.
-     *
+     * 
      * @parameter expression="${quiet}" default-value="false"
      */
     private boolean quiet;
 
     /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
-     *
+     * 
      * @parameter expression="${plugin.artifacts}"
      * @required
      * @readonly
@@ -93,7 +94,7 @@ public abstract class AbstractCoberturaMojo
 
     /**
      * Setup the Task defaults.
-     *
+     * 
      * @param task the task to setup.
      */
     public void setTaskDefaults( AbstractTask task )

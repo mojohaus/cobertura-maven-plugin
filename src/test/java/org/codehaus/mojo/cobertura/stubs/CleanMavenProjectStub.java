@@ -16,11 +16,11 @@ package org.codehaus.mojo.cobertura.stubs;
  * the License.
  */
 
+import java.io.File;
+import java.io.IOException;
+
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.FileUtils;
-
-import java.io.IOException;
-import java.io.File;
 
 /**
  * @author Edwin Punzalan

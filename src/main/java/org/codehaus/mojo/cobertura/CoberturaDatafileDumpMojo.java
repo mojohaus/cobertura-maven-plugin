@@ -31,8 +31,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Cobertura Datafile Dump Mojo 
- *
+ * Cobertura Datafile Dump Mojo
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @version $Id$
  * @goal dump-datafile
@@ -54,17 +54,17 @@ public class CoberturaDatafileDumpMojo
 
         println( "<?xml version=\"1.0\"?>" );
 
-        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() )
-            + "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() ) + "\" version=\""
-            + Header.version() + "\" timestamp=\"" + new Date().getTime() + "\">" );
+        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() ) +
+            "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() ) + "\" version=\"" +
+            Header.version() + "\" timestamp=\"" + new Date().getTime() + "\">" );
 
         Iterator it = projectData.getPackages().iterator();
         while ( it.hasNext() )
         {
             PackageData packageData = (PackageData) it.next();
-            println( "<package name=\"" + packageData.getName() + "\" line-rate=\""
-                + percentage.format( packageData.getLineCoverageRate() ) + "\" branch-rate=\""
-                + percentage.format( packageData.getBranchCoverageRate() ) + "\" />" );
+            println( "<package name=\"" + packageData.getName() + "\" line-rate=\"" +
+                percentage.format( packageData.getLineCoverageRate() ) + "\" branch-rate=\"" +
+                percentage.format( packageData.getBranchCoverageRate() ) + "\" />" );
         }
 
         println( "</coverage>" );

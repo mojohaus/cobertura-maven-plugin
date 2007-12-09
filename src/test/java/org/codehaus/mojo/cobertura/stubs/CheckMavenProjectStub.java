@@ -16,18 +16,18 @@ package org.codehaus.mojo.cobertura.stubs;
  * the License.
  */
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.PlexusTestCase;
 import org.codehaus.plexus.util.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
 
 /**
  * @author Edwin Punzalan
@@ -45,7 +45,7 @@ public class CheckMavenProjectStub
         File serFile = new File( PlexusTestCase.getBasedir() + "/src/test/sources/check.ser" );
 
         FileUtils.copyFile( serFile, targetFile );
-   }
+    }
 
     public MavenProject getExecutionProject()
     {
@@ -79,4 +79,5 @@ public class CheckMavenProjectStub
     {
         return Collections.singletonList( PlexusTestCase.getBasedir() + "/src/test/sources" );
     }
+
 }

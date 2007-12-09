@@ -16,10 +16,10 @@ package org.codehaus.mojo.cobertura.configuration;
  * the License.
  */
 
+import java.util.Set;
+
 import junit.framework.TestCase;
 import net.sourceforge.cobertura.ant.Regex;
-
-import java.util.Set;
 
 /**
  * @author Edwin Punzalan
@@ -36,7 +36,7 @@ public class ConfigCheckTest
 
     public void testAddRegex()
     {
-        Regex regex =  new Regex();
+        Regex regex = new Regex();
 
         check.addRegex( regex );
 

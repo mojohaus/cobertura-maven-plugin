@@ -16,11 +16,11 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
+import java.io.File;
+
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.plexus.PlexusTestCase;
-
-import java.io.File;
 
 /**
  * @author Edwin Punzalan
@@ -31,8 +31,8 @@ public class CoberturaCheckMojoTest
     public void testMojo()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -42,8 +42,9 @@ public class CoberturaCheckMojoTest
     public void testCheckWithRegexPassing()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check", PlexusTestCase.getBasedir() +
-                                "/src/test/plugin-configs/check-regex-pass-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() +
+                "/src/test/plugin-configs/check-regex-pass-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -53,8 +54,9 @@ public class CoberturaCheckMojoTest
     public void testCheckWithRegexFailing()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check", PlexusTestCase.getBasedir() +
-                                "/src/test/plugin-configs/check-regex-fail-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() +
+                "/src/test/plugin-configs/check-regex-fail-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -76,8 +78,8 @@ public class CoberturaCheckMojoTest
     public void testCheckFailure()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-halt-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-halt-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -99,8 +101,9 @@ public class CoberturaCheckMojoTest
     public void testCheckFailureNoHalt()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-no-halt-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() +
+                "/src/test/plugin-configs/check-no-halt-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -124,8 +127,8 @@ public class CoberturaCheckMojoTest
     public void testNoCheckParameter()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 
@@ -149,8 +152,8 @@ public class CoberturaCheckMojoTest
     public void testNoDataFileParameter()
         throws Exception
     {
-        Mojo mojo = lookupMojo( "check",
-                                PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
+        Mojo mojo =
+            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
 
         setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
 

@@ -26,7 +26,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 /**
  * The Check Task.
- *
+ * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class CheckTask
