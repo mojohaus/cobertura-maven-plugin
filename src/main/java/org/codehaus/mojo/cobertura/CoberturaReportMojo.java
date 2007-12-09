@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,7 +18,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.codehaus.mojo.cobertura;
 
 import java.io.File;
 import java.util.List;
@@ -239,8 +240,8 @@ public class CoberturaReportMojo
         if ( dataFile == null || !dataFile.exists() )
         {
             getLog().info(
-                           "Not executing cobertura:report as the cobertura data file (" + dataFile +
-                               ") could not be found" );
+                           "Not executing cobertura:report as the cobertura data file (" + dataFile
+                               + ") could not be found" );
             return false;
         }
         else

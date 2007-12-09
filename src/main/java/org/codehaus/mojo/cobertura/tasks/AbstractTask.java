@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura.tasks;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,7 +18,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.codehaus.mojo.cobertura.tasks;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,8 +110,8 @@ public abstract class AbstractTask
             }
             catch ( IOException e )
             {
-                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile() +
-                    "'.", e );
+                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile()
+                    + "'.", e );
             }
         }
 

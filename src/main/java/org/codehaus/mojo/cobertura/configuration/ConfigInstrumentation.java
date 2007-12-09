@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura.configuration;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,7 +18,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.codehaus.mojo.cobertura.configuration;
 
 import java.io.File;
 import java.util.ArrayList;

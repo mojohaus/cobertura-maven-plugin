@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,7 +18,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.codehaus.mojo.cobertura;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +62,8 @@ public class CoberturaInstrumentMojo
         ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();
         if ( !"java".equals( artifactHandler.getLanguage() ) )
         {
-            getLog().info( "Not executing cobertura:instrument as the project is not a Java classpath-capable package" );
+            getLog().info(
+                "Not executing cobertura:instrument as the project is not a Java classpath-capable package" );
         }
         else
         {

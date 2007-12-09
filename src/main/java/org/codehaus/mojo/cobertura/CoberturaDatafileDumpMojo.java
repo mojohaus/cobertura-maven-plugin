@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,7 +18,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.codehaus.mojo.cobertura;
 
 import java.text.NumberFormat;
 import java.util.Date;
@@ -54,17 +55,17 @@ public class CoberturaDatafileDumpMojo
 
         println( "<?xml version=\"1.0\"?>" );
 
-        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() ) +
-            "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() ) + "\" version=\"" +
-            Header.version() + "\" timestamp=\"" + new Date().getTime() + "\">" );
+        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() )
+            + "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() ) + "\" version=\""
+            + Header.version() + "\" timestamp=\"" + new Date().getTime() + "\">" );
 
         Iterator it = projectData.getPackages().iterator();
         while ( it.hasNext() )
         {
             PackageData packageData = (PackageData) it.next();
-            println( "<package name=\"" + packageData.getName() + "\" line-rate=\"" +
-                percentage.format( packageData.getLineCoverageRate() ) + "\" branch-rate=\"" +
-                percentage.format( packageData.getBranchCoverageRate() ) + "\" />" );
+            println( "<package name=\"" + packageData.getName() + "\" line-rate=\""
+                + percentage.format( packageData.getLineCoverageRate() ) + "\" branch-rate=\""
+                + percentage.format( packageData.getBranchCoverageRate() ) + "\" />" );
         }
 
         println( "</coverage>" );
