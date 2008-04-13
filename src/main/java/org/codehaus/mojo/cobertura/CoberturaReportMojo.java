@@ -22,6 +22,7 @@ package org.codehaus.mojo.cobertura;
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
@@ -121,7 +122,7 @@ public class CoberturaReportMojo
      */
     public String getName( Locale locale )
     {
-        return "Cobertura Test Coverage";
+        return getBundle( locale ).getString( "report.cobertura.name" );
     }
 
     /**
@@ -129,7 +130,7 @@ public class CoberturaReportMojo
      */
     public String getDescription( Locale locale )
     {
-        return "Cobertura Test Coverage Report.";
+        return getBundle( locale ).getString( "report.cobertura.description" );
     }
 
     /**
@@ -269,4 +270,16 @@ public class CoberturaReportMojo
             this.outputDirectory = reportOutputDirectory;
         }
     }
+
+    /**
+     * Gets the resource bundle for the report text.
+     * 
+     * @param locale The locale for the report, must not be <code>null</code>.
+     * @return The resource bundle for the requested locale.
+     */
+    private ResourceBundle getBundle( Locale locale )
+    {
+        return ResourceBundle.getBundle( "cobertura-report", locale, getClass().getClassLoader() );
+    }
+
 }
