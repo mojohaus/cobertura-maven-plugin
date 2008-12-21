@@ -22,7 +22,7 @@ package org.codehaus.mojo.cobertura;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -172,7 +172,7 @@ public class CoberturaInstrumentMojo
 
         if ( this.project.getDependencyArtifacts() != null )
         {
-            Set set = new HashSet( this.project.getDependencyArtifacts() );
+            Set set = new LinkedHashSet( this.project.getDependencyArtifacts() );
             set.add( coberturaArtifact );
             this.project.setDependencyArtifacts( set );
         }
