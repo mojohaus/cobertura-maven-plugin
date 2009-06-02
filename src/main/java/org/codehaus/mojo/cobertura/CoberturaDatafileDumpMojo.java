@@ -33,7 +33,7 @@ import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Cobertura Datafile Dump Mojo
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @version $Id$
  * @goal dump-datafile
@@ -47,28 +47,50 @@ public class CoberturaDatafileDumpMojo
     {
         if ( ( dataFile == null ) || !dataFile.exists() )
         {
-            throw new MojoExecutionException( "Unable to dump non-existance dataFile [" + dataFile + "]" );
+            throw new MojoExecutionException( "Unable to dump nonexistent dataFile [" + dataFile + "]" );
         }
 
         ProjectData projectData = CoverageDataFileHandler.loadCoverageData( dataFile );
         NumberFormat percentage = NumberFormat.getPercentInstance();
+        NumberFormat integer = NumberFormat.getIntegerInstance();
 
         println( "<?xml version=\"1.0\"?>" );
 
-        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() )
-            + "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() ) + "\" version=\""
-            + Header.version() + "\" timestamp=\"" + new Date().getTime() + "\">" );
+        printProject( projectData, percentage, integer );
 
         Iterator it = projectData.getPackages().iterator();
         while ( it.hasNext() )
         {
             PackageData packageData = (PackageData) it.next();
-            println( "<package name=\"" + packageData.getName() + "\" line-rate=\""
-                + percentage.format( packageData.getLineCoverageRate() ) + "\" branch-rate=\""
-                + percentage.format( packageData.getBranchCoverageRate() ) + "\" />" );
+            printPackage( percentage, integer, packageData );
         }
 
         println( "</coverage>" );
+    }
+
+    private void printProject( ProjectData projectData, NumberFormat percentage, NumberFormat integer )
+    {
+        println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() )
+            + "\" branch-rate=\"" + percentage.format( projectData.getBranchCoverageRate() )
+            + "\" lines-covered=\"" + integer.format( projectData.getNumberOfCoveredLines() )
+            + "\" lines-valid=\"" + integer.format( projectData.getNumberOfValidLines() )
+            + "\" branches-covered=\"" + integer.format( projectData.getNumberOfCoveredBranches() )
+            + "\" branches-valid=\"" + integer.format( projectData.getNumberOfValidBranches() )
+            + "\" version=\"" + Header.version()
+            + "\" timestamp=\"" + new Date().getTime()
+            + "\">" );
+    }
+
+    private void printPackage( NumberFormat percentage, NumberFormat integer, PackageData packageData )
+    {
+        println( "<package name=\"" + packageData.getName()
+            + "\" line-rate=\"" + percentage.format( packageData.getLineCoverageRate() )
+            + "\" branch-rate=\"" + percentage.format( packageData.getBranchCoverageRate() )
+            + "\" lines-covered=\"" + integer.format( packageData.getNumberOfCoveredLines() )
+            + "\" lines-valid=\"" + integer.format( packageData.getNumberOfValidLines() )
+            + "\" branches-covered=\"" + integer.format( packageData.getNumberOfCoveredBranches() )
+            + "\" branches-valid=\"" + integer.format( packageData.getNumberOfValidBranches() )
+            + "\" />" );
     }
 
     private void println( String msg )
