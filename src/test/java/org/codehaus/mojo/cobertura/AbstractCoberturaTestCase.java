@@ -69,8 +69,8 @@ public abstract class AbstractCoberturaTestCase
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura" );
-        artifact.setVersion( "1.9" );
-        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9/cobertura-1.9.jar" ) );
+        artifact.setVersion( "1.9.1.1" );
+        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9.1.1/cobertura-1.9.1.1.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
@@ -109,25 +109,25 @@ public abstract class AbstractCoberturaTestCase
         artifact = new ArtifactStub();
         artifact.setGroupId( "asm" );
         artifact.setArtifactId( "asm" );
-        artifact.setVersion( "2.2.1" );
-        artifact.setFile( new File( localRepository + "/asm/asm/2.2.1/asm-2.2.1.jar" ) );
+        artifact.setVersion( "3.0" );
+        artifact.setFile( new File( localRepository + "/asm/asm/3.0/asm-3.0.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
         artifact = new ArtifactStub();
         artifact.setGroupId( "asm" );
         artifact.setArtifactId( "asm-tree" );
-        artifact.setVersion( "2.2.1" );
-        artifact.setFile( new File( localRepository + "/asm/asm-tree/2.2.1/asm-tree-2.2.1.jar" ) );
+        artifact.setVersion( "3.0" );
+        artifact.setFile( new File( localRepository + "/asm/asm-tree/3.0/asm-tree-3.0.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura-runtime" );
-        artifact.setVersion( "1.9" );
+        artifact.setVersion( "1.9.1.1" );
         artifact.setFile( new File( localRepository +
-            "/net/sourceforge/cobertura/cobertura-runtime/1.9/cobertura-runtime-1.9.pom" ) );
+            "/net/sourceforge/cobertura/cobertura-runtime/1.9.1.1/cobertura-runtime-1.9.1.1.pom" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
