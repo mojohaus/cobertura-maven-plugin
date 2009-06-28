@@ -101,7 +101,7 @@
     <dependency>
       <groupId>net.sourceforge.cobertura</groupId>
       <artifactId>cobertura</artifactId>
-      <version>1.9.1.1</version>
+      <version>1.9.2</version>
     </dependency>
     <!--
       runtime has no 3rd party deps.  This allows us to
@@ -113,7 +113,7 @@
     <dependency>
       <groupId>net.sourceforge.cobertura</groupId>
       <artifactId>cobertura-runtime</artifactId>
-      <version>1.9.1.1</version>
+      <version>1.9.2</version>
       <type>pom</type>
     </dependency>
     <dependency>
