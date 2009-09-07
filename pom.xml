@@ -13,6 +13,7 @@
   <packaging>maven-plugin</packaging>
   <version>2.4-SNAPSHOT</version>
   <name>Cobertura Maven Plugin</name>
+  <url>http://mojo.codehaus.org/cobertura-maven-plugin/</url>
   <inceptionYear>2005</inceptionYear>
   <description>
     Cobertura plugin for maven 2. Cobertura is a free Java tool that calculates the percentage of code accessed by
