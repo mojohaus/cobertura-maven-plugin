@@ -163,7 +163,7 @@ public class CoberturaInstrumentMojo
 
         if ( coberturaArtifact == null )
         {
-            System.out.println( "pluginArtifactMap: " + pluginArtifactMap );
+            getLog().error( "pluginArtifactMap: " + pluginArtifactMap );
 
             throw new MojoExecutionException( "Couldn't find 'cobertura' artifact in plugin dependencies" );
         }

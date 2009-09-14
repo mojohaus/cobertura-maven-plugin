@@ -95,6 +95,6 @@ public class CoberturaDatafileDumpMojo
 
     private void println( String msg )
     {
-        System.out.println( msg );
+        getLog().info( msg );
     }
 }
