@@ -6,8 +6,11 @@ package org.codehaus.mojo.cobertura.its;
  */
 public class App 
 {
-    public static void main( String[] args )
+    
+    public boolean toto()
     {
-        System.out.println( "Hello World!" );
+        System.out.println( " hello toto, in english hello foo" );
+        return true;
     }
+
 }
