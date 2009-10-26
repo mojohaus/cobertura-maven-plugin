@@ -27,7 +27,7 @@ import java.util.List;
 import net.sourceforge.cobertura.util.CommandLineBuilder;
 
 /**
- * CommandLineArguments allows for arbitraily long command line argument lists.
+ * CommandLineArguments allows for arbitrarily long command line argument lists.
  * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */

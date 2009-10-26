@@ -246,7 +246,7 @@ public class CoberturaReportMojo
     {
         /*
          * Don't have to check for source directories or java code or the like for report generation. Checks for source
-         * directories or java project classpath existance should only occur in the Instrument Mojo.
+         * directories or java project classpath existence should only occur in the Instrument Mojo.
          */
         if ( dataFile == null || !dataFile.exists() )
         {
