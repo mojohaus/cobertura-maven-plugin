@@ -59,6 +59,14 @@ public class CoberturaReportMojo
     private String[] formats = new String[] { "html" };
 
     /**
+     * The encoding for the java source code files.
+     * 
+     * @parameter expression="${project.build.sourceEncoding}" default-value="UTF-8".
+     * @since 2.4
+     */
+    private String encoding;
+
+    /**
      * Maximum memory to pass to JVM of Cobertura processes.
      * 
      * @parameter expression="${cobertura.maxmem}"
@@ -207,6 +215,8 @@ public class CoberturaReportMojo
         task.setDataFile( dataFile );
         task.setOutputDirectory( outputDirectory );
         task.setCompileSourceRoots( getCompileSourceRoots() );
+        task.setSourceEncoding( encoding );
+
 
         if ( format != null )
         {

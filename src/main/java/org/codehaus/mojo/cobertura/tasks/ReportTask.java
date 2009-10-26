@@ -41,6 +41,8 @@ public class ReportTask
 
     private String outputFormat;
 
+    private String sourceEncoding;
+
     private List compileSourceRoots;
 
     /**
@@ -75,6 +77,11 @@ public class ReportTask
         if ( StringUtils.isNotEmpty( outputFormat ) )
         {
             cmdLineArgs.addArg( "--format", outputFormat );
+        }
+
+        if ( StringUtils.isNotEmpty( sourceEncoding ) )
+        {
+            cmdLineArgs.addArg( "--encoding", sourceEncoding );
         }
 
         int returnCode = executeJava();
@@ -115,6 +122,14 @@ public class ReportTask
     }
 
     /**
+     * @return Returns the sourceEncoding.
+     */
+    public String getSourceEncoding()
+    {
+        return sourceEncoding;
+    }
+
+    /**
      * @param dataFile The dataFile to set.
      */
     public void setDataFile( File dataFile )
@@ -136,6 +151,14 @@ public class ReportTask
     public void setOutputFormat( String outputFormat )
     {
         this.outputFormat = outputFormat;
+    }
+
+    /**
+     * @param sourceEncoding The sourceEncoding to set.
+     */
+    public void setSourceEncoding( String sourceEncoding )
+    {
+        this.sourceEncoding = sourceEncoding;
     }
 
     public void setCompileSourceRoots( List compileSourceRoots )
