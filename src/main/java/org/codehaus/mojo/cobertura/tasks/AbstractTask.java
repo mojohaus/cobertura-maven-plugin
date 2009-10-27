@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang.SystemUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
@@ -157,7 +158,8 @@ public abstract class AbstractTask
         throws MojoExecutionException
     {
         Commandline cl = new Commandline();
-        cl.setExecutable( "java" );
+        File java = new File( SystemUtils.getJavaHome(), "bin/java" );
+        cl.setExecutable( java.getAbsolutePath() );
         cl.createArg().setValue( "-cp" );
         cl.createArg().setValue( createClasspath() );
 
