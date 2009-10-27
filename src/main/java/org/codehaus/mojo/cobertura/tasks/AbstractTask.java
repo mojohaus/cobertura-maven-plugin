@@ -158,26 +158,26 @@ public abstract class AbstractTask
     {
         Commandline cl = new Commandline();
         cl.setExecutable( "java" );
-        cl.createArgument().setValue( "-cp" );
-        cl.createArgument().setValue( createClasspath() );
+        cl.createArg().setValue( "-cp" );
+        cl.createArg().setValue( createClasspath() );
 
         String log4jConfig = getLog4jConfigFile();
         if ( log4jConfig != null )
         {
-            cl.createArgument().setValue( "-Dlog4j.configuration=" + log4jConfig );
+            cl.createArg().setValue( "-Dlog4j.configuration=" + log4jConfig );
         }
 
-        cl.createArgument().setValue( "-Xmx" + maxmem );
+        cl.createArg().setValue( "-Xmx" + maxmem );
 
-        cl.createArgument().setValue( taskClass );
+        cl.createArg().setValue( taskClass );
 
         if ( cmdLineArgs.useCommandsFile() )
         {
-            cl.createArgument().setValue( "--commandsfile" );
+            cl.createArg().setValue( "--commandsfile" );
             try
             {
                 String commandsFile = cmdLineArgs.getCommandsFile();
-                cl.createArgument().setValue( commandsFile );
+                cl.createArg().setValue( commandsFile );
                 FileUtils.copyFile( new File( commandsFile ), new File( commandsFile + ".bak" ) );
             }
             catch ( IOException e )
@@ -190,7 +190,7 @@ public abstract class AbstractTask
             Iterator it = cmdLineArgs.iterator();
             while ( it.hasNext() )
             {
-                cl.createArgument().setValue( it.next().toString() );
+                cl.createArg().setValue( it.next().toString() );
             }
         }
 
