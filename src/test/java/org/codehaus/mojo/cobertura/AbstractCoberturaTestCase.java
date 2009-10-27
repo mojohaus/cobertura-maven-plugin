@@ -69,8 +69,8 @@ public abstract class AbstractCoberturaTestCase
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura" );
-        artifact.setVersion( "1.9.2" );
-        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9.2/cobertura-1.9.2.jar" ) );
+        artifact.setVersion( "1.9.3" );
+        artifact.setFile( new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9.3/cobertura-1.9.3.jar" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
@@ -125,9 +125,9 @@ public abstract class AbstractCoberturaTestCase
         artifact = new ArtifactStub();
         artifact.setGroupId( "net.sourceforge.cobertura" );
         artifact.setArtifactId( "cobertura-runtime" );
-        artifact.setVersion( "1.9.2" );
+        artifact.setVersion( "1.9.3" );
         artifact.setFile( new File( localRepository +
-            "/net/sourceforge/cobertura/cobertura-runtime/1.9.2/cobertura-runtime-1.9.2.pom" ) );
+            "/net/sourceforge/cobertura/cobertura-runtime/1.9.3/cobertura-runtime-1.9.3.pom" ) );
         assertArtifactExists( artifact );
         pluginClasspath.add( artifact );
 
