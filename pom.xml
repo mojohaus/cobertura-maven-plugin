@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <prerequisites>
-    <maven>2.0.3</maven>
+    <maven>2.0.6</maven>
   </prerequisites>
   <artifactId>cobertura-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
@@ -161,7 +161,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>1.1</version>
+      <version>1.5.15</version>
     </dependency>
     <!-- testing deps -->
     <dependency>
