@@ -19,6 +19,11 @@
     Cobertura plugin for maven 2. Cobertura is a free Java tool that calculates the percentage of code accessed by
     tests. It can be used to identify which parts of your Java program are lacking test coverage.
   </description>
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
+    <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
+  </scm>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
