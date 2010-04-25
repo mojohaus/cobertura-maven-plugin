@@ -11,7 +11,7 @@
   </prerequisites>
   <artifactId>cobertura-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>2.4-SNAPSHOT</version>
+  <version>2.4</version>
   <name>Cobertura Maven Plugin</name>
   <url>http://mojo.codehaus.org/cobertura-maven-plugin/</url>
   <inceptionYear>2005</inceptionYear>
@@ -20,9 +20,9 @@
     tests. It can be used to identify which parts of your Java program are lacking test coverage.
   </description>
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
+    <connection>scm:svn:http://svn.codehaus.org/mojo/tags/cobertura-maven-plugin-2.4</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/tags/cobertura-maven-plugin-2.4</developerConnection>
+    <url>http://svn.codehaus.org/mojo/tags/cobertura-maven-plugin-2.4</url>
   </scm>
   <licenses>
     <license>
