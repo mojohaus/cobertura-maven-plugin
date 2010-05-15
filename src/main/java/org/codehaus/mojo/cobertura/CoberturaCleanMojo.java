@@ -35,6 +35,11 @@ public class CoberturaCleanMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        if ( skipMojo() )
+        {
+            return;
+        }
+        
         if ( dataFile.exists() )
         {
             dataFile.delete();

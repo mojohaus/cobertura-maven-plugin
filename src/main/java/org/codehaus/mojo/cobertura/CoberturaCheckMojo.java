@@ -38,6 +38,11 @@ public class CoberturaCheckMojo
     public void execute()
         throws MojoExecutionException
     {
+        if ( skipMojo() )
+        {
+            return;
+        }
+        
         if ( check == null )
         {
             throw new MojoExecutionException( "The Check configuration is missing." );

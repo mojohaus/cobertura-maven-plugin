@@ -94,6 +94,27 @@ public abstract class AbstractCoberturaMojo
     protected List pluginClasspathList;
 
     /**
+     * When <code>true</code>, skip the execution.
+     * @since 2.5
+     * @parameter expression="${cobertura.skip}"
+     *            default-value="false"
+     */
+    private boolean skip;
+
+    /**
+     * Usually most of out cobertura mojos will not get executed on parent poms.
+     * Setting this parameter to <code>true</code> will force
+     * the execution of this mojo, even if it would usually get skipped in this case.
+     *
+     * @since 2.5
+     * @parameter expression="${cobertura.force}"
+     *            default-value=false
+     * @required
+     */
+    private boolean forceMojoExecution;
+
+
+    /**
      * Setup the Task defaults.
      * 
      * @param task the task to setup.
@@ -105,4 +126,33 @@ public abstract class AbstractCoberturaMojo
         task.setMaxmem( maxmem );
         task.setQuiet( quiet );
     }
+
+    /**
+     * <p>Determine if the mojo execution should get skipped.</p>
+     * This is the case if:
+     * <ul>
+     *   <li>{@link #skip} is <code>true</code></li>
+     *   <li>if the mojo gets executed on a project with packaging type 'pom' and
+     *       {@link #forceMojoExecution} is <code>false</code></li>
+     * </ul>
+     *
+     * @return <code>true</code> if the mojo execution should be skipped.
+     */
+    protected boolean skipMojo()
+    {
+        if ( skip )
+        {
+            getLog().info( "Skip sql execution" );
+            return true;
+        }
+
+        if ( !forceMojoExecution && project != null && "pom".equals( project.getPackaging() ) )
+        {
+            getLog().info( "Skipping cobertura mojo for project with packaging type 'pom'" );
+            return true;
+        }
+
+        return false;
+    }
+
 }

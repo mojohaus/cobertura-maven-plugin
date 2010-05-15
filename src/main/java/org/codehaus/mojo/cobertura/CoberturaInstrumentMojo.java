@@ -59,6 +59,11 @@ public class CoberturaInstrumentMojo
     public void execute()
         throws MojoExecutionException
     {
+        if ( skipMojo() )
+        {
+            return;
+        }
+        
         ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();
         if ( !"java".equals( artifactHandler.getLanguage() ) )
         {

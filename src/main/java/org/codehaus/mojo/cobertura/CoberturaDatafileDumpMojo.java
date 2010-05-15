@@ -45,6 +45,11 @@ public class CoberturaDatafileDumpMojo
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
+        if ( skipMojo() )
+        {
+            return;
+        }
+        
         if ( ( dataFile == null ) || !dataFile.exists() )
         {
             throw new MojoExecutionException( "Unable to dump nonexistent dataFile [" + dataFile + "]" );
