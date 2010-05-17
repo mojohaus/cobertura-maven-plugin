@@ -142,7 +142,7 @@ public abstract class AbstractCoberturaMojo
     {
         if ( skip )
         {
-            getLog().info( "Skip sql execution" );
+            getLog().info( "Skipping cobertura execution" );
             return true;
         }
 
