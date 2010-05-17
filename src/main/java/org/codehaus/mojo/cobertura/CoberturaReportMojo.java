@@ -127,6 +127,8 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.MavenReport#getName(java.util.Locale)
+     * @param locale for the message bundle
+     * @return localized cobertura name
      */
     public String getName( Locale locale )
     {
@@ -135,6 +137,8 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.MavenReport#getDescription(java.util.Locale)
+     * @param locale for the message bundle
+     * @return localized description
      */
     public String getDescription( Locale locale )
     {
@@ -143,6 +147,7 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#getOutputDirectory()
+     * @return the output directory
      */
     protected String getOutputDirectory()
     {
@@ -151,6 +156,7 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#getProject()
+     * @return current MavenProject
      */
     protected MavenProject getProject()
     {
@@ -159,6 +165,7 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#getSiteRenderer()
+     * @return SiteRenderer
      */
     protected SiteRenderer getSiteRenderer()
     {
@@ -167,6 +174,7 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.MavenReport#generate(org.codehaus.doxia.sink.Sink, java.util.Locale)
+     * @param locale for the message bundle
      */
     public void generate( Sink sink, Locale locale )
         throws MavenReportException
@@ -174,6 +182,12 @@ public class CoberturaReportMojo
         executeReport( locale );
     }
 
+    /**
+     * perform the actual reporting
+     * @param task
+     * @param format
+     * @throws MavenReportException
+     */
     private void executeReportTask( ReportTask task, String format )
         throws MavenReportException
     {
@@ -194,6 +208,7 @@ public class CoberturaReportMojo
 
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
+     * @param locale not used
      */
     protected void executeReport( Locale locale )
         throws MavenReportException
@@ -238,11 +253,17 @@ public class CoberturaReportMojo
         return "cobertura/index";
     }
 
+    /**
+     * @return always return <code>true</code> for this report
+     */
     public boolean isExternalReport()
     {
         return true;
     }
 
+    /**
+     * @return <code>true</code> if there is a datafile to create a report for.
+     */
     public boolean canGenerateReport()
     {
         /*

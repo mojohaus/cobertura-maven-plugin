@@ -42,6 +42,10 @@ public class CoberturaDatafileDumpMojo
     extends AbstractCoberturaMojo
 {
 
+    /**
+     * Mojo main entry
+     * @throws MojoExecutionException
+     */
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -73,6 +77,12 @@ public class CoberturaDatafileDumpMojo
         println( "</coverage>" );
     }
 
+    /**
+     * print project info to the log.
+     * @param projectData
+     * @param percentage
+     * @param integer
+     */
     private void printProject( ProjectData projectData, NumberFormat percentage, NumberFormat integer )
     {
         println( "<coverage line-rate=\"" + percentage.format( projectData.getLineCoverageRate() )
@@ -86,6 +96,12 @@ public class CoberturaDatafileDumpMojo
             + "\">" );
     }
 
+    /**
+     * print package info to the log.
+     * @param percentage
+     * @param integer
+     * @param packageData
+     */
     private void printPackage( NumberFormat percentage, NumberFormat integer, PackageData packageData )
     {
         println( "<package name=\"" + packageData.getName()
@@ -98,6 +114,10 @@ public class CoberturaDatafileDumpMojo
             + "\" />" );
     }
 
+    /**
+     * Write the message to the logger
+     * @param msg
+     */
     private void println( String msg )
     {
         getLog().info( msg );

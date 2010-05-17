@@ -32,6 +32,10 @@ import org.apache.maven.plugin.MojoFailureException;
 public class CoberturaCleanMojo
     extends AbstractCoberturaMojo
 {
+    /**
+     * Mojo main entry
+     * @throws MojoExecutionException
+     */
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {

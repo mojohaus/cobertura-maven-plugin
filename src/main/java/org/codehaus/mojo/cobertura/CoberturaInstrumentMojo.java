@@ -55,6 +55,7 @@ public class CoberturaInstrumentMojo
 
     /**
      * build up a command line from the parameters and run Cobertura to instrument the code.
+     * @throws MojoExecutionException
      */
     public void execute()
         throws MojoExecutionException
@@ -160,6 +161,10 @@ public class CoberturaInstrumentMojo
         }
     }
 
+    /**
+     * We need to tweak our test classpath for cobertura.
+     * @throws MojoExecutionException
+     */
     private void addCoberturaDependenciesToTestClasspath()
         throws MojoExecutionException
     {
@@ -183,6 +188,11 @@ public class CoberturaInstrumentMojo
         }
     }
 
+    /**
+     * 
+     * @param artifact
+     * @return
+     */
     private Artifact artifactScopeToTest( Artifact artifact )
     {
         return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),

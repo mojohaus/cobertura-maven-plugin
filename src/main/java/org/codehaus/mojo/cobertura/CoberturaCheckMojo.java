@@ -35,6 +35,10 @@ public class CoberturaCheckMojo
     extends AbstractCoberturaMojo
 {
 
+    /**
+     * Mojo main entry
+     * @throws MojoExecutionException
+     */
     public void execute()
         throws MojoExecutionException
     {
