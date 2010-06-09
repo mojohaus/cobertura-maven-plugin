@@ -178,7 +178,7 @@ public class CoberturaInstrumentMojo
             throw new MojoExecutionException( "Couldn't find 'cobertura' artifact in plugin dependencies" );
         }
 
-        coberturaArtifact = artifactScopeToTest( coberturaArtifact );
+        coberturaArtifact = artifactScopeToProvided( coberturaArtifact );
 
         if ( this.project.getDependencyArtifacts() != null )
         {
@@ -189,14 +189,15 @@ public class CoberturaInstrumentMojo
     }
 
     /**
+     * Use provided instead of just test, so it's available on both compile and test classpath (MCOBERTURA-26) 
      * 
      * @param artifact
-     * @return
+     * @return re-scoped artifact
      */
-    private Artifact artifactScopeToTest( Artifact artifact )
+    private Artifact artifactScopeToProvided( Artifact artifact )
     {
         return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),
-                                       Artifact.SCOPE_TEST, artifact.getType() );
+                                       Artifact.SCOPE_PROVIDED, artifact.getType() );
     }
 
 }
