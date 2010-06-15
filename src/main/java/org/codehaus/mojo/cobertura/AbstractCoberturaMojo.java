@@ -46,11 +46,11 @@ public abstract class AbstractCoberturaMojo
     protected MavenProject project;
 
     /**
-     * Maximum memory to pass JVM of Cobertura processes.
+     * Maximum memory to pass JVM as -Xmx of Cobertura processes. 
      * 
-     * @parameter expression="${cobertura.maxmem}"
+     * @parameter expression="${cobertura.maxmem}" default-value="64m"
      */
-    private String maxmem = "64m";
+    private String maxmem;
 
     /**
      * <p>
