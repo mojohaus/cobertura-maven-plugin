@@ -50,7 +50,9 @@ public abstract class AbstractCoberturaMojo
      * 
      * @parameter expression="${cobertura.maxmem}" default-value="64m"
      */
-    private String maxmem;
+    // Duplicate def to please MojoTestCase.
+    // Use only default-value once tests have been refactored to IT's
+    private String maxmem = "64m";
 
     /**
      * <p>
