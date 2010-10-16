@@ -87,7 +87,7 @@ public class CoberturaReportMojo
     /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
      * 
-     * @parameter expression="${plugin.artifacts}"
+     * @parameter default-value="${plugin.artifacts}"
      * @required
      * @readonly
      */
@@ -119,7 +119,7 @@ public class CoberturaReportMojo
     /**
      * <i>Maven Internal</i>: Project to interact with.
      * 
-     * @parameter expression="${project}"
+     * @parameter default-value="${project}"
      * @required
      * @readonly
      */
