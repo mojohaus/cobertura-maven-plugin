@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>mojo-parent</artifactId>
         <groupId>org.codehaus.mojo</groupId>
         <version>28</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <prerequisites>
-        <maven>2.2.0</maven>
-    </prerequisites>
+
     <artifactId>cobertura-maven-plugin</artifactId>
-    <packaging>maven-plugin</packaging>
     <version>2.5-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
     <name>Cobertura Maven Plugin</name>
     <url>http://mojo.codehaus.org/cobertura-maven-plugin/</url>
-    <inceptionYear>2005</inceptionYear>
-    <description>
-    Cobertura plugin for maven 2. Cobertura is a free Java tool that calculates the percentage of code accessed by
+    <description>Cobertura plugin for maven 2. Cobertura is a free Java tool that calculates the percentage of code accessed by
     tests. It can be used to identify which parts of your Java program are lacking test coverage.
-  </description>
-    <scm>
-        <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
-        <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
-        <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
-    </scm>
+    </description>
+    <inceptionYear>2005</inceptionYear>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -31,10 +25,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <issueManagement>
-        <system>JIRA</system>
-        <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
-    </issueManagement>
+
     <developers>
         <developer>
             <id>joakime</id>
@@ -100,20 +91,21 @@
             <timezone>-6</timezone>
         </contributor>
     </contributors>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.3.1</version>
-            </plugin>
-        </plugins>
-    </reporting>
+
+    <prerequisites>
+        <maven>2.2.0</maven>
+    </prerequisites>
+    
+    <scm>
+        <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
+        <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
+        <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
+    </scm>
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
+    </issueManagement>
+
     <dependencies>
         <!-- cobertura plugin deps -->
         <dependency>
@@ -200,6 +192,22 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.3.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    
     <profiles>
         <profile>
             <id>run-its</id>
