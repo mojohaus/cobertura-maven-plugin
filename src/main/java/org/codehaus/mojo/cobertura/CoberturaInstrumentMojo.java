@@ -28,6 +28,7 @@ import org.apache.maven.artifact.ArtifactUtils;
 import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProjectHelper;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
 import org.codehaus.plexus.util.FileUtils;
@@ -48,6 +49,27 @@ public class CoberturaInstrumentMojo
      * @component
      */
     private ArtifactFactory factory;
+
+    /**
+     * Specifies whether or not to attach the cobertura artifact to the project
+     *
+     * @parameter expression="${cobertura.attach}" default-value="false"
+     */
+    private boolean attach;
+
+    /**
+     * Specifies the classifier to use for the attached ser artifact
+     *
+     * @parameter expression="${cobertura.classifier}" default-value="cobertura"
+     */
+    private String classifier;
+
+    /**
+     * Used for attaching the source jar to the project.
+     *
+     * @component
+     */
+    private MavenProjectHelper projectHelper;  
 
     /**
      * build up a command line from the parameters and run Cobertura to instrument the code.
@@ -154,6 +176,19 @@ public class CoberturaInstrumentMojo
             // Set the instrumented classes to be the new output directory (for other plugins to pick up)
             project.getBuild().setOutputDirectory( instrumentedDirectory.getPath() );
             System.setProperty( "project.build.outputDirectory", instrumentedDirectory.getPath() );
+            attachCoberturaArtifactIfAppropriate();
+        }
+    }
+    
+    private void attachCoberturaArtifactIfAppropriate() {
+        if (attach) {
+            if (dataFile.exists()) {
+                projectHelper.attachArtifact(project, "ser", classifier, dataFile);
+            } else {
+                getLog().info("No cobertura ser file exists to include in the attached artifacts list.");
+            }
+        } else {
+            getLog().info("NOT adding cobertura ser file to attached artifacts list.");
         }
     }
 

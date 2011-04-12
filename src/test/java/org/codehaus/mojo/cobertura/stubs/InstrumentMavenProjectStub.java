@@ -36,7 +36,8 @@ public class InstrumentMavenProjectStub
     extends MavenProjectStub
 {
     private Build build;
-
+    private final ArtifactStub artifactStub = new ArtifactStub();
+  
     public InstrumentMavenProjectStub()
         throws IOException
     {
@@ -70,7 +71,7 @@ public class InstrumentMavenProjectStub
 
     public Artifact getArtifact()
     {
-        return new ArtifactStub();
+      return artifactStub;
     }
 
     public List getCompileSourceRoots()

@@ -20,6 +20,7 @@ import java.io.File;
 
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.artifact.handler.DefaultArtifactHandler;
+import org.apache.maven.artifact.versioning.VersionRange;
 
 /**
  * @author Edwin Punzalan
@@ -34,6 +35,8 @@ public class ArtifactStub
     private String artifactId;
 
     private String version;
+
+    private VersionRange versionRange;
 
     public void setFile( File file )
     {
@@ -63,6 +66,14 @@ public class ArtifactStub
     public String getArtifactId()
     {
         return artifactId;
+    }
+
+    public VersionRange getVersionRange() {
+      return versionRange;
+    }
+
+    public void setVersionRange(VersionRange versionRange) {
+      this.versionRange = versionRange;
     }
 
     public ArtifactHandler getArtifactHandler()

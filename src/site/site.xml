@@ -9,6 +9,7 @@
       <item name="Introduction" href="index.html"/>
       <item name="Goals" href="plugin-info.html"/>
       <item name="Usage" href="usage.html"/>
+      <item name="Instrumenting a Deployment Artifact" href="instrumentingDeploymentArtifact.html"/>
     </menu>
     <menu name="Examples">
       <item name="Report Formats" href="examples/report-formats.html"/>
