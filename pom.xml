@@ -35,9 +35,6 @@
         <system>JIRA</system>
         <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
     </issueManagement>
-    <properties>
-        <sitePluginVersion>2.1</sitePluginVersion>
-    </properties>
     <developers>
         <developer>
             <id>joakime</id>
@@ -246,18 +243,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>maven-3</id>
-            <activation>
-                <file>
-                    <!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-                    <exists>${basedir}</exists>
-                </file>
-            </activation>
-            <properties>
-                <sitePluginVersion>3.0-beta-3</sitePluginVersion>
-            </properties>
         </profile>
     </profiles>
 </project>
