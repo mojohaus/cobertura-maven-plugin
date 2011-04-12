@@ -93,7 +93,7 @@
     </contributors>
 
     <prerequisites>
-        <maven>2.2.0</maven>
+        <maven>${mavenVersion}</maven>
     </prerequisites>
     
     <scm>
@@ -105,6 +105,10 @@
         <system>JIRA</system>
         <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
     </issueManagement>
+
+    <properties>
+      <mavenVersion>2.0.6</mavenVersion>
+    </properties>
 
     <dependencies>
         <!-- cobertura plugin deps -->
@@ -135,22 +139,22 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
-            <version>2.2.1</version>
+            <version>${mavenVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>2.2.1</version>
+            <version>${mavenVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-api</artifactId>
-            <version>2.2.1</version>
+            <version>${mavenVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
-            <version>2.2.1</version>
+            <version>${mavenVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
