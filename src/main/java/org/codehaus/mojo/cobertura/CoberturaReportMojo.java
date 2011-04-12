@@ -16,7 +16,6 @@
 package org.codehaus.mojo.cobertura;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,12 +27,12 @@ import java.util.ResourceBundle;
 
 import net.sourceforge.cobertura.coveragedata.CoverageDataFileHandler;
 import net.sourceforge.cobertura.coveragedata.ProjectData;
+
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
-import org.codehaus.doxia.sink.Sink;
 import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.CommandLineArguments;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
@@ -219,16 +218,6 @@ public class CoberturaReportMojo
     protected Renderer getSiteRenderer()
     {
         return siteRenderer;
-    }
-
-    /**
-     * @see org.apache.maven.reporting.MavenReport#generate(org.codehaus.doxia.sink.Sink, java.util.Locale)
-     * @param locale for the message bundle
-     */
-    public void generate( Sink sink, Locale locale )
-        throws MavenReportException
-    {
-        executeReport( locale );
     }
 
     /**
