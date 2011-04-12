@@ -62,4 +62,13 @@ public class InstrumentTaskTest
 
         assertEquals( destinationDir, task.getDestinationDir() );
     }
+
+    public void testMaxmem()
+    {
+        final String expectedValue128m = "128m";
+
+        task.setMaxmem( expectedValue128m );
+        
+        assertEquals( expectedValue128m, task.getMaxmem() );
+    }
 }

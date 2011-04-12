@@ -44,6 +44,11 @@ public class ConfigCheck
 
     private String packageLineRate;
 
+    /**
+     * The maximum heap size to use for the check phase.
+     */
+    private String maxmem;
+
     public void addRegex( Regex regex )
     {
         this.regexes.add( regex );
@@ -161,4 +166,26 @@ public class ConfigCheck
     {
         return packageLineRate;
     }
+
+    /**
+     * Get the maxmem setting.
+     * 
+     * @return the maxmem setting.
+     */
+    public String getMaxmem()
+    {
+        return maxmem;
+    }
+
+    /**
+     * Sets the max memory for the JVM used to run the <code>CheckTask</code> task.
+     * 
+     * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
+     * @param maxmem the value to which maxmem will be set
+     */
+    public void setMaxmem( String maxmem )
+    {
+        this.maxmem = maxmem;
+    }
+
 }

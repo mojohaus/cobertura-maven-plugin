@@ -34,6 +34,7 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.codehaus.doxia.sink.Sink;
+import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.CommandLineArguments;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
@@ -160,6 +161,19 @@ public class CoberturaReportMojo
     private String relDataFileName;
     private String relAggregateOutputDir;
     
+    /**
+     * Constructs a <code>CoberturaReportMojo</code>.
+     * Sets the max memory to the maven max memory if set, otherwise
+     * the default <code>CoberturaReportMojo</code> value is used.
+     */
+    public CoberturaReportMojo()
+    {
+        if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
+        {
+            maxmem = MaxHeapSizeUtil.getInstance().getMavenMaxMemSetting();
+        } 
+    }
+
     /**
      * @see org.apache.maven.reporting.MavenReport#getName(java.util.Locale)
      * @param locale for the message bundle

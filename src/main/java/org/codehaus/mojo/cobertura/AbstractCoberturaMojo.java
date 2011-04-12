@@ -23,6 +23,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
+import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.AbstractTask;
 
 /**
@@ -122,7 +123,15 @@ public abstract class AbstractCoberturaMojo
     {
         task.setLog( getLog() );
         task.setPluginClasspathList( pluginClasspathList );
-        task.setMaxmem( maxmem );
+
+        if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
+        {
+            maxmem = MaxHeapSizeUtil.getInstance().getMavenMaxMemSetting();
+        } 
+        else
+        {
+            task.setMaxmem( maxmem );
+        }
         task.setQuiet( quiet );
     }
 

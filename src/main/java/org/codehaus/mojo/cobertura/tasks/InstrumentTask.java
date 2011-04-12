@@ -54,6 +54,11 @@ public class InstrumentTask
         /* this task should always use the commands file approach */
         cmdLineArgs.setUseCommandsFile( true );
 
+        if ( StringUtils.isNotEmpty( config.getMaxmem() ) )
+        {
+            this.setMaxmem( config.getMaxmem() );
+        }
+        
         if ( dataFile != null )
         {
             cmdLineArgs.addArg( "--datafile", dataFile.getAbsolutePath() );
@@ -92,6 +97,7 @@ public class InstrumentTask
                 getLog().debug( "Basedir: " + config.getBasedir() );
                 getLog().debug( "Include: " + includes );
                 getLog().debug( "Exclude: " + excludes );
+                getLog().debug( "Max Mem: " + config.getMaxmem() );
             }
 
             List filenames = FileUtils.getFileNames( config.getBasedir(), includes, excludes, false );

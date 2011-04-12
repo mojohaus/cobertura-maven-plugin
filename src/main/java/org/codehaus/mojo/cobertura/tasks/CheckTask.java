@@ -75,6 +75,11 @@ public class CheckTask
         {
             cmdLineArgs.addArg( "--packageline", config.getPackageLineRate() );
         }
+        
+        if ( StringUtils.isNotEmpty( config.getMaxmem() ) )
+        {
+            this.setMaxmem( config.getMaxmem() );
+        }
 
         Iterator iter = config.getRegexes().iterator();
         while ( iter.hasNext() )

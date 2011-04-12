@@ -104,4 +104,14 @@ public class ConfigCheckTest
 
         assertFalse( check.isHaltOnFailure() );
     }
+    
+    public void testMaxmem()
+    {
+        final String expectedValue128m = "128m";
+        
+        check.setMaxmem( expectedValue128m );
+        
+        assertEquals( expectedValue128m, check.getMaxmem() );
+
+    }
 }

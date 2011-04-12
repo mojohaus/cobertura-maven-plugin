@@ -35,6 +35,8 @@ public class ConfigInstrumentation
     private List ignores;
 
     private List includes;
+    
+    private String maxmem;
 
     /**
      * Construct a new ConfigInstrumentation object.
@@ -45,6 +47,15 @@ public class ConfigInstrumentation
         this.excludes = new ArrayList();
         this.ignores = new ArrayList();
         this.basedir = new File( System.getProperty( "user.dir" ) );
+        
+        if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
+        {
+            maxmem = MaxHeapSizeUtil.getInstance().getMavenMaxMemSetting();
+        }
+        else
+        {
+            this.maxmem = "64m";
+        }
     }
 
     /**
@@ -123,6 +134,26 @@ public class ConfigInstrumentation
         this.basedir = basedir;
     }
 
+    /**
+     * Get the maxmem setting.
+     * 
+     * @return the maxmem setting.
+     */
+    public String getMaxmem() 
+    {
+        return maxmem;
+    }
+
+    /* Sets the max memory for the JVM used to run the <code>InstrumentationTask</code> task.
+    
+     * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
+     * @param maxmem the value to which maxmem will be set
+     */
+    public void setMaxmem( String maxmem )
+    {
+        this.maxmem = maxmem;
+    }
+
     public String toString()
     {
         StringBuffer sb = new StringBuffer();
@@ -181,6 +212,12 @@ public class ConfigInstrumentation
                     sb.append( " " );
                 }
             }
+            sb.append( "\"" );
+        }
+        
+        if ( !getMaxmem().isEmpty() ) {
+            sb.append(" maxmem=\"");
+            sb.append( getMaxmem() );
             sb.append( "\"" );
         }
 
