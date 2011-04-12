@@ -122,6 +122,16 @@ public class CoberturaReportMojo
     private boolean aggregate;
     
     /**
+     * Whether to remove GPL licensed files from the generated report.
+     * This is required to distribute the report as part of a distribution,
+     * which is licensed under the ASL, or a similar license, which is
+     * incompatible with the GPL.
+     *
+     * @parameter default-value="false" expression="${cobertura.omitGplFiles}"
+     */
+    private boolean omitGplFiles;
+    
+    /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
      * 
      * @component
@@ -342,6 +352,43 @@ public class CoberturaReportMojo
         for ( int i = 0; i < formats.length; i++ )
         {
             executeReportTask( task, formats[i] );
+        }
+
+        removeGplFiles();
+    }
+
+    /**
+     * Removes files from the generated report, which are distributed under
+     * the GPL.
+     */
+    private void removeGplFiles()
+        throws MavenReportException
+    {
+        if ( omitGplFiles )
+        {
+            final String[] files = new String[]
+            {
+                "js/customsorttypes.js", "js/sortabletable.js", "js/stringbuilder.js"
+            };
+            for ( int i = 0;  i < files.length;  i++ )
+            {
+                final File f = new File( outputDirectory, files[ i ] );
+                if ( f.exists() )
+                {
+                    if ( f.delete() )
+                    {
+                        getLog().debug( "Removed GPL licensed file " + f.getPath() );
+                    }
+                    else
+                    {
+                        throw new MavenReportException( "Unable to remove GPL licensed file " + f.getPath() );
+                    }
+                }
+                else
+                {
+                    getLog().info( "GPL licensed file " + f.getPath() + " not found." );
+                }
+            }
         }
     }
 
