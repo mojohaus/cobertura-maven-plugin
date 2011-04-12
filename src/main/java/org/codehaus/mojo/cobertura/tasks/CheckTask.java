@@ -18,6 +18,7 @@ package org.codehaus.mojo.cobertura.tasks;
 import java.util.Iterator;
 
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.plexus.util.StringUtils;
 
@@ -39,7 +40,7 @@ public class CheckTask
     }
 
     public void execute()
-        throws MojoExecutionException
+        throws MojoExecutionException, MojoFailureException
     {
         if ( dataFile != null )
         {
@@ -98,7 +99,7 @@ public class CheckTask
         {
             if ( config.isHaltOnFailure() )
             {
-                throw new MojoExecutionException( "Coverage check failed. See messages above." );
+                throw new MojoFailureException( "Coverage check failed. See messages above." );
             }
             else
             {

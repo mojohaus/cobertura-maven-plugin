@@ -26,6 +26,7 @@ import java.util.List;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 import org.codehaus.plexus.util.FileUtils;
@@ -148,7 +149,7 @@ public abstract class AbstractTask
     }
 
     public abstract void execute()
-        throws MojoExecutionException;
+        throws MojoExecutionException, MojoFailureException;
 
     protected int executeJava()
         throws MojoExecutionException

@@ -20,6 +20,7 @@ import java.io.File;
 
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.PlexusTestCase;
 
 /**
@@ -66,7 +67,7 @@ public class CoberturaCheckMojoTest
 
             fail( "regex should fail at < 100% coverage" );
         }
-        catch ( MojoExecutionException e )
+        catch ( MojoFailureException e )
         {
             if ( !e.getMessage().equals( "Coverage check failed. See messages above." ) )
             {
@@ -89,7 +90,7 @@ public class CoberturaCheckMojoTest
 
             fail( "Should fail when rates are not satisfied" );
         }
-        catch ( MojoExecutionException e )
+        catch ( MojoFailureException e )
         {
             if ( !e.getMessage().equals( "Coverage check failed. See messages above." ) )
             {
