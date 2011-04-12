@@ -172,16 +172,23 @@ public abstract class AbstractTask
 
         if ( cmdLineArgs.useCommandsFile() )
         {
-            cl.createArg().setValue( "--commandsfile" );
+            String commandsFile;
             try
             {
-                String commandsFile = cmdLineArgs.getCommandsFile();
-                cl.createArg().setValue( commandsFile );
-                FileUtils.copyFile( new File( commandsFile ), new File( commandsFile + ".bak" ) );
+                commandsFile = cmdLineArgs.getCommandsFile();
             }
             catch ( IOException e )
             {
                 throw new MojoExecutionException( "Unable to obtain CommandsFile location.", e );
+            }
+            if( FileUtils.fileExists( commandsFile ) ) 
+            {
+                cl.createArg().setValue( "--commandsfile" );
+                cl.createArg().setValue( commandsFile );
+            }
+            else 
+            {
+                throw new MojoExecutionException( "CommandsFile doesn't exist: "  + commandsFile );
             }
         }
         else
