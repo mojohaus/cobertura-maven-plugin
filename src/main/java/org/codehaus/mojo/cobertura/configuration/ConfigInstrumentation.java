@@ -215,7 +215,7 @@ public class ConfigInstrumentation
             sb.append( "\"" );
         }
         
-        if ( !getMaxmem().isEmpty() ) {
+        if ( 0 != getMaxmem().length() ) {
             sb.append(" maxmem=\"");
             sb.append( getMaxmem() );
             sb.append( "\"" );
