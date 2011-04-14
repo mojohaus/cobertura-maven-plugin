@@ -41,6 +41,9 @@ import org.codehaus.plexus.util.cli.Commandline;
  */
 public abstract class AbstractTask
 {
+    /**
+     * The shared command line args.
+     */
     protected CommandLineArguments cmdLineArgs;
 
     private Log log;
@@ -148,9 +151,19 @@ public abstract class AbstractTask
         return path;
     }
 
+    /**
+     * Run the task.
+     * @throws MojoExecutionException for a full-out execution problem.
+     * @throws MojoFailureException for an anticipated failure.
+     */
     public abstract void execute()
         throws MojoExecutionException, MojoFailureException;
 
+    /**
+     * Run a jvm to execute something.
+     * @return the exit code.
+     * @throws MojoExecutionException for an error launching the jvm.
+     */
     protected int executeJava()
         throws MojoExecutionException
     {
@@ -181,7 +194,7 @@ public abstract class AbstractTask
             {
                 throw new MojoExecutionException( "Unable to obtain CommandsFile location.", e );
             }
-            if( FileUtils.fileExists( commandsFile ) ) 
+            if ( FileUtils.fileExists( commandsFile ) ) 
             {
                 cl.createArg().setValue( "--commandsfile" );
                 cl.createArg().setValue( commandsFile );
@@ -258,11 +271,18 @@ public abstract class AbstractTask
         return exitCode;
     }
 
+    /**
+     * Return the command line args.
+     * @return the command line args.
+     */
     public CommandLineArguments getCmdLineArgs()
     {
         return cmdLineArgs;
     }
 
+    /**
+     * @return a log object.
+     */
     public Log getLog()
     {
         if ( log == null )
@@ -273,6 +293,9 @@ public abstract class AbstractTask
         return log;
     }
 
+    /**
+     * @return the configured -Xmx option.
+     */
     public String getMaxmem()
     {
         return maxmem;
@@ -286,16 +309,28 @@ public abstract class AbstractTask
         return pluginClasspathList;
     }
 
+    /**
+     * Set the entire command line args.
+     * @param cmdLineArgs new args.
+     */
     public void setCmdLineArgs( CommandLineArguments cmdLineArgs )
     {
         this.cmdLineArgs = cmdLineArgs;
     }
 
+    /**
+     * Set the logger.
+     * @param log the new logger.
+     */
     public void setLog( Log log )
     {
         this.log = log;
     }
 
+    /**
+     * Set the -Xmx value for the jvm.
+     * @param maxmem the memory size.
+     */
     public void setMaxmem( String maxmem )
     {
         this.maxmem = maxmem;

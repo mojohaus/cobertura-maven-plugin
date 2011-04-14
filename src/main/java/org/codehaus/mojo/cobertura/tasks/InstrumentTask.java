@@ -48,6 +48,9 @@ public class InstrumentTask
         super( "net.sourceforge.cobertura.instrument.Main" );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute()
         throws MojoExecutionException
     {
@@ -142,21 +145,35 @@ public class InstrumentTask
 
     }
 
+    /**
+     * @return the config.
+     */
     public ConfigInstrumentation getConfig()
     {
         return config;
     }
 
+    /**
+     * @return the data file
+     */
     public File getDataFile()
     {
         return dataFile;
     }
 
+    /**
+     * @return the destination directory.
+     */
     public File getDestinationDir()
     {
         return destinationDir;
     }
 
+    /**
+     * Construct a ,-separated string from a list of strings.
+     * @param cludes the list of strings.
+     * @return the ,-separated string.
+     */
     public String joinCludes( List cludes )
     {
         StringBuffer sb = new StringBuffer();
@@ -173,16 +190,28 @@ public class InstrumentTask
         return sb.toString();
     }
 
+    /**
+     * Set the configuration
+     * @param config the configuration
+     */
     public void setConfig( ConfigInstrumentation config )
     {
         this.config = config;
     }
 
+    /**
+     * Set the data file
+     * @param dataFile the data file
+     */
     public void setDataFile( File dataFile )
     {
         this.dataFile = dataFile;
     }
 
+    /**
+     * Set the destination directory
+     * @param destinationDir the directory
+     */
     public void setDestinationDir( File destinationDir )
     {
         this.destinationDir = destinationDir;

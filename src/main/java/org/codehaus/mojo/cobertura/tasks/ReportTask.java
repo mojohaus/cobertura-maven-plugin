@@ -49,6 +49,9 @@ public class ReportTask
         super( "net.sourceforge.cobertura.reporting.Main" );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute()
         throws MojoExecutionException
     {
@@ -157,6 +160,10 @@ public class ReportTask
         this.sourceEncoding = sourceEncoding;
     }
 
+    /**
+     * Set the list of compile source roots.
+     * @param compileSourceRoots the source roots.
+     */
     public void setCompileSourceRoots( List compileSourceRoots )
     {
         this.compileSourceRoots = Collections.unmodifiableList( compileSourceRoots );

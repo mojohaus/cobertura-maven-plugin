@@ -144,8 +144,7 @@ public class ConfigInstrumentation
         return maxmem;
     }
 
-    /* Sets the max memory for the JVM used to run the <code>InstrumentationTask</code> task.
-    
+    /** Sets the max memory for the JVM used to run the <code>InstrumentationTask</code> task.
      * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
      * @param maxmem the value to which maxmem will be set
      */
@@ -154,6 +153,9 @@ public class ConfigInstrumentation
         this.maxmem = maxmem;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String toString()
     {
         StringBuffer sb = new StringBuffer();
@@ -199,11 +201,11 @@ public class ConfigInstrumentation
             sb.append( "\"" );
         }
 
-        if ( !this.ignores.isEmpty() )
+        if ( !this.ignores.isEmpty() ) 
         {
             sb.append( " ignores=\"" );
             Iterator it = this.ignores.iterator();
-            while ( it.hasNext() )
+            while ( it.hasNext() ) 
             {
                 String ignore = (String) it.next();
                 sb.append( ignore );
@@ -215,8 +217,9 @@ public class ConfigInstrumentation
             sb.append( "\"" );
         }
         
-        if ( 0 != getMaxmem().length() ) {
-            sb.append(" maxmem=\"");
+        if ( 0 != getMaxmem().length() ) 
+        {
+            sb.append( " maxmem=\"" );
             sb.append( getMaxmem() );
             sb.append( "\"" );
         }

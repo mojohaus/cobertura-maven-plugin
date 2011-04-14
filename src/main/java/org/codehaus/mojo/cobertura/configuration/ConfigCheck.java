@@ -49,11 +49,19 @@ public class ConfigCheck
      */
     private String maxmem;
 
+    /**
+     * add a regex to the set used to scan the reports.
+     * @param regex the regex to add.
+     */
     public void addRegex( Regex regex )
     {
         this.regexes.add( regex );
     }
 
+    /**
+     * Create a regex object for eventual inclusion.
+     * @return the regex
+     */
     public Regex createRegex()
     {
         Regex regex = new Regex();
@@ -157,11 +165,17 @@ public class ConfigCheck
         this.totalLineRate = totalLineRate;
     }
 
+    /**
+     * @return the package branch rate.
+     */
     public String getPackageBranchRate()
     {
         return packageBranchRate;
     }
 
+    /**
+     * @return the package line rate.
+     */
     public String getPackageLineRate()
     {
         return packageLineRate;

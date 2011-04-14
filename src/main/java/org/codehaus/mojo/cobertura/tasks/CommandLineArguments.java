@@ -33,23 +33,38 @@ public class CommandLineArguments
 
     private boolean useCommandsFile;
 
+    /**
+     * Construct empty arg set.
+     */
     public CommandLineArguments()
     {
         this.args = new ArrayList();
         this.useCommandsFile = false;
     }
 
+    /**
+     * Append an option.
+     * @param arg the argument.
+     */
     public void addArg( String arg )
     {
         this.args.add( arg );
     }
 
+    /**
+     * Append two arguments (e.g. -x y)
+     * @param arg1 first arg
+     * @param arg2 second arg.
+     */
     public void addArg( String arg1, String arg2 )
     {
         this.args.add( arg1 );
         this.args.add( arg2 );
     }
 
+    /**
+     * @return the list of arg strings.
+     */
     public List getArgs()
     {
         return this.args;
@@ -59,7 +74,7 @@ public class CommandLineArguments
      * Generate the Commands file and return the filename to it.
      * 
      * @return the commands filename.
-     * @throws IOException
+     * @throws IOException error writing the file.
      */
     public String getCommandsFile()
         throws IOException
@@ -74,6 +89,9 @@ public class CommandLineArguments
         return builder.getCommandLineFile();
     }
 
+    /**
+     * @return an iterator over the arg strings.
+     */
     public Iterator iterator()
     {
         return this.args.iterator();

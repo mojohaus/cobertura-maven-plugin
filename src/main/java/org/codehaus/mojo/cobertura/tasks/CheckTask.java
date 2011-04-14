@@ -34,11 +34,17 @@ public class CheckTask
 
     private String dataFile;
 
+    /**
+     * Setup the check task.
+     */
     public CheckTask()
     {
         super( "net.sourceforge.cobertura.check.Main" );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute()
         throws MojoExecutionException, MojoFailureException
     {
@@ -108,6 +114,9 @@ public class CheckTask
         }
     }
 
+    /**
+     * @return the check configuration.
+     */
     public ConfigCheck getConfig()
     {
         return config;
@@ -121,6 +130,10 @@ public class CheckTask
         return dataFile;
     }
 
+    /**
+     * Set the check configuration.
+     * @param config the config.
+     */
     public void setConfig( ConfigCheck config )
     {
         this.config = config;
