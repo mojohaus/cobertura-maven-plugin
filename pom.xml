@@ -110,10 +110,6 @@
       <mavenVersion>2.0.6</mavenVersion>
     </properties>
     
-    <build>
-        <defaultGoal>install</defaultGoal>
-    </build>
-
     <dependencies>
         <!-- cobertura plugin deps -->
         <dependency>
