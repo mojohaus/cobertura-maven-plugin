@@ -22,23 +22,23 @@ Cobertura Maven Plugin
 
 ~~  General Information about the goals.
 
-  * {{{check-mojo.html}cobertura:check}} Check the Last Instrumentation Results.
+  * {{{./check-mojo.html}cobertura:check}} Check the Last Instrumentation Results.
 
-  * {{{clean-mojo.html}cobertura:clean}} Clean up rogue files that cobertura maven plugin is tracking.
+  * {{{./clean-mojo.html}cobertura:clean}} Clean up rogue files that cobertura maven plugin is tracking.
 
-  * {{{dump-datafile-mojo.html}cobertura:dump-datafile}} Cobertura Datafile Dump Mojo.
+  * {{{./dump-datafile-mojo.html}cobertura:dump-datafile}} Cobertura Datafile Dump Mojo.
 
-  * {{{instrument-mojo.html}cobertura:instrument}} Instrument the compiled classes.
+  * {{{./instrument-mojo.html}cobertura:instrument}} Instrument the compiled classes.
 
-  * {{{cobertura-mojo.html}cobertura:cobertura}} Instruments, Tests, and Generates a Cobertura Report.
+  * {{{./cobertura-mojo.html}cobertura:cobertura}} Instruments, Tests, and Generates a Cobertura Report.
 
 * Usage
 
-  Instructions on how to use the Cobertura Maven Plugin can be found on the {{{usage.html}usage page}}.
+  Instructions on how to use the Cobertura Maven Plugin can be found on the {{{./usage.html}usage page}}.
 
 * Examples
 
   To provide you with better understanding of some usages of the Cobertura
   Maven Plugin, you can take a look into the following example:
 
-  * {{{examples/report-formats.html}Report Formats}}
+  * {{{./examples/report-formats.html}Report Formats}}
