@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>cobertura-maven-plugin</artifactId>
-    <version>2.6-SNAPSHOT</version>
+    <version>2.5-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>Mojo's Maven plugin for Cobertura</name>
