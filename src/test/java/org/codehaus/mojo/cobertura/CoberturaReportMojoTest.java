@@ -44,9 +44,9 @@ public class CoberturaReportMojoTest
 
         mojo.execute();
 
-        File outputHtml = new File( reportMojo.getReportOutputDirectory(), reportMojo.getOutputName() + ".html" );
+        File outputHtml = new File( reportMojo.getReportOutputDirectory().getParent(), reportMojo.getOutputName() + ".html" );
 
-        assertTrue( "Test for generated html file", outputHtml.exists() );
+        assertTrue( "Test for generated html file " + outputHtml, outputHtml.exists() );
     }
 
     public void testReportEmptySourceDir()

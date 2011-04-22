@@ -400,7 +400,7 @@ public class CoberturaReportMojo
      */
     public String getOutputName()
     {
-        return "index";
+        return "cobertura/index";
     }
 
     /**
