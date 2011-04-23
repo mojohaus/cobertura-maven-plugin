@@ -4,8 +4,16 @@
   <groupId>org.codehaus.mojo.cobertura-maven-plugin.test</groupId>
   <artifactId>mcobertura-118</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-
+  <properties>
+    <test.property>c:\hello\sailor</test.property>
+  </properties>
   <build>
+  <resources>
+    <resource>
+      <directory>src/main/resources</directory>
+      <filtering>true</filtering>
+    </resource>
+  </resources>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
