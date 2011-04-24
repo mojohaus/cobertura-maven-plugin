@@ -112,7 +112,7 @@
   </properties>
   <!-- from MSITE-459 -->
   <build>
-    <extensions combine.self="override">
+    <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
         <artifactId>wagon-webdav-jackrabbit</artifactId>
@@ -294,7 +294,7 @@
             <configuration>
               <debug>true</debug>
               <projectsDirectory>src/it</projectsDirectory>
-              <postBuildHookScript>verify</postBuildHookScript>
+              <postBuildHookScript>verify.groovy</postBuildHookScript>
               <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
               <goals>
                 <goal>clean</goal>
