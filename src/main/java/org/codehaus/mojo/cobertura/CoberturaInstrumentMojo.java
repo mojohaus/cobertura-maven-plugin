@@ -130,9 +130,9 @@ public class CoberturaInstrumentMojo
             instrumentation.setBasedir( instrumentedDirectory );
 
             // Cobertura requires an existing dir
-            if ( !dataFile.getParentFile().exists() )
+            if ( !getDataFile().getParentFile().exists() )
             {
-                dataFile.getParentFile().mkdirs();
+                getDataFile().getParentFile().mkdirs();
             }
 
             // Execute the instrumentation task.
@@ -140,14 +140,14 @@ public class CoberturaInstrumentMojo
             setTaskDefaults( task );
             task.setConfig( instrumentation );
             task.setDestinationDir( instrumentedDirectory );
-            task.setDataFile( dataFile );
+            task.setDataFile( getDataFile() );
 
             task.execute();
 
             addCoberturaDependenciesToTestClasspath();
 
             // Old, Broken way
-            System.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
+            System.setProperty( "net.sourceforge.cobertura.datafile", getDataFile().getPath() );
 
             /*
              * New, Fixed way. See
@@ -155,7 +155,7 @@ public class CoberturaInstrumentMojo
              * to Cobertura 1.8 that fixes the datafile location.
              */
             Properties props = new Properties();
-            props.setProperty( "net.sourceforge.cobertura.datafile", dataFile.getPath() );
+            props.setProperty( "net.sourceforge.cobertura.datafile", getDataFile().getPath() );
 
             File coberturaPropertiesFile = new File( instrumentedDirectory, "cobertura.properties" );
             FileOutputStream fos = null;
@@ -182,8 +182,8 @@ public class CoberturaInstrumentMojo
     
     private void attachCoberturaArtifactIfAppropriate() {
         if (attach) {
-            if (dataFile.exists()) {
-                projectHelper.attachArtifact(project, "ser", classifier, dataFile);
+            if (getDataFile().exists()) {
+                projectHelper.attachArtifact(project, "ser", classifier, getDataFile());
             } else {
                 getLog().info("No cobertura ser file exists to include in the attached artifacts list.");
             }

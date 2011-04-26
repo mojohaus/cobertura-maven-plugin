@@ -50,12 +50,12 @@ public class CoberturaDatafileDumpMojo
             return;
         }
         
-        if ( ( dataFile == null ) || !dataFile.exists() )
+        if ( !getDataFile().exists() )
         {
-            throw new MojoExecutionException( "Unable to dump nonexistent dataFile [" + dataFile + "]" );
+            throw new MojoExecutionException( "Unable to dump nonexistent dataFile [" + getDataFile() + "]" );
         }
 
-        ProjectData projectData = CoverageDataFileHandler.loadCoverageData( dataFile );
+        ProjectData projectData = CoverageDataFileHandler.loadCoverageData( getDataFile() );
         NumberFormat percentage = NumberFormat.getPercentInstance();
         NumberFormat integer = NumberFormat.getIntegerInstance();
 

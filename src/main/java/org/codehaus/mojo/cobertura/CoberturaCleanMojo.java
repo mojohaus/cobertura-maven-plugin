@@ -41,9 +41,9 @@ public class CoberturaCleanMojo
             return;
         }
         
-        if ( dataFile.exists() )
+        if ( getDataFile().exists() )
         {
-            dataFile.delete();
+            getDataFile().delete();
         }
     }
 }

@@ -57,7 +57,7 @@ public class CoberturaCheckMojo
         }
         else
         {
-            if ( !dataFile.exists() )
+            if ( !getDataFile().exists() )
             {
                 getLog().info( "Cannot perform check, instrumentation not performed - skipping." );
             }
@@ -66,7 +66,7 @@ public class CoberturaCheckMojo
                 CheckTask task = new CheckTask();
                 setTaskDefaults( task );
                 task.setConfig( check );
-                task.setDataFile( dataFile.getAbsolutePath() );
+                task.setDataFile( getDataFile().getAbsolutePath() );
 
                 task.execute();
             }
