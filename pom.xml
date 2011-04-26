@@ -149,6 +149,11 @@
     <!-- maven plugin deps -->
     <dependency>
       <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
       <version>${mavenVersion}</version>
     </dependency>
@@ -294,7 +299,8 @@
             <configuration>
               <debug>true</debug>
               <projectsDirectory>src/it</projectsDirectory>
-              <postBuildHookScript>verify.groovy</postBuildHookScript>
+              <preBuildHookScript>setup</preBuildHookScript>
+              <postBuildHookScript>verify</postBuildHookScript>
               <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
               <goals>
                 <goal>clean</goal>
