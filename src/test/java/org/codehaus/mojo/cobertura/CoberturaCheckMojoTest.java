@@ -149,24 +149,4 @@ public class CoberturaCheckMojoTest
             }
         }
     }
-
-    public void testNoDataFileParameter()
-        throws Exception
-    {
-        Mojo mojo =
-            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
-
-        setVariableValueToObject( mojo, "dataFile", new File( PlexusTestCase.getBasedir() + "/no/such/file" ) );
-
-        try
-        {
-            mojo.execute();
-        }
-        catch ( MojoExecutionException e )
-        {
-            fail( "Should not fail" );
-        }
-    }
 }
