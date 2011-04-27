@@ -16,4 +16,7 @@
 
 f1 = new File(basedir, 'build.log')
 assert f1.exists()
+assert f1.getText().contains('Circle failed check.')
+assert f1.getText().contains('Package  failed check.')
+assert f1.getText().contains('Project failed check.')
 assert f1.getText().contains('Coverage check failed. See messages above.')

@@ -12,8 +12,28 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>@pom.version@</version>
+        <configuration>
+          <check>
+            <branchRate>100</branchRate>
+            <lineRate>100</lineRate>
+            <haltOnFailure>true</haltOnFailure>
+            <totalBranchRate>100</totalBranchRate>
+            <totalLineRate>100</totalLineRate>
+            <packageLineRate>100</packageLineRate>
+            <packageBranchRate>100</packageBranchRate>
+          </check>
+        </configuration>
       </plugin>
     </plugins>
   </build>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>
