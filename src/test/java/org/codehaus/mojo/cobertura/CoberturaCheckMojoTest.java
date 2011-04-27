@@ -16,11 +16,8 @@ package org.codehaus.mojo.cobertura;
  * the License.
  */
 
-import java.io.File;
-
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.PlexusTestCase;
 
 /**
@@ -29,17 +26,6 @@ import org.codehaus.plexus.PlexusTestCase;
 public class CoberturaCheckMojoTest
     extends AbstractCoberturaTestCase
 {
-    public void testMojo()
-        throws Exception
-    {
-        Mojo mojo =
-            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
-
-        mojo.execute();
-    }
-
     public void testCheckFailureNoHalt()
         throws Exception
     {
