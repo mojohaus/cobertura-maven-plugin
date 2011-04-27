@@ -40,18 +40,6 @@ public class CoberturaCheckMojoTest
         mojo.execute();
     }
 
-    public void testCheckWithRegexPassing()
-        throws Exception
-    {
-        Mojo mojo =
-            lookupMojo( "check", PlexusTestCase.getBasedir() +
-                "/src/test/plugin-configs/check-regex-pass-plugin-config.xml" );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
-
-        mojo.execute();
-    }
-
     public void testCheckFailureNoHalt()
         throws Exception
     {
