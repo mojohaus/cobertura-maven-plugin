@@ -13,7 +13,9 @@
         <artifactId>cobertura-maven-plugin</artifactId>
         <version>@pom.version@</version>
         <configuration>
-          <check></check>
+          <check>
+            <branchRate>95</branchRate>
+          </check>
         </configuration>
       </plugin>
     </plugins>

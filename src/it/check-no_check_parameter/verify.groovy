@@ -16,4 +16,4 @@
 
 f1 = new File(basedir, 'build.log')
 assert f1.exists()
-assert f1.getText() =~ /The parameters 'check' for goal org\.codehaus\.mojo:cobertura-maven-plugin:(.+):check are missing or invalid/
+assert f1.getText().contains('Caused by: org.apache.maven.plugin.PluginParameterException:')
