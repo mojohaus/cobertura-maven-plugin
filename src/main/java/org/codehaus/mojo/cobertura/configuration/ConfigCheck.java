@@ -34,7 +34,7 @@ public class ConfigCheck
 
     private String lineRate;
 
-    private Set regexes = new HashSet();
+    private Set<Regex> regexes = new HashSet<Regex>();
 
     private String totalBranchRate;
 
@@ -88,7 +88,7 @@ public class ConfigCheck
     /**
      * @return Returns the regexes.
      */
-    public Set getRegexes()
+    public Set<Regex> getRegexes()
     {
         return regexes;
     }
@@ -144,9 +144,9 @@ public class ConfigCheck
     /**
      * @param regexes The regexes to set.
      */
-    public void setRegexes( Set regexes )
+    public void setRegexes( Set<Regex> regexes )
     {
-        this.regexes = new HashSet( regexes );
+        this.regexes = new HashSet<Regex>( regexes );
     }
 
     /**

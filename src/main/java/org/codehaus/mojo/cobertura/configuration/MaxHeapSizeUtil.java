@@ -56,7 +56,7 @@ public class MaxHeapSizeUtil
     /**
      * The environment settings.
      */
-    private Map envSettings;
+    private Map<String, String> envSettings;
 
     /**
      * Gets envSettings map, typically a reference to the <code>System.getEnv()</code> settings.
@@ -64,7 +64,7 @@ public class MaxHeapSizeUtil
      * 
      * @return the <code>System.getEnv()</code> settings.
      */
-    private Map getEnvSettings()
+    private Map<String, String> getEnvSettings()
     {
         if ( envSettings == null )
         {
@@ -78,7 +78,7 @@ public class MaxHeapSizeUtil
      * 
      * @param envSettings the settings map to use
      */
-    public void setEnvSettings( Map envSettings )
+    public void setEnvSettings( Map<String, String> envSettings )
     {
         this.envSettings = envSettings;
     }

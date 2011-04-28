@@ -30,11 +30,11 @@ public class ConfigInstrumentation
 {
     private File basedir;
 
-    private List excludes;
+    private List<String> excludes;
 
-    private List ignores;
+    private List<String> ignores;
 
-    private List includes;
+    private List<String> includes;
     
     private String maxmem;
 
@@ -43,9 +43,9 @@ public class ConfigInstrumentation
      */
     public ConfigInstrumentation()
     {
-        this.includes = new ArrayList();
-        this.excludes = new ArrayList();
-        this.ignores = new ArrayList();
+        this.includes = new ArrayList<String>();
+        this.excludes = new ArrayList<String>();
+        this.ignores = new ArrayList<String>();
         this.basedir = new File( System.getProperty( "user.dir" ) );
         
         if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
@@ -101,7 +101,7 @@ public class ConfigInstrumentation
      * 
      * @return the exlude list.
      */
-    public List getExcludes()
+    public List<String> getExcludes()
     {
         return excludes;
     }
@@ -111,7 +111,7 @@ public class ConfigInstrumentation
      * 
      * @return the ignore list.
      */
-    public List getIgnores()
+    public List<String> getIgnores()
     {
         return ignores;
     }
@@ -121,7 +121,7 @@ public class ConfigInstrumentation
      * 
      * @return the include list.
      */
-    public List getIncludes()
+    public List<String> getIncludes()
     {
         return includes;
     }
@@ -171,7 +171,7 @@ public class ConfigInstrumentation
         if ( !this.includes.isEmpty() )
         {
             sb.append( " includes=\"" );
-            Iterator it = this.includes.iterator();
+            Iterator<String> it = this.includes.iterator();
             while ( it.hasNext() )
             {
                 String include = (String) it.next();
@@ -188,7 +188,7 @@ public class ConfigInstrumentation
         if ( !this.excludes.isEmpty() )
         {
             sb.append( " excludes=\"" );
-            Iterator it = this.excludes.iterator();
+            Iterator<String> it = this.excludes.iterator();
             while ( it.hasNext() )
             {
                 String exclude = (String) it.next();
@@ -204,7 +204,7 @@ public class ConfigInstrumentation
         if ( !this.ignores.isEmpty() ) 
         {
             sb.append( " ignores=\"" );
-            Iterator it = this.ignores.iterator();
+            Iterator<String> it = this.ignores.iterator();
             while ( it.hasNext() ) 
             {
                 String ignore = (String) it.next();
