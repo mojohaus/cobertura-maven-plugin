@@ -18,6 +18,7 @@ package org.codehaus.mojo.cobertura;
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.tasks.CheckTask;
 
 /**
@@ -33,8 +34,18 @@ public class CoberturaCheckMojo
 {
 
     /**
+     * The <a href="usage.html#Check">Check Configuration</a>.
+     * 
+     * @parameter
+     * @required
+     */
+    private ConfigCheck check;
+
+    /**
      * Mojo main entry
+     * 
      * @throws MojoExecutionException
+     * @throws MojoFailureException
      */
     public void execute()
         throws MojoExecutionException, MojoFailureException
@@ -42,11 +53,6 @@ public class CoberturaCheckMojo
         if ( skipMojo() )
         {
             return;
-        }
-        
-        if ( check == null )
-        {
-            throw new MojoExecutionException( "The Check configuration is missing." );
         }
 
         ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();

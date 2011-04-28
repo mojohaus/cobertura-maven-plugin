@@ -108,7 +108,7 @@
   </issueManagement>
 
   <properties>
-    <mavenVersion>2.0.6</mavenVersion>
+    <mavenVersion>2.0.8</mavenVersion> <!-- MNG-3062 -->
   </properties>
   <!-- from MSITE-459 -->
   <build>

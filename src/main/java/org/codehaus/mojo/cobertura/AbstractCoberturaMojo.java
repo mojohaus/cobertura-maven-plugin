@@ -20,8 +20,8 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.AbstractTask;
@@ -62,14 +62,14 @@ public abstract class AbstractCoberturaMojo
      * @readonly
      */
     private File dataFile;
-
+    
     /**
-     * The <a href="usage.html#Check">Check Configuration</a>.
-     * 
-     * @parameter expression="${check}"
+     * @parameter default-value="${mojoExecution}"
+     * @required
+     * @readonly
      */
-    protected ConfigCheck check;
-
+    private MojoExecution mojoExecution;
+    
     /**
      * The <a href="usage.html#Instrumentation">Instrumentation Configuration</a>.
      * 
@@ -170,7 +170,7 @@ public abstract class AbstractCoberturaMojo
      */
     protected File getDataFile()
     {
-        return dataFile;
+        return CoberturaMojoUtils.getDataFile( new File( project.getBuild().getDirectory() ), mojoExecution );
     }
 
 }
