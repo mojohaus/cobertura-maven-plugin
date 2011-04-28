@@ -17,7 +17,6 @@ package org.codehaus.mojo.cobertura.tasks;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
@@ -39,7 +38,7 @@ public class ReportTask
 
     private String sourceEncoding;
 
-    private List compileSourceRoots;
+    private List<String> compileSourceRoots;
 
     /**
      * Create ReportTask.
@@ -57,9 +56,8 @@ public class ReportTask
     {
         outputDirectory.mkdirs();
 
-        for ( Iterator i = compileSourceRoots.iterator(); i.hasNext(); )
+        for ( String directory : compileSourceRoots)
         {
-            String directory = (String) i.next();
             cmdLineArgs.addArg( "--source", directory );
         }
 
@@ -164,7 +162,7 @@ public class ReportTask
      * Set the list of compile source roots.
      * @param compileSourceRoots the source roots.
      */
-    public void setCompileSourceRoots( List compileSourceRoots )
+    public void setCompileSourceRoots( List<String> compileSourceRoots )
     {
         this.compileSourceRoots = Collections.unmodifiableList( compileSourceRoots );
     }

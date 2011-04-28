@@ -15,7 +15,7 @@
  */
 package org.codehaus.mojo.cobertura.tasks;
 
-import java.util.Iterator;
+import net.sourceforge.cobertura.ant.Regex;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -88,10 +88,9 @@ public class CheckTask
             this.setMaxmem( config.getMaxmem() );
         }
 
-        Iterator iter = config.getRegexes().iterator();
-        while ( iter.hasNext() )
+        for ( Regex regex : config.getRegexes() )
         {
-            cmdLineArgs.addArg( "--regex", iter.next().toString() );
+            cmdLineArgs.addArg( "--regex", regex.toString() );
         }
 
         int returnCode = executeJava();

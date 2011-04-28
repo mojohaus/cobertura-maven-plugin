@@ -72,15 +72,14 @@ public class InstrumentTask
             cmdLineArgs.addArg( "--destination", destinationDir.getAbsolutePath() );
         }
 
-        Iterator it = config.getIgnores().iterator();
-        while ( it.hasNext() )
+        for ( String ignore : config.getIgnores() )
         {
-            String ignore = (String) it.next();
             cmdLineArgs.addArg( "--ignore", ignore );
         }
 
         String includes = joinCludes( config.getIncludes() );
         String excludes = joinCludes( config.getExcludes() );
+        @SuppressWarnings( "unchecked" )
         String defaultExcludes = joinCludes( FileUtils.getDefaultExcludesAsList() );
 
         if ( StringUtils.isNotEmpty( excludes ) )
@@ -103,7 +102,8 @@ public class InstrumentTask
                 getLog().debug( "Max Mem: " + config.getMaxmem() );
             }
 
-            List filenames = FileUtils.getFileNames( config.getBasedir(), includes, excludes, false );
+            @SuppressWarnings( "unchecked" )
+            List<String> filenames = FileUtils.getFileNames( config.getBasedir(), includes, excludes, false );
 
             if ( filenames.isEmpty() )
             {
@@ -112,10 +112,8 @@ public class InstrumentTask
             }
 
             cmdLineArgs.addArg( "--basedir", config.getBasedir().getAbsolutePath() );
-            it = filenames.iterator();
-            while ( it.hasNext() )
+            for ( String filename : filenames )
             {
-                String filename = (String) it.next();
                 if ( getLog().isDebugEnabled() )
                 {
                     getLog().debug( "To Instrument: " + filename );
@@ -174,13 +172,13 @@ public class InstrumentTask
      * @param cludes the list of strings.
      * @return the ,-separated string.
      */
-    public String joinCludes( List cludes )
+    public String joinCludes( List<String> cludes )
     {
         StringBuffer sb = new StringBuffer();
-        Iterator it = cludes.iterator();
+        Iterator<String> it = cludes.iterator();
         while ( it.hasNext() )
         {
-            String clude = (String) it.next();
+            String clude = it.next();
             sb.append( clude );
             if ( it.hasNext() )
             {

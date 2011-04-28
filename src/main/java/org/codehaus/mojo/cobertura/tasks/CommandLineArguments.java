@@ -29,7 +29,7 @@ import net.sourceforge.cobertura.util.CommandLineBuilder;
  */
 public class CommandLineArguments
 {
-    private List args;
+    private List<String> args;
 
     private boolean useCommandsFile;
 
@@ -38,7 +38,7 @@ public class CommandLineArguments
      */
     public CommandLineArguments()
     {
-        this.args = new ArrayList();
+        this.args = new ArrayList<String>();
         this.useCommandsFile = false;
     }
 
@@ -65,7 +65,7 @@ public class CommandLineArguments
     /**
      * @return the list of arg strings.
      */
-    public List getArgs()
+    public List<String> getArgs()
     {
         return this.args;
     }
@@ -80,10 +80,9 @@ public class CommandLineArguments
         throws IOException
     {
         CommandLineBuilder builder = new CommandLineBuilder();
-        Iterator it = this.args.iterator();
-        while ( it.hasNext() )
+        for ( String arg : this.args )
         {
-            builder.addArg( it.next().toString() );
+            builder.addArg( arg );
         }
         builder.saveArgs();
         return builder.getCommandLineFile();
@@ -92,7 +91,7 @@ public class CommandLineArguments
     /**
      * @return an iterator over the arg strings.
      */
-    public Iterator iterator()
+    public Iterator<String> iterator()
     {
         return this.args.iterator();
     }

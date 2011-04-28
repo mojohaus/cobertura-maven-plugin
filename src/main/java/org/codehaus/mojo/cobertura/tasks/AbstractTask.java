@@ -50,7 +50,7 @@ public abstract class AbstractTask
 
     private String maxmem;
 
-    private List pluginClasspathList;
+    private List<Artifact> pluginClasspathList;
 
     private String taskClass;
 
@@ -101,9 +101,9 @@ public abstract class AbstractTask
 
         StringBuffer cpBuffer = new StringBuffer();
 
-        for ( Iterator it = pluginClasspathList.iterator(); it.hasNext(); )
+        for ( Iterator<Artifact> it = pluginClasspathList.iterator(); it.hasNext(); )
         {
-            Artifact artifact = (Artifact) it.next();
+            Artifact artifact = it.next();
 
             try
             {
@@ -206,10 +206,10 @@ public abstract class AbstractTask
         }
         else
         {
-            Iterator it = cmdLineArgs.iterator();
+            Iterator<String> it = cmdLineArgs.iterator();
             while ( it.hasNext() )
             {
-                cl.createArg().setValue( it.next().toString() );
+                cl.createArg().setValue( it.next() );
             }
         }
 
@@ -304,7 +304,7 @@ public abstract class AbstractTask
     /**
      * @return Returns the pluginClasspathList.
      */
-    public List getPluginClasspathList()
+    public List<Artifact> getPluginClasspathList()
     {
         return pluginClasspathList;
     }
@@ -339,7 +339,7 @@ public abstract class AbstractTask
     /**
      * @param pluginClasspathList The pluginClasspathList to set.
      */
-    public void setPluginClasspathList( List pluginClasspathList )
+    public void setPluginClasspathList( List<Artifact> pluginClasspathList )
     {
         this.pluginClasspathList = Collections.unmodifiableList( pluginClasspathList );
     }
