@@ -51,29 +51,4 @@ public class CoberturaCheckMojoTest
             }
         }
     }
-
-    public void testNoCheckParameter()
-        throws Exception
-    {
-        Mojo mojo =
-            lookupMojo( "check", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/check-plugin-config.xml" );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
-
-        setVariableValueToObject( mojo, "check", null );
-
-        try
-        {
-            mojo.execute();
-
-            fail( "Should fail on null check parameter" );
-        }
-        catch ( MojoExecutionException e )
-        {
-            if ( !e.getMessage().equals( "The Check configuration is missing." ) )
-            {
-                fail( "Unexpected exception" );
-            }
-        }
-    }
 }
