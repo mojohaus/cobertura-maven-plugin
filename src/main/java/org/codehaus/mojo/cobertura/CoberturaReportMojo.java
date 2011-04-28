@@ -412,20 +412,29 @@ public class CoberturaReportMojo
     }
 
     /**
-     * @return <code>true</code> if there is a datafile to create a report for.
+     * @return <code>true</code> if a report can be generated, otherwise <code>false</code>
      */
     public boolean canGenerateReport()
     {
-        if(canGenerateSimpleReport()) {
+        if ( canGenerateSimpleReport() )
+        {
             return true;
         }
-        if(canGenerateAggregateReports()) {
+        else
+        {
+            getLog().info( "Not executing cobertura:report as the cobertura data file (" + getDataFile()
+                               + ") could not be found" );
+        }
+        
+        if ( canGenerateAggregateReports() )
+        {
             return true;
         }
 
-        if(aggregate && isMultiModule(project)) {
+        if ( aggregate && isMultiModule( project ) )
+        {
             // unfortunately, we don't know before hand whether we can generate an aggregate report for a
-            // multi-module.  if we return false here, then we won't get a link in the main reports list.  so we'll
+            // multi-module. if we return false here, then we won't get a link in the main reports list. so we'll
             // just be optimistic
             return true;
         }
@@ -434,6 +443,8 @@ public class CoberturaReportMojo
 
     /**
      * Returns whether or not we can generate a simple (non-aggregate) report for this project.
+     * 
+     * @return <code>true</code> if a simple report can be generated, otherwise <code>false</code>
      */
     private boolean canGenerateSimpleReport()
     {
@@ -441,16 +452,7 @@ public class CoberturaReportMojo
          * Don't have to check for source directories or java code or the like for report generation. Checks for source
          * directories or java project classpath existence should only occur in the Instrument Mojo.
          */
-        if ( !getDataFile().exists() )
-        {
-            getLog().info("Not executing cobertura:report as the cobertura data file (" + getDataFile()
-                               + ") could not be found" );
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return getDataFile().exists() && getDataFile().isFile();
     }
 
     /**
