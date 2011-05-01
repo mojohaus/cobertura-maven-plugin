@@ -238,47 +238,6 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.3.1</version>
       </plugin>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.7</version>
-        <configuration>
-          <quiet>true</quiet>
-          <links>
-            <link>http://download-llnw.oracle.com/javase/1.5.0/docs/api/</link>
-            <link>http://commons.apache.org/logging/apidocs/</link>
-            <link>http://commons.apache.org/pool/apidocs/</link>
-            <link>http://junit.sourceforge.net/javadoc/</link>
-            <link>http://velocity.apache.org/engine/releases/velocity-1.5/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-artifact/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-artifact-manager/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-model/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-plugin-api/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-project/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-reporting/maven-reporting-api/apidocs/</link>
-            <link>http://maven.apache.org/ref/2.0.6/maven-settings/apidocs/</link>
-          </links>
-          <tagletArtifacts>
-            <tagletArtifact>
-              <groupId>org.apache.maven.plugin-tools</groupId>
-              <artifactId>maven-plugin-tools-javadoc</artifactId>
-              <version>2.7</version>
-            </tagletArtifact>
-            <tagletArtifact>
-              <groupId>org.codehaus.plexus</groupId>
-              <artifactId>plexus-component-javadoc</artifactId>
-              <version>1.5.4</version>
-            </tagletArtifact>
-          </tagletArtifacts>
-        </configuration>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>javadoc</report>
-              <report>test-javadoc</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
     </plugins>
   </reporting>
 
