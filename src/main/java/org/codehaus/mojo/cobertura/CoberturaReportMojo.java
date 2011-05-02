@@ -19,7 +19,6 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -28,6 +27,7 @@ import java.util.ResourceBundle;
 import net.sourceforge.cobertura.coveragedata.CoverageDataFileHandler;
 import net.sourceforge.cobertura.coveragedata.ProjectData;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.doxia.siterenderer.Renderer;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
@@ -96,7 +96,7 @@ public class CoberturaReportMojo
      * @required
      * @readonly
      */
-    protected List pluginClasspathList;
+    private List<Artifact> pluginClasspathList;
 
     /**
      * The output directory for the report.
@@ -145,7 +145,7 @@ public class CoberturaReportMojo
      * @required
      * @readonly
      */
-    protected List reactorProjects;
+    protected List<MavenProject> reactorProjects;
     
     /**
      * <i>Maven Internal</i>: Project to interact with.
@@ -156,7 +156,7 @@ public class CoberturaReportMojo
      */
     private MavenProject project;
 
-    private Map projectChildren;
+    private Map < MavenProject, List < MavenProject > > projectChildren;
     private String relDataFileName;
     private String relAggregateOutputDir;
     
@@ -267,8 +267,7 @@ public class CoberturaReportMojo
     private void executeAggregateReport( Locale locale )
         throws MavenReportException
         {
-        for(Iterator iter = reactorProjects.iterator(); iter.hasNext(); ) {
-            MavenProject proj = (MavenProject)iter.next();
+        for( MavenProject proj : reactorProjects) {
             if(!isMultiModule(proj)) {
                 continue;
             }
@@ -282,50 +281,51 @@ public class CoberturaReportMojo
     private void executeAggregateReport( Locale locale, MavenProject curProject )
         throws MavenReportException
     {
-        List children = new ArrayList();
-        getAllChildren(curProject, children);
+        List<MavenProject> children = getAllChildren( curProject );
 
-        if(children.isEmpty()) {
+        if ( children.isEmpty() )
+        {
             return;
         }
 
-        List serFiles = getOutputFiles(children);
-        if(serFiles.isEmpty()) {
-            getLog().info("Not executing aggregate cobertura:report for " + curProject.getName() +
-                          " as no child cobertura data files could not be found" );
+        List<File> serFiles = getOutputFiles( children );
+        if ( serFiles.isEmpty() )
+        {
+            getLog().info( "Not executing aggregate cobertura:report for " + curProject.getName()
+                               + " as no child cobertura data files could not be found" );
             return;
         }
 
-        getLog().info("Executing aggregate cobertura:report for " + curProject.getName());
-        
+        getLog().info( "Executing aggregate cobertura:report for " + curProject.getName() );
+
         ProjectData aggProjectData = new ProjectData();
-        for (Iterator iter = serFiles.iterator(); iter.hasNext(); ) {
-            File serFile = (File)iter.next();
-            ProjectData data = CoverageDataFileHandler.loadCoverageData(serFile);
-            aggProjectData.merge(data);
+        for ( File serFile : serFiles )
+        {
+            ProjectData data = CoverageDataFileHandler.loadCoverageData( serFile );
+            aggProjectData.merge( data );
         }
 
-        File aggSerFile = new File(curProject.getBasedir(), relDataFileName);
+        File aggSerFile = new File( curProject.getBasedir(), relDataFileName );
         aggSerFile.getAbsoluteFile().getParentFile().mkdirs();
-        getLog().info("Saving aggregate cobertura information in " + aggSerFile.getAbsolutePath());
-        CoverageDataFileHandler.saveCoverageData(aggProjectData, aggSerFile);
+        getLog().info( "Saving aggregate cobertura information in " + aggSerFile.getAbsolutePath() );
+        CoverageDataFileHandler.saveCoverageData( aggProjectData, aggSerFile );
 
         // get all compile source roots
-        List aggCompileSourceRoots = new ArrayList();
-        for(Iterator iter = children.iterator(); iter.hasNext(); ) {
-            MavenProject child = (MavenProject)iter.next();
-            aggCompileSourceRoots.addAll(child.getCompileSourceRoots());
+        List<String> aggCompileSourceRoots = new ArrayList<String>();
+        for ( MavenProject child : children )
+        {
+            aggCompileSourceRoots.addAll( child.getCompileSourceRoots() );
         }
-        
-        File reportDir = new File(curProject.getBasedir(), relAggregateOutputDir);
+
+        File reportDir = new File( curProject.getBasedir(), relAggregateOutputDir );
         reportDir.mkdirs();
-        executeReport(aggSerFile, reportDir, aggCompileSourceRoots);
+        executeReport( aggSerFile, reportDir, aggCompileSourceRoots );
     }
 
     /**
      * Executes the cobertura report task for the given dataFile, outputDirectory, and compileSourceRoots.
      */
-    private void executeReport(File curDataFile, File curOutputDirectory, List curCompileSourceRoots)
+    private void executeReport(File curDataFile, File curOutputDirectory, List<String> curCompileSourceRoots)
         throws MavenReportException
     {
         ReportTask task = new ReportTask();
@@ -461,10 +461,12 @@ public class CoberturaReportMojo
     private boolean canGenerateAggregateReports()
     {
         // we only generate aggregate reports after the last project runs
-        if(aggregate && isLastProject(project, reactorProjects)) {
+        if ( aggregate && isLastProject( project, reactorProjects ) )
+        {
             buildAggregateInfo();
 
-            if(!getOutputFiles(reactorProjects).isEmpty()) {
+            if ( !getOutputFiles( reactorProjects ).isEmpty() )
+            {
                 return true;
             }
         }
@@ -474,7 +476,8 @@ public class CoberturaReportMojo
     /**
      * Returns the compileSourceRoots for the currently executing project.
      */
-    private List getCompileSourceRoots()
+    @SuppressWarnings( "unchecked" )
+    private List<String> getCompileSourceRoots()
     {
         return project.getExecutionProject().getCompileSourceRoots();
     }
@@ -512,7 +515,7 @@ public class CoberturaReportMojo
      * @param mavenProjectList list of maven project
      * @return true if project is the last element of mavenProjectList  list
      */
-    private boolean isLastProject(MavenProject project, List mavenProjectList)
+    private boolean isLastProject(MavenProject project, List<MavenProject> mavenProjectList)
     {
         return project.equals(mavenProjectList.get(mavenProjectList.size() - 1));
 }
@@ -525,7 +528,7 @@ public class CoberturaReportMojo
      */
     private boolean isMultiModule(MavenProject mavenProject)
     {
-        return mavenProject.getPackaging().equals("pom");
+        return "pom".equals( mavenProject.getPackaging() );
     }
 
     /**
@@ -533,32 +536,36 @@ public class CoberturaReportMojo
      */
     private void buildAggregateInfo()
     {
-        if(projectChildren != null) {
+        if ( projectChildren != null )
+        {
             // already did this work
             return;
         }
 
         // build parent-child map
-        projectChildren = new HashMap();
-        for(Iterator iter = reactorProjects.iterator(); iter.hasNext(); ) {
-            MavenProject proj = (MavenProject)iter.next();
-            List depList = (List)projectChildren.get(proj.getParent());
-            if(depList == null) {
-                depList = new ArrayList();
-                projectChildren.put(proj.getParent(), depList);
+        projectChildren = new HashMap<MavenProject, List<MavenProject>>();
+        for ( MavenProject proj : reactorProjects )
+        {
+            List<MavenProject> depList = projectChildren.get( proj.getParent() );
+            if ( depList == null )
+            {
+                depList = new ArrayList<MavenProject>();
+                projectChildren.put( proj.getParent(), depList );
             }
-            depList.add(proj);
+            depList.add( proj );
         }
 
         // attempt to determine where data files and output dir are
         relDataFileName = relativize( project.getBasedir(), getDataFile() );
-        if(relDataFileName == null) {
-            getLog().warn("Could not determine relative data file name, defaulting to 'cobertura/cobertura.ser'");
+        if ( relDataFileName == null )
+        {
+            getLog().warn( "Could not determine relative data file name, defaulting to 'cobertura/cobertura.ser'" );
             relDataFileName = "cobertura/cobertura.ser";
         }
-        relAggregateOutputDir = relativize(project.getBasedir(), outputDirectory);
-        if(relAggregateOutputDir == null) {
-            getLog().warn("Could not determine relative output dir name, defaulting to 'cobertura'");
+        relAggregateOutputDir = relativize( project.getBasedir(), outputDirectory );
+        if ( relAggregateOutputDir == null )
+        {
+            getLog().warn( "Could not determine relative output dir name, defaulting to 'cobertura'" );
             relAggregateOutputDir = "cobertura";
         }
     }
@@ -566,37 +573,45 @@ public class CoberturaReportMojo
     /**
      * Returns all the recursive, non-pom children of the given project.
      */
-    private void getAllChildren(MavenProject parentProject, List allChildren)
+    private List<MavenProject> getAllChildren( MavenProject parentProject )
     {
-        List children = (List)projectChildren.get(parentProject);
-        if(children == null) {
-            return;
+        List<MavenProject> children = projectChildren.get( parentProject );
+        if ( children == null )
+        {
+            return null;
         }
 
-        for(Iterator iter = children.iterator(); iter.hasNext(); ) {
-            MavenProject child = (MavenProject)iter.next();
-            if(isMultiModule(child)) {
-                getAllChildren(child, allChildren);
-            } else {
-                allChildren.add(child);
+        List<MavenProject> result = new ArrayList<MavenProject>();
+        for ( MavenProject child : children )
+        {
+            if ( isMultiModule( child ) )
+            {
+                result.addAll( getAllChildren( child ) );
+            }
+            else
+            {
+                result.add( child );
             }
         }
+        return result;
     }
 
     /**
      * Returns any existing cobertura data files from the given list of projects.
      */
-    private List getOutputFiles(List projects)
+    private List<File> getOutputFiles( List<MavenProject> projects )
     {
-        List files = new ArrayList();
-        for(Iterator iter = projects.iterator(); iter.hasNext(); ) {
-            MavenProject proj = (MavenProject)iter.next();
-            if(isMultiModule(proj)) {
+        List<File> files = new ArrayList<File>();
+        for ( MavenProject proj : projects )
+        {
+            if ( isMultiModule( proj ) )
+            {
                 continue;
             }
-            File outputFile = new File(proj.getBasedir(), relDataFileName);
-            if(outputFile.exists()) {
-                files.add(outputFile);
+            File outputFile = new File( proj.getBasedir(), relDataFileName );
+            if ( outputFile.exists() )
+            {
+                files.add( outputFile );
             }
         }
         return files;

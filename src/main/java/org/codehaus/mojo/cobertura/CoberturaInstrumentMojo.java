@@ -199,8 +199,8 @@ public class CoberturaInstrumentMojo
     private void addCoberturaDependenciesToTestClasspath()
         throws MojoExecutionException
     {
-        Map pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspathList );
-        Artifact coberturaArtifact = (Artifact) pluginArtifactMap.get( "net.sourceforge.cobertura:cobertura-runtime" );
+        Map<String, Artifact> pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspathList );
+        Artifact coberturaArtifact = pluginArtifactMap.get( "net.sourceforge.cobertura:cobertura-runtime" );
 
         if ( coberturaArtifact == null )
         {
@@ -213,7 +213,7 @@ public class CoberturaInstrumentMojo
 
         if ( this.project.getDependencyArtifacts() != null )
         {
-            Set set = new LinkedHashSet( this.project.getDependencyArtifacts() );
+            Set<Artifact> set = new LinkedHashSet<Artifact>( this.project.getDependencyArtifacts() );
             set.add( coberturaArtifact );
             this.project.setDependencyArtifacts( set );
         }

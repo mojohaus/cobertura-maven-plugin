@@ -19,6 +19,7 @@ package org.codehaus.mojo.cobertura;
 import java.io.File;
 import java.util.List;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
@@ -91,7 +92,7 @@ public abstract class AbstractCoberturaMojo
      * @required
      * @readonly
      */
-    protected List pluginClasspathList;
+    protected List<Artifact> pluginClasspathList;
 
     /**
      * When <code>true</code>, skip the execution.
