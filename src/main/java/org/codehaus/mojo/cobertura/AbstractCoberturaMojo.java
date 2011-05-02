@@ -23,7 +23,6 @@ import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.AbstractTask;
 
@@ -42,7 +41,7 @@ public abstract class AbstractCoberturaMojo
      * @required
      * @readonly
      */
-    protected MavenProject project;
+    private MavenProject project;
 
     /**
      * Maximum memory to pass JVM as -Xmx of Cobertura processes. 
@@ -71,13 +70,6 @@ public abstract class AbstractCoberturaMojo
      */
     private MojoExecution mojoExecution;
     
-    /**
-     * The <a href="usage.html#Instrumentation">Instrumentation Configuration</a>.
-     * 
-     * @parameter expression="${instrumentation}"
-     */
-    protected ConfigInstrumentation instrumentation;
-
     /**
      * Only output coberura errors, avoid info messages.
      * 
@@ -120,7 +112,7 @@ public abstract class AbstractCoberturaMojo
      * 
      * @param task the task to setup.
      */
-    public void setTaskDefaults( AbstractTask task )
+    protected void setTaskDefaults( AbstractTask task )
     {
         task.setLog( getLog() );
         task.setPluginClasspathList( pluginClasspathList );
@@ -155,7 +147,7 @@ public abstract class AbstractCoberturaMojo
             return true;
         }
 
-        if ( !forceMojoExecution && project != null && "pom".equals( project.getPackaging() ) )
+        if ( !forceMojoExecution && "pom".equals( this.project.getPackaging() ) )
         {
             getLog().info( "Skipping cobertura mojo for project with packaging type 'pom'" );
             return true;
@@ -171,7 +163,15 @@ public abstract class AbstractCoberturaMojo
      */
     protected File getDataFile()
     {
-        return CoberturaMojoUtils.getDataFile( new File( project.getBuild().getDirectory() ), mojoExecution );
+        return CoberturaMojoUtils.getDataFile( new File( this.project.getBuild().getDirectory() ), mojoExecution );
+    }
+
+    /**
+     * @return the project
+     */
+    protected final MavenProject getProject()
+    {
+        return project;
     }
 
 }

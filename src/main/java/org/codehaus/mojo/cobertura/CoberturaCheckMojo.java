@@ -55,7 +55,7 @@ public class CoberturaCheckMojo
             return;
         }
 
-        ArtifactHandler artifactHandler = project.getArtifact().getArtifactHandler();
+        ArtifactHandler artifactHandler = getProject().getArtifact().getArtifactHandler();
         if ( !"java".equals( artifactHandler.getLanguage() ) )
         {
             getLog().info(

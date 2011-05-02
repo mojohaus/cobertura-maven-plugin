@@ -145,7 +145,7 @@ public class CoberturaReportMojo
      * @required
      * @readonly
      */
-    protected List<MavenProject> reactorProjects;
+    private List<MavenProject> reactorProjects;
     
     /**
      * <i>Maven Internal</i>: Project to interact with.
