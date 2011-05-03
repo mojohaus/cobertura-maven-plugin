@@ -193,28 +193,19 @@ public class CoberturaReportMojo
         return getBundle( locale ).getString( "report.cobertura.description" );
     }
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#getOutputDirectory()
-     * @return the output directory
-     */
+    @Override
     protected String getOutputDirectory()
     {
         return outputDirectory.getAbsolutePath();
     }
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#getProject()
-     * @return current MavenProject
-     */
+    @Override
     protected MavenProject getProject()
     {
         return project;
     }
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#getSiteRenderer()
-     * @return SiteRenderer
-     */
+    @Override
     protected Renderer getSiteRenderer()
     {
         return siteRenderer;
@@ -403,17 +394,13 @@ public class CoberturaReportMojo
         return "cobertura/index";
     }
 
-    /**
-     * @return always return <code>true</code> for this report
-     */
+    @Override
     public boolean isExternalReport()
     {
         return true;
     }
 
-    /**
-     * @return <code>true</code> if a report can be generated, otherwise <code>false</code>
-     */
+    @Override
     public boolean canGenerateReport()
     {
         if ( canGenerateSimpleReport() )
@@ -482,9 +469,7 @@ public class CoberturaReportMojo
         return project.getExecutionProject().getCompileSourceRoots();
     }
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#setReportOutputDirectory(java.io.File)
-     */
+    @Override
     public void setReportOutputDirectory( File reportOutputDirectory )
     {
         if ( ( reportOutputDirectory != null ) && ( !reportOutputDirectory.getAbsolutePath().endsWith( "cobertura" ) ) )
@@ -505,7 +490,7 @@ public class CoberturaReportMojo
      */
     private ResourceBundle getBundle( Locale locale )
     {
-        return ResourceBundle.getBundle( "cobertura-report", locale, getClass().getClassLoader() );
+        return ResourceBundle.getBundle( "cobertura-report", locale );
     }
 
     /**
