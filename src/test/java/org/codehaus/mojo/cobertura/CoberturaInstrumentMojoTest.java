@@ -58,34 +58,6 @@ public class CoberturaInstrumentMojoTest
         super.tearDown();
     }
 
-    public void testInstrumentation()
-        throws Exception
-    {
-        Mojo mojo =
-            lookupMojo( "instrument", PlexusTestCase.getBasedir() + "/src/test/plugin-configs/" +
-                "instrument-instrumentation-plugin-config.xml" );
-
-        setVariableValueToObject( mojo, "pluginClasspathList", getPluginClasspath() );
-
-        Log log = new SystemStreamLog()
-        {
-            public boolean isDebugEnabled()
-            {
-                return true;
-            }
-        };
-
-        setVariableValueToObject( mojo, "log", log );
-
-        mojo.execute();
-
-        MavenProject project = (MavenProject) getVariableValueFromObject( mojo, "project" );
-
-        File instrumentedDir = new File( project.getBuild().getOutputDirectory() );
-
-        assertTrue( "Test instrumented class exists", new File( instrumentedDir, "Circle.class" ).exists() );
-    }
-
   public void testAttachInstrumentation()
         throws Exception
     {
