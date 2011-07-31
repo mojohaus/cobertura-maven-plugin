@@ -119,6 +119,7 @@ public class CoberturaReportMojo
      * Generate aggregate reports in multi-module projects.
      * 
      * @parameter expression="${cobertura.aggregate}" default-value="false"
+     * @since 2.5
      */
     private boolean aggregate;
     
@@ -129,6 +130,7 @@ public class CoberturaReportMojo
      * incompatible with the GPL.
      *
      * @parameter default-value="false" expression="${cobertura.omitGplFiles}"
+     * @since 2.5
      */
     private boolean omitGplFiles;
     
