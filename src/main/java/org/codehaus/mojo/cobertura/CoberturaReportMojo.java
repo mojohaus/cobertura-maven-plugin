@@ -18,6 +18,7 @@ package org.codehaus.mojo.cobertura;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -556,14 +557,14 @@ public class CoberturaReportMojo
     }
 
     /**
-     * Returns all the recursive, non-pom children of the given project.
+     * Returns a list containing all the recursive, non-pom children of the given project, never <code>null</code>.
      */
     private List<MavenProject> getAllChildren( MavenProject parentProject )
     {
         List<MavenProject> children = projectChildren.get( parentProject );
         if ( children == null )
         {
-            return null;
+            return Collections.emptyList();
         }
 
         List<MavenProject> result = new ArrayList<MavenProject>();
