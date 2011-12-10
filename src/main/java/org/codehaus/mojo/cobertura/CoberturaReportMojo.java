@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Copyright 2011
  *
@@ -13,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.mojo.cobertura;
 
 import java.io.File;
 import java.net.URI;
@@ -217,13 +218,13 @@ public class CoberturaReportMojo
     /**
      * perform the actual reporting
      * @param task
-     * @param format
+     * @param outputFormat
      * @throws MavenReportException
      */
-    private void executeReportTask( ReportTask task, String format )
+    private void executeReportTask( ReportTask task, String outputFormat )
         throws MavenReportException
     {
-        task.setOutputFormat( format );
+        task.setOutputFormat( outputFormat );
 
         // execute task
         try
@@ -241,17 +242,19 @@ public class CoberturaReportMojo
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
      * @param locale not used
+     * @throws MavenReportException when an exception occurs
      */
     protected void executeReport( Locale locale )
         throws MavenReportException
     {
         if ( canGenerateSimpleReport() )
         {
-            executeReport(getDataFile(), outputDirectory, getCompileSourceRoots());
+            executeReport( getDataFile(), outputDirectory, getCompileSourceRoots() );
         }
-        
-        if(canGenerateAggregateReports()) {
-            executeAggregateReport(locale);
+
+        if ( canGenerateAggregateReports() )
+        {
+            executeAggregateReport( locale );
         }
     }
 
@@ -260,12 +263,14 @@ public class CoberturaReportMojo
      */
     private void executeAggregateReport( Locale locale )
         throws MavenReportException
+    {
+        for ( MavenProject proj : reactorProjects )
         {
-        for( MavenProject proj : reactorProjects) {
-            if(!isMultiModule(proj)) {
+            if ( !isMultiModule( proj ) )
+            {
                 continue;
             }
-            executeAggregateReport(locale, proj);
+            executeAggregateReport( locale, proj );
         }
     }
 
@@ -319,7 +324,7 @@ public class CoberturaReportMojo
     /**
      * Executes the cobertura report task for the given dataFile, outputDirectory, and compileSourceRoots.
      */
-    private void executeReport(File curDataFile, File curOutputDirectory, List<String> curCompileSourceRoots)
+    private void executeReport( File curDataFile, File curOutputDirectory, List<String> curCompileSourceRoots )
         throws MavenReportException
     {
         ReportTask task = new ReportTask();
@@ -336,10 +341,10 @@ public class CoberturaReportMojo
         task.setCompileSourceRoots( curCompileSourceRoots );
         task.setSourceEncoding( encoding );
 
-        CommandLineArguments cmdLineArgs; 
+        CommandLineArguments cmdLineArgs;
         cmdLineArgs = new CommandLineArguments();
-        cmdLineArgs.setUseCommandsFile(true);
-        task.setCmdLineArgs(cmdLineArgs);
+        cmdLineArgs.setUseCommandsFile( true );
+        task.setCmdLineArgs( cmdLineArgs );
         
         if ( format != null )
         {
@@ -389,9 +394,7 @@ public class CoberturaReportMojo
         }
     }
 
-    /**
-     * @see org.apache.maven.reporting.MavenReport#getOutputName()
-     */
+    /** {@inheritDoc} */
     public String getOutputName()
     {
         return "cobertura/index";
@@ -503,18 +506,18 @@ public class CoberturaReportMojo
      * @param mavenProjectList list of maven project
      * @return true if project is the last element of mavenProjectList  list
      */
-    private boolean isLastProject(MavenProject project, List<MavenProject> mavenProjectList)
+    private boolean isLastProject( MavenProject project, List<MavenProject> mavenProjectList )
     {
-        return project.equals(mavenProjectList.get(mavenProjectList.size() - 1));
-}
+        return project.equals( mavenProjectList.get( mavenProjectList.size() - 1 ) );
+    }
 
     /**
      * Test if the project has pom packaging
-     *
+     * 
      * @param mavenProject Project to test
      * @return True if it has a pom packaging
      */
-    private boolean isMultiModule(MavenProject mavenProject)
+    private boolean isMultiModule( MavenProject mavenProject )
     {
         return "pom".equals( mavenProject.getPackaging() );
     }
@@ -608,24 +611,29 @@ public class CoberturaReportMojo
     /**
      * Attempts to make the given childFile relative to the given parentFile.
      */
-    private String relativize(File parentFile, File childFile)
+    private String relativize( File parentFile, File childFile )
     {
-        try {
+        try
+        {
             URI parentURI = parentFile.getCanonicalFile().toURI().normalize();
             URI childURI = childFile.getCanonicalFile().toURI().normalize();
 
-            URI relativeURI = parentURI.relativize(childURI);
-            if(relativeURI.isAbsolute()) {
+            URI relativeURI = parentURI.relativize( childURI );
+            if ( relativeURI.isAbsolute() )
+            {
                 // child is not relative to parent
                 return null;
             }
             String relativePath = relativeURI.getPath();
-            if(File.separatorChar != '/') {
-                relativePath = relativePath.replace('/', File.separatorChar);
+            if ( File.separatorChar != '/' )
+            {
+                relativePath = relativePath.replace( '/', File.separatorChar );
             }
             return relativePath;
-        } catch(Exception e) {
-            getLog().warn("Failed relativizing " + childFile + " to " + parentFile, e);
+        }
+        catch ( Exception e )
+        {
+            getLog().warn( "Failed relativizing " + childFile + " to " + parentFile, e );
         }
         return null;
     }

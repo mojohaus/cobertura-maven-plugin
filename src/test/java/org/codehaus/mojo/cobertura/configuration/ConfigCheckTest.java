@@ -19,7 +19,6 @@ package org.codehaus.mojo.cobertura.configuration;
 import java.util.Set;
 
 import junit.framework.TestCase;
-import net.sourceforge.cobertura.ant.Regex;
 
 /**
  * @author Edwin Punzalan
@@ -40,7 +39,7 @@ public class ConfigCheckTest
 
         check.addRegex( regex );
 
-        Set regexes = check.getRegexes();
+        Set<Regex> regexes = check.getRegexes();
 
         assertEquals( 1, regexes.size() );
 
@@ -51,7 +50,7 @@ public class ConfigCheckTest
     {
         Regex regex = check.createRegex();
 
-        Set regexes = check.getRegexes();
+        Set<Regex> regexes = check.getRegexes();
 
         assertEquals( 1, regexes.size() );
 

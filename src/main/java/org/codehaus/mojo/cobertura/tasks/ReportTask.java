@@ -56,7 +56,7 @@ public class ReportTask
     {
         outputDirectory.mkdirs();
 
-        for ( String directory : compileSourceRoots)
+        for ( String directory : compileSourceRoots )
         {
             cmdLineArgs.addArg( "--source", directory );
         }

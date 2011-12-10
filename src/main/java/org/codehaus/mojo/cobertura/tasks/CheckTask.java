@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura.tasks;
+
 /*
  * Copyright 2011
  *
@@ -13,13 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.mojo.cobertura.tasks;
-
-import net.sourceforge.cobertura.ant.Regex;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
+import org.codehaus.mojo.cobertura.configuration.Regex;
 import org.codehaus.plexus.util.StringUtils;
 
 /**

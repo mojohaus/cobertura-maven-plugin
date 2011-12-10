@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Copyright 2011
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.mojo.cobertura;
-
 import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Iterator;

@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura.tasks;
+
 /*
  * Copyright 2011
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.mojo.cobertura.tasks;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;

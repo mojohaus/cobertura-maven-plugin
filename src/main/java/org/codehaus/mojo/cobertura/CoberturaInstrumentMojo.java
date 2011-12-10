@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura;
+
 /*
  * Copyright 2011
  *
@@ -13,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.mojo.cobertura;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -98,7 +99,8 @@ public class CoberturaInstrumentMojo
         }
         else
         {
-            File instrumentedDirectory = new File( getProject().getBuild().getDirectory(), "generated-classes/cobertura" );
+            File instrumentedDirectory =
+                new File( getProject().getBuild().getDirectory(), "generated-classes/cobertura" );
 
             if ( !instrumentedDirectory.exists() )
             {
@@ -187,15 +189,22 @@ public class CoberturaInstrumentMojo
         }
     }
     
-    private void attachCoberturaArtifactIfAppropriate() {
-        if (attach) {
-            if (getDataFile().exists()) {
-                projectHelper.attachArtifact(getProject(), "ser", classifier, getDataFile());
-            } else {
-                getLog().info("No cobertura ser file exists to include in the attached artifacts list.");
+    private void attachCoberturaArtifactIfAppropriate()
+    {
+        if ( attach )
+        {
+            if ( getDataFile().exists() )
+            {
+                projectHelper.attachArtifact( getProject(), "ser", classifier, getDataFile() );
             }
-        } else {
-            getLog().info("NOT adding cobertura ser file to attached artifacts list.");
+            else
+            {
+                getLog().info( "No cobertura ser file exists to include in the attached artifacts list." );
+            }
+        }
+        else
+        {
+            getLog().info( "NOT adding cobertura ser file to attached artifacts list." );
         }
     }
 
@@ -237,5 +246,4 @@ public class CoberturaInstrumentMojo
         return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),
                                        Artifact.SCOPE_PROVIDED, artifact.getType() );
     }
-
 }

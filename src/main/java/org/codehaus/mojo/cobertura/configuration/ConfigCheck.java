@@ -1,3 +1,5 @@
+package org.codehaus.mojo.cobertura.configuration;
+
 /*
  * Copyright 2011
  *
@@ -14,12 +16,8 @@
  * limitations under the License.
  */
 
-package org.codehaus.mojo.cobertura.configuration;
-
 import java.util.HashSet;
 import java.util.Set;
-
-import net.sourceforge.cobertura.ant.Regex;
 
 /**
  * The Configuration for Check Settings.
@@ -201,5 +199,4 @@ public class ConfigCheck
     {
         this.maxmem = maxmem;
     }
-
 }
