@@ -279,15 +279,15 @@
             </executions>
             <dependencies>
               <dependency> <!-- can be removed once m-invoker-p-1.5+ is released -->
-	           <groupId>org.codehaus.groovy</groupId>
- 	           <artifactId>groovy</artifactId>
-        	   <version>1.7.5</version>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>1.7.5</version>
                 <exclusions>
-	             <exclusion>
-	               <groupId>junit</groupId>
-	               <artifactId>junit</artifactId>
-	             </exclusion>
-	           </exclusions>
+                  <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                  </exclusion>
+                </exclusions>
               </dependency>
             </dependencies>
           </plugin>
