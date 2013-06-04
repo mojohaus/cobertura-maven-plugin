@@ -109,7 +109,7 @@
   <properties>
     <mojo.java.target>1.5</mojo.java.target>
     <mavenVersion>2.0.8</mavenVersion> <!-- MNG-3062 -->
-    <coberturaVersion>1.9.4.1</coberturaVersion>
+    <coberturaVersion>2.0</coberturaVersion>
   </properties>
   <!-- from MSITE-459 -->
   <build>
