@@ -19,7 +19,9 @@ package org.codehaus.mojo.cobertura;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -40,6 +42,7 @@ import org.codehaus.plexus.util.IOUtil;
  * 
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal instrument
+ * @requiresDependencyResolution compile
  */
 public class CoberturaInstrumentMojo
     extends AbstractCoberturaMojo
@@ -147,6 +150,11 @@ public class CoberturaInstrumentMojo
             // Execute the instrumentation task.
             InstrumentTask task = new InstrumentTask();
             setTaskDefaults( task );
+            List<Artifact> classpath = new ArrayList<Artifact>();
+            /* need project class path */
+            classpath.addAll(pluginClasspathList);
+            classpath.addAll(getProject().getArtifacts());
+            task.setPluginClasspathList(classpath);
             task.setConfig( instrumentation );
             task.setDestinationDir( instrumentedDirectory );
             task.setDataFile( getDataFile() );

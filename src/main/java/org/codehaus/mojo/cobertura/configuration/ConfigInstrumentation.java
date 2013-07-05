@@ -38,6 +38,9 @@ public class ConfigInstrumentation
     
     private String maxmem;
 
+	private boolean ignoreTrivial;
+
+    private List<String> ignoreMethodAnnotations;	
     /**
      * Construct a new ConfigInstrumentation object.
      */
@@ -46,6 +49,9 @@ public class ConfigInstrumentation
         this.includes = new ArrayList<String>();
         this.excludes = new ArrayList<String>();
         this.ignores = new ArrayList<String>();
+        this.ignoreTrivial = false;
+        this.ignoreMethodAnnotations = new ArrayList<String>();
+        
         this.basedir = new File( System.getProperty( "user.dir" ) );
         
         if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
@@ -78,6 +84,17 @@ public class ConfigInstrumentation
         this.ignores.add( ignore );
     }
 
+    
+    /**
+     * Add an IgnoreMethodAnnotation to the underlying list.
+     * 
+     * @param ignoreMethodAnnotation the ignore string.
+     */
+    public void addIgnoreMethodAnnotation( String ignoreMethodAnnotation )
+    {
+        this.ignoreMethodAnnotations.add( ignoreMethodAnnotation );
+    }
+    
     /**
      * Add an Include ot the underlying list.
      * 
@@ -154,6 +171,48 @@ public class ConfigInstrumentation
     }
 
     /**
+     * Get the ignoreTrivial setting.
+     * 
+     * @return the ignoreTrivial setting.
+     */
+	public boolean getIgnoreTrivial() 
+	{
+		return ignoreTrivial;
+	}
+	
+	/**
+	 * IgnoreTrivial switch that tells Cobertura to ignore the following in the coverage report: 
+	 * Getter methods that simply read a class field; Setter methods that set a class field; 
+	 * Constructors that only set class fields and call a super class constructor.
+	 * 
+	 * @param ignoreTrivial enable ignoreTrivial
+	 */
+	public void setIgnoreTrivial(boolean ignoreTrivial) {
+		this.ignoreTrivial = ignoreTrivial;
+	}
+	
+    /**
+     * Get the ignoreMethodAnnotations setting.
+     * 
+     * @return the ignoreMethodAnnotations setting.
+     */
+	public List<String> getIgnoreMethodAnnotations() {
+		return ignoreMethodAnnotations;
+	}
+
+	/**
+	 * IgnoreMethodAnnotation switch used to specify an annotation that, when present on a method, 
+	 * will cause Cobertura to ignore the method in the coverage report.
+	 * 
+	 * @param ignoreMethodAnnotations 
+	 */
+	public void setIgnoreMethodAnnotations(List<String> ignoreMethodAnnotations) {
+		this.ignoreMethodAnnotations = ignoreMethodAnnotations;
+	}
+
+	
+
+	/**
      * {@inheritDoc}
      */
     public String toString()
@@ -223,7 +282,28 @@ public class ConfigInstrumentation
             sb.append( getMaxmem() );
             sb.append( "\"" );
         }
+        
+        sb.append("ignoreTrivial=\"");
+        sb.append(getIgnoreTrivial());
+        sb.append( "\"" );
 
+        if ( !this.ignoreMethodAnnotations.isEmpty() ) 
+        {
+            sb.append( " ignoreMethodAnnotations=\"" );
+            Iterator<String> it = this.ignoreMethodAnnotations.iterator();
+            while ( it.hasNext() ) 
+            {
+                String ignore = (String) it.next();
+                sb.append( ignore );
+                if ( it.hasNext() )
+                {
+                    sb.append( " " );
+                }
+            }
+            sb.append( "\"" );
+        }
+        
         return sb.append( " />" ).toString();
     }
+
 }

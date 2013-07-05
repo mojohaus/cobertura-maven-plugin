@@ -72,6 +72,16 @@ public class InstrumentTask
             cmdLineArgs.addArg( "--destination", destinationDir.getAbsolutePath() );
         }
 
+        if (config.getIgnoreTrivial()) 
+        {
+        	cmdLineArgs.addArg( "--ignoreTrivial");
+        }
+        
+        for ( String ignoreMethodAnnotation : config.getIgnoreMethodAnnotations() )
+        {
+            cmdLineArgs.addArg( "--ignoreMethodAnnotation", ignoreMethodAnnotation );
+        }
+
         for ( String ignore : config.getIgnores() )
         {
             cmdLineArgs.addArg( "--ignore", ignore );
@@ -215,4 +225,11 @@ public class InstrumentTask
         this.destinationDir = destinationDir;
     }
 
+    @Override
+    public String createClasspath() throws MojoExecutionException 
+    {
+        return this.config.getBasedir().getAbsolutePath() + super.createClasspath();
+    }
+
+    
 }

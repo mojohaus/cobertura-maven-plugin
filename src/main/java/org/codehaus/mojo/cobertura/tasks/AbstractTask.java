@@ -171,8 +171,7 @@ public abstract class AbstractTask
         Commandline cl = new Commandline();
         File java = new File( SystemUtils.getJavaHome(), "bin/java" );
         cl.setExecutable( java.getAbsolutePath() );
-        cl.createArg().setValue( "-cp" );
-        cl.createArg().setValue( createClasspath() );
+        cl.addEnvironment("CLASSPATH", createClasspath());
 
         String log4jConfig = getLog4jConfigFile();
         if ( log4jConfig != null )
