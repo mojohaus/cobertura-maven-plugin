@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.cobertura</groupId>
+	<artifactId>bugtest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6-SNAPSHOT</version>
+				<configuration>
+					<instrumentation>
+						<ignoreTrivial>true</ignoreTrivial>
+						<ignoreMethodAnnotations>
+							<ignoreMethodAnnotation>java.beans.Transient</ignoreMethodAnnotation>
+						</ignoreMethodAnnotations>
+					</instrumentation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

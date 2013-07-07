@@ -1,0 +1,125 @@
+ ------
+ Usage
+ ------
+ Joakim Erdfelt
+ ------
+ Nov 22, 2005
+ ------
+
+
+Usage
+
+* Basic Configuration
+
+  The recommended basic configuration is as follows.
+
+-------------------
+<project>
+  ...  
+  <reporting>
+    <plugins>
+      ...
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${project.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
+-------------------
+
+* Configuring {Instrumentation}
+
+  The plugin has an <<<instrumentation>>> configuration element which can be
+  used to customize the instrumentation done within Cobertura.
+
+  Example:
+  
+-------------------
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      ...
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+          <instrumentation>
+            <ignores>
+              <ignore>com.example.boringcode.*</ignore>
+            </ignores>
+            <excludes>
+              <exclude>com/example/dullcode/**/*.class</exclude>
+              <exclude>com/example/**/*Test.class</exclude>
+            </excludes>
+          </instrumentation>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+-------------------
+
+* Configuring {Check}
+
+  The plugin can check the post-testing coverage percentages to ensure a valid
+  level of test coverage.
+
+-------------------
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      ...
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+          <check>
+            <branchRate>85</branchRate>
+            <lineRate>85</lineRate>
+            <haltOnFailure>true</haltOnFailure>
+            <totalBranchRate>85</totalBranchRate>
+            <totalLineRate>85</totalLineRate>
+            <packageLineRate>85</packageLineRate>
+            <packageBranchRate>85</packageBranchRate>
+            <regexes>
+              <regex>
+                <pattern>com.example.reallyimportant.*</pattern>
+                <branchRate>90</branchRate>
+                <lineRate>80</lineRate>
+              </regex>
+              <regex>
+                <pattern>com.example.boringcode.*</pattern>
+                <branchRate>40</branchRate>
+                <lineRate>30</lineRate>
+              </regex>
+            </regexes>
+          </check>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+-------------------
