@@ -1,34 +1,37 @@
-package org.codehaus.mojo.cobertura.tasks;
-
 /*
- * Copyright 2011
- *
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * #L%
  */
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
+package org.codehaus.mojo.cobertura.tasks;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
 import org.codehaus.plexus.util.FileUtils;
 import org.codehaus.plexus.util.StringUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * The Instrument Task.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class InstrumentTask
@@ -61,7 +64,7 @@ public class InstrumentTask
         {
             this.setMaxmem( config.getMaxmem() );
         }
-        
+
         if ( dataFile != null )
         {
             cmdLineArgs.addArg( "--datafile", dataFile.getAbsolutePath() );
@@ -72,11 +75,11 @@ public class InstrumentTask
             cmdLineArgs.addArg( "--destination", destinationDir.getAbsolutePath() );
         }
 
-        if (config.getIgnoreTrivial()) 
+        if ( config.getIgnoreTrivial() )
         {
-        	cmdLineArgs.addArg( "--ignoreTrivial");
+            cmdLineArgs.addArg( "--ignoreTrivial" );
         }
-        
+
         for ( String ignoreMethodAnnotation : config.getIgnoreMethodAnnotations() )
         {
             cmdLineArgs.addArg( "--ignoreMethodAnnotation", ignoreMethodAnnotation );
@@ -89,8 +92,7 @@ public class InstrumentTask
 
         String includes = joinCludes( config.getIncludes() );
         String excludes = joinCludes( config.getExcludes() );
-        @SuppressWarnings( "unchecked" )
-        String defaultExcludes = joinCludes( FileUtils.getDefaultExcludesAsList() );
+        @SuppressWarnings( "unchecked" ) String defaultExcludes = joinCludes( FileUtils.getDefaultExcludesAsList() );
 
         if ( StringUtils.isNotEmpty( excludes ) )
         {
@@ -112,8 +114,8 @@ public class InstrumentTask
                 getLog().debug( "Max Mem: " + config.getMaxmem() );
             }
 
-            @SuppressWarnings( "unchecked" )
-            List<String> filenames = FileUtils.getFileNames( config.getBasedir(), includes, excludes, false );
+            @SuppressWarnings( "unchecked" ) List<String> filenames =
+                FileUtils.getFileNames( config.getBasedir(), includes, excludes, false );
 
             if ( filenames.isEmpty() )
             {
@@ -179,6 +181,7 @@ public class InstrumentTask
 
     /**
      * Construct a ,-separated string from a list of strings.
+     *
      * @param cludes the list of strings.
      * @return the ,-separated string.
      */
@@ -200,6 +203,7 @@ public class InstrumentTask
 
     /**
      * Set the configuration
+     *
      * @param config the configuration
      */
     public void setConfig( ConfigInstrumentation config )
@@ -209,6 +213,7 @@ public class InstrumentTask
 
     /**
      * Set the data file
+     *
      * @param dataFile the data file
      */
     public void setDataFile( File dataFile )
@@ -218,6 +223,7 @@ public class InstrumentTask
 
     /**
      * Set the destination directory
+     *
      * @param destinationDir the directory
      */
     public void setDestinationDir( File destinationDir )
@@ -226,10 +232,11 @@ public class InstrumentTask
     }
 
     @Override
-    public String createClasspath() throws MojoExecutionException 
+    public String createClasspath()
+        throws MojoExecutionException
     {
         return this.config.getBasedir().getAbsolutePath() + super.createClasspath();
     }
 
-    
+
 }

@@ -1,27 +1,30 @@
-package org.codehaus.mojo.cobertura.configuration;
-
 /*
- * Copyright 2011
- *
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * #L%
  */
+package org.codehaus.mojo.cobertura.configuration;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * The Configuration for Check Settings.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class ConfigCheck
@@ -49,6 +52,7 @@ public class ConfigCheck
 
     /**
      * add a regex to the set used to scan the reports.
+     *
      * @param regex the regex to add.
      */
     public void addRegex( Regex regex )
@@ -58,6 +62,7 @@ public class ConfigCheck
 
     /**
      * Create a regex object for eventual inclusion.
+     *
      * @return the regex
      */
     public Regex createRegex()
@@ -181,7 +186,7 @@ public class ConfigCheck
 
     /**
      * Get the maxmem setting.
-     * 
+     *
      * @return the maxmem setting.
      */
     public String getMaxmem()
@@ -191,8 +196,9 @@ public class ConfigCheck
 
     /**
      * Sets the max memory for the JVM used to run the <code>CheckTask</code> task.
-     * 
+     * <p/>
      * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
+     *
      * @param maxmem the value to which maxmem will be set
      */
     public void setMaxmem( String maxmem )

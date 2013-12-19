@@ -1,30 +1,34 @@
-package org.codehaus.mojo.cobertura.tasks;
-
 /*
- * Copyright 2011
- *
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * #L%
  */
+package org.codehaus.mojo.cobertura.tasks;
+
+import net.sourceforge.cobertura.util.CommandLineBuilder;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.sourceforge.cobertura.util.CommandLineBuilder;
-
 /**
  * CommandLineArguments allows for arbitrarily long command line argument lists.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public class CommandLineArguments
@@ -44,6 +48,7 @@ public class CommandLineArguments
 
     /**
      * Append an option.
+     *
      * @param arg the argument.
      */
     public void addArg( String arg )
@@ -53,6 +58,7 @@ public class CommandLineArguments
 
     /**
      * Append two arguments (e.g. -x y)
+     *
      * @param arg1 first arg
      * @param arg2 second arg.
      */
@@ -72,7 +78,7 @@ public class CommandLineArguments
 
     /**
      * Generate the Commands file and return the filename to it.
-     * 
+     *
      * @return the commands filename.
      * @throws IOException error writing the file.
      */

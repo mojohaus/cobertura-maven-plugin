@@ -1,28 +1,23 @@
-package org.codehaus.mojo.cobertura.tasks;
-
 /*
- * Copyright 2011
- *
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * #L%
  */
-
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+package org.codehaus.mojo.cobertura.tasks;
 
 import org.apache.commons.lang.SystemUtils;
 import org.apache.maven.artifact.Artifact;
@@ -35,9 +30,17 @@ import org.codehaus.plexus.util.cli.CommandLineException;
 import org.codehaus.plexus.util.cli.CommandLineUtils;
 import org.codehaus.plexus.util.cli.Commandline;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Base Abstract Class for all of the Tasks.
- * 
+ *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  */
 public abstract class AbstractTask
@@ -59,7 +62,7 @@ public abstract class AbstractTask
 
     /**
      * Initialize AbstractTask.
-     * 
+     *
      * @param taskClassname the classname for the task.
      */
     protected AbstractTask( String taskClassname )
@@ -71,7 +74,7 @@ public abstract class AbstractTask
 
     /**
      * Setter for <code>quiet</code>.
-     * 
+     *
      * @param quiet The quiet to set.
      */
     public void setQuiet( boolean quiet )
@@ -81,7 +84,7 @@ public abstract class AbstractTask
 
     /**
      * Getter for <code>quiet</code>.
-     * 
+     *
      * @return Returns the quiet.
      */
     public boolean isQuiet()
@@ -92,7 +95,7 @@ public abstract class AbstractTask
     /**
      * Using the <code>${project.compileClasspathElements}</code> and the <code>${plugin.artifacts}</code>, create
      * a classpath string that is suitable to be used from a forked cobertura process.
-     * 
+     *
      * @return the classpath string
      * @throws MojoExecutionException if the pluginArtifacts cannot be properly resolved to a full system path.
      */
@@ -112,8 +115,8 @@ public abstract class AbstractTask
             }
             catch ( IOException e )
             {
-                throw new MojoExecutionException( "Error while creating the canonical path for '" + artifact.getFile()
-                    + "'.", e );
+                throw new MojoExecutionException(
+                    "Error while creating the canonical path for '" + artifact.getFile() + "'.", e );
             }
         }
 
@@ -154,14 +157,16 @@ public abstract class AbstractTask
 
     /**
      * Run the task.
+     *
      * @throws MojoExecutionException for a full-out execution problem.
-     * @throws MojoFailureException for an anticipated failure.
+     * @throws MojoFailureException   for an anticipated failure.
      */
     public abstract void execute()
         throws MojoExecutionException, MojoFailureException;
 
     /**
      * Run a jvm to execute something.
+     *
      * @return the exit code.
      * @throws MojoExecutionException for an error launching the jvm.
      */
@@ -171,7 +176,7 @@ public abstract class AbstractTask
         Commandline cl = new Commandline();
         File java = new File( SystemUtils.getJavaHome(), "bin/java" );
         cl.setExecutable( java.getAbsolutePath() );
-        cl.addEnvironment("CLASSPATH", createClasspath());
+        cl.addEnvironment( "CLASSPATH", createClasspath() );
 
         String log4jConfig = getLog4jConfigFile();
         if ( log4jConfig != null )
@@ -194,14 +199,14 @@ public abstract class AbstractTask
             {
                 throw new MojoExecutionException( "Unable to obtain CommandsFile location.", e );
             }
-            if ( FileUtils.fileExists( commandsFile ) ) 
+            if ( FileUtils.fileExists( commandsFile ) )
             {
                 cl.createArg().setValue( "--commandsfile" );
                 cl.createArg().setValue( commandsFile );
             }
-            else 
+            else
             {
-                throw new MojoExecutionException( "CommandsFile doesn't exist: "  + commandsFile );
+                throw new MojoExecutionException( "CommandsFile doesn't exist: " + commandsFile );
             }
         }
         else
@@ -273,6 +278,7 @@ public abstract class AbstractTask
 
     /**
      * Return the command line args.
+     *
      * @return the command line args.
      */
     public CommandLineArguments getCmdLineArgs()
@@ -311,6 +317,7 @@ public abstract class AbstractTask
 
     /**
      * Set the entire command line args.
+     *
      * @param cmdLineArgs new args.
      */
     public void setCmdLineArgs( CommandLineArguments cmdLineArgs )
@@ -320,6 +327,7 @@ public abstract class AbstractTask
 
     /**
      * Set the logger.
+     *
      * @param log the new logger.
      */
     public void setLog( Log log )
@@ -329,6 +337,7 @@ public abstract class AbstractTask
 
     /**
      * Set the -Xmx value for the jvm.
+     *
      * @param maxmem the memory size.
      */
     public void setMaxmem( String maxmem )

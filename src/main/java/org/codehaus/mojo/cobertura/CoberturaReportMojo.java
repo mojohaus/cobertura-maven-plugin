@@ -1,20 +1,35 @@
-package org.codehaus.mojo.cobertura;
-
 /*
- * Copyright 2011
- *
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * #L%
  */
+package org.codehaus.mojo.cobertura;
+
+import net.sourceforge.cobertura.coveragedata.CoverageDataFileHandler;
+import net.sourceforge.cobertura.coveragedata.ProjectData;
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.reporting.AbstractMavenReport;
+import org.apache.maven.reporting.MavenReportException;
+import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
+import org.codehaus.mojo.cobertura.tasks.CommandLineArguments;
+import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
 import java.io.File;
 import java.net.URI;
@@ -26,22 +41,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import net.sourceforge.cobertura.coveragedata.CoverageDataFileHandler;
-import net.sourceforge.cobertura.coveragedata.ProjectData;
-
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.doxia.siterenderer.Renderer;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.MavenProject;
-import org.apache.maven.reporting.AbstractMavenReport;
-import org.apache.maven.reporting.MavenReportException;
-import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
-import org.codehaus.mojo.cobertura.tasks.CommandLineArguments;
-import org.codehaus.mojo.cobertura.tasks.ReportTask;
-
 /**
  * Instruments, Tests, and Generates a Cobertura Report.
- * 
+ *
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal cobertura
@@ -52,7 +54,7 @@ public class CoberturaReportMojo
 {
     /**
      * The format of the report. (supports 'html' or 'xml'. defaults to 'html')
-     * 
+     *
      * @parameter expression="${cobertura.report.format}"
      * @deprecated
      */
@@ -60,14 +62,14 @@ public class CoberturaReportMojo
 
     /**
      * The format of the report. (can be 'html' and/or 'xml'. defaults to 'html')
-     * 
+     *
      * @parameter
      */
-    private String[] formats = new String[] { "html" };
+    private String[] formats = new String[]{ "html" };
 
     /**
      * The encoding for the java source code files.
-     * 
+     *
      * @parameter expression="${project.build.sourceEncoding}" default-value="UTF-8".
      * @since 2.4
      */
@@ -75,7 +77,7 @@ public class CoberturaReportMojo
 
     /**
      * Maximum memory to pass to JVM of Cobertura processes.
-     * 
+     *
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
@@ -84,7 +86,7 @@ public class CoberturaReportMojo
      * <p>
      * The Datafile Location.
      * </p>
-     * 
+     *
      * @parameter expression="${cobertura.datafile}" default-value="${project.build.directory}/cobertura/cobertura.ser"
      * @required
      * @readonly
@@ -93,7 +95,7 @@ public class CoberturaReportMojo
 
     /**
      * <i>Maven Internal</i>: List of artifacts for the plugin.
-     * 
+     *
      * @parameter default-value="${plugin.artifacts}"
      * @required
      * @readonly
@@ -102,7 +104,7 @@ public class CoberturaReportMojo
 
     /**
      * The output directory for the report.
-     * 
+     *
      * @parameter default-value="${project.reporting.outputDirectory}/cobertura"
      * @required
      */
@@ -110,7 +112,7 @@ public class CoberturaReportMojo
 
     /**
      * Only output cobertura errors, avoid info messages.
-     * 
+     *
      * @parameter expression="${quiet}" default-value="false"
      * @since 2.1
      */
@@ -118,12 +120,12 @@ public class CoberturaReportMojo
 
     /**
      * Generate aggregate reports in multi-module projects.
-     * 
+     *
      * @parameter expression="${cobertura.aggregate}" default-value="false"
      * @since 2.5
      */
     private boolean aggregate;
-    
+
     /**
      * Whether to remove GPL licensed files from the generated report.
      * This is required to distribute the report as part of a distribution,
@@ -134,10 +136,10 @@ public class CoberturaReportMojo
      * @since 2.5
      */
     private boolean omitGplFiles;
-    
+
     /**
      * <i>Maven Internal</i>: The Doxia Site Renderer.
-     * 
+     *
      * @component
      */
     private Renderer siteRenderer;
@@ -150,20 +152,22 @@ public class CoberturaReportMojo
      * @readonly
      */
     private List<MavenProject> reactorProjects;
-    
+
     /**
      * <i>Maven Internal</i>: Project to interact with.
-     * 
+     *
      * @parameter default-value="${project}"
      * @required
      * @readonly
      */
     private MavenProject project;
 
-    private Map < MavenProject, List < MavenProject > > projectChildren;
+    private Map<MavenProject, List<MavenProject>> projectChildren;
+
     private String relDataFileName;
+
     private String relAggregateOutputDir;
-    
+
     /**
      * Constructs a <code>CoberturaReportMojo</code>.
      * Sets the max memory to the maven max memory if set, otherwise
@@ -174,13 +178,13 @@ public class CoberturaReportMojo
         if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
         {
             maxmem = MaxHeapSizeUtil.getInstance().getMavenMaxMemSetting();
-        } 
+        }
     }
 
     /**
-     * @see org.apache.maven.reporting.MavenReport#getName(java.util.Locale)
      * @param locale for the message bundle
      * @return localized cobertura name
+     * @see org.apache.maven.reporting.MavenReport#getName(java.util.Locale)
      */
     public String getName( Locale locale )
     {
@@ -188,9 +192,9 @@ public class CoberturaReportMojo
     }
 
     /**
-     * @see org.apache.maven.reporting.MavenReport#getDescription(java.util.Locale)
      * @param locale for the message bundle
      * @return localized description
+     * @see org.apache.maven.reporting.MavenReport#getDescription(java.util.Locale)
      */
     public String getDescription( Locale locale )
     {
@@ -217,6 +221,7 @@ public class CoberturaReportMojo
 
     /**
      * perform the actual reporting
+     *
      * @param task
      * @param outputFormat
      * @throws MavenReportException
@@ -240,9 +245,9 @@ public class CoberturaReportMojo
     }
 
     /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
      * @param locale not used
      * @throws MavenReportException when an exception occurs
+     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
      */
     protected void executeReport( Locale locale )
         throws MavenReportException
@@ -345,10 +350,10 @@ public class CoberturaReportMojo
         cmdLineArgs = new CommandLineArguments();
         cmdLineArgs.setUseCommandsFile( true );
         task.setCmdLineArgs( cmdLineArgs );
-        
+
         if ( format != null )
         {
-            formats = new String[] { format };
+            formats = new String[]{ format };
         }
 
         for ( int i = 0; i < formats.length; i++ )
@@ -368,13 +373,11 @@ public class CoberturaReportMojo
     {
         if ( omitGplFiles )
         {
-            final String[] files = new String[]
+            final String[] files =
+                new String[]{ "js/customsorttypes.js", "js/sortabletable.js", "js/stringbuilder.js" };
+            for ( int i = 0; i < files.length; i++ )
             {
-                "js/customsorttypes.js", "js/sortabletable.js", "js/stringbuilder.js"
-            };
-            for ( int i = 0;  i < files.length;  i++ )
-            {
-                final File f = new File( outputDirectory, files[ i ] );
+                final File f = new File( outputDirectory, files[i] );
                 if ( f.exists() )
                 {
                     if ( f.delete() )
@@ -394,7 +397,9 @@ public class CoberturaReportMojo
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getOutputName()
     {
         return "cobertura/index";
@@ -418,7 +423,7 @@ public class CoberturaReportMojo
             getLog().info( "Not executing cobertura:report as the cobertura data file (" + getDataFile()
                                + ") could not be found" );
         }
-        
+
         if ( canGenerateAggregateReports() )
         {
             return true;
@@ -436,7 +441,7 @@ public class CoberturaReportMojo
 
     /**
      * Returns whether or not we can generate a simple (non-aggregate) report for this project.
-     * 
+     *
      * @return <code>true</code> if a simple report can be generated, otherwise <code>false</code>
      */
     private boolean canGenerateSimpleReport()
@@ -490,7 +495,7 @@ public class CoberturaReportMojo
 
     /**
      * Gets the resource bundle for the report text.
-     * 
+     *
      * @param locale The locale for the report, must not be <code>null</code>.
      * @return The resource bundle for the requested locale.
      */
@@ -513,7 +518,7 @@ public class CoberturaReportMojo
 
     /**
      * Test if the project has pom packaging
-     * 
+     *
      * @param mavenProject Project to test
      * @return True if it has a pom packaging
      */
@@ -637,10 +642,10 @@ public class CoberturaReportMojo
         }
         return null;
     }
-    
+
     /**
      * Get the data file which is or will be generated by Cobertura, never <code>null</code>.
-     * 
+     *
      * @return the data file
      */
     private File getDataFile()

@@ -1,3 +1,22 @@
+/*
+ * #%L
+ * Mojo's Maven plugin for Cobertura
+ * %%
+ * Copyright (C) 2005 - 2013 Codehaus
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
 package org.codehaus.mojo.cobertura.configuration;
 
 
@@ -6,6 +25,7 @@ import java.util.Map;
 /**
  * Class for checking and retrieving the maven environment variable for the
  * maximum heap size setting.
+ *
  * @author Trampas Kirk
  * @since 2.3
  */
@@ -34,6 +54,7 @@ public class MaxHeapSizeUtil
 
     /**
      * Singleton getter.
+     *
      * @return the <code>MemSettingUtil</code> instance.
      */
     public static MaxHeapSizeUtil getInstance()
@@ -61,7 +82,7 @@ public class MaxHeapSizeUtil
     /**
      * Gets envSettings map, typically a reference to the <code>System.getEnv()</code> settings.
      * A lazy loaded property is used to make unit tests easy.
-     * 
+     *
      * @return the <code>System.getEnv()</code> settings.
      */
     private Map<String, String> getEnvSettings()
@@ -75,7 +96,7 @@ public class MaxHeapSizeUtil
 
     /**
      * Sets the <code>System.getEnv()</code> settings.
-     * 
+     *
      * @param envSettings the settings map to use
      */
     public void setEnvSettings( Map<String, String> envSettings )
@@ -87,9 +108,9 @@ public class MaxHeapSizeUtil
      * Gets the maximum heap size JVM argument from the maven options environment variable.
      * Returns only the numeric and unit portion.  For example, given a maven options setting
      * of "-Xmx64m" this method will return "64m". Returns <code>null</code> if the maven
-     * environment variable isn't set, the JVM heap size argument is not present, or the JVM 
+     * environment variable isn't set, the JVM heap size argument is not present, or the JVM
      * heap size argument is  somehow invalid.
-     * 
+     *
      * @return the maximum heap size JVM argument from the maven options environment variable
      * @see #envHasMavenMaxMemSetting()
      */
@@ -100,26 +121,26 @@ public class MaxHeapSizeUtil
         {
             return null;
         }
-        
-        String mavenOpts = ( String ) getEnvSettings().get( MAVEN_OPTIONS );
+
+        String mavenOpts = (String) getEnvSettings().get( MAVEN_OPTIONS );
         boolean hasMaxMemSetting = mavenOpts.contains( MAX_MEMORY_FLAG );
-        
+
         if ( !hasMaxMemSetting )
         {
             return null;
         }
-        
-        String mavenOptionsEnvironmentSetting = ( String ) getEnvSettings().get( MAVEN_OPTIONS );
+
+        String mavenOptionsEnvironmentSetting = (String) getEnvSettings().get( MAVEN_OPTIONS );
         int startIndex = mavenOptionsEnvironmentSetting.indexOf( MAX_MEMORY_FLAG ) + NUMBER_OF_FLAG_CHARS;
         int endIndex = mavenOptionsEnvironmentSetting.indexOf( ' ', startIndex );
-        
+
         if ( endIndex == -1 )
         {
             endIndex = mavenOptionsEnvironmentSetting.length();
         }
-        
+
         String maxMemSetting = mavenOptionsEnvironmentSetting.substring( startIndex, endIndex ).trim();
-        
+
         if ( !maxMemSetting.matches( "\\d+[mgMG]" ) )
         {
             return null;
@@ -130,10 +151,10 @@ public class MaxHeapSizeUtil
     /**
      * Returns <code>true</code> if the current environment has the max heap size set in the maven
      * options, otherwise <code>false</code>.
-     * 
+     *
      * @return <code>true</code> if the current environment has the max heap size set in the maven
-     *         options, otherwise <code>false</code>.
-     * @see #getMavenMaxMemSetting() 
+     * options, otherwise <code>false</code>.
+     * @see #getMavenMaxMemSetting()
      */
     public boolean envHasMavenMaxMemSetting()
     {
