@@ -291,7 +291,7 @@ public class ConfigInstrumentation
             sb.append( "\"" );
         }
 
-        sb.append( "ignoreTrivial=\"" );
+        sb.append( " ignoreTrivial=\"" );
         sb.append( getIgnoreTrivial() );
         sb.append( "\"" );
 
