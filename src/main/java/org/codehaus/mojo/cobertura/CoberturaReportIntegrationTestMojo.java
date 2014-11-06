@@ -27,6 +27,6 @@ package org.codehaus.mojo.cobertura;
  * @goal cobertura-integration-test
  * @execute phase="verify" lifecycle="cobertura"
  */
-public class CoberturaIntegrationTestReportMojo extends CoberturaReportMojo
+public class CoberturaReportIntegrationTestMojo extends CoberturaReportMojo
 {
 }

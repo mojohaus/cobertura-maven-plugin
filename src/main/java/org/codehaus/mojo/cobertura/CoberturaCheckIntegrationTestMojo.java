@@ -30,6 +30,6 @@ package org.codehaus.mojo.cobertura;
  * @goal check-integration-test
  * @execute phase="verify" lifecycle="cobertura"
  */
-public class CoberturaIntegrationTestCheckMojo  extends CoberturaCheckMojo
+public class CoberturaCheckIntegrationTestMojo extends CoberturaCheckMojo
 {
 }
