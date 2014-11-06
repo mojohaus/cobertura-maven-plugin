@@ -42,7 +42,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Instruments, Tests, and Generates a Cobertura Report.
+ * Instrument the compiled classes, run the tests, and generate a Cobertura
+ * Report.
  *
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
@@ -245,10 +246,9 @@ public class CoberturaReportMojo
     }
 
     /**
-     * @param locale not used
-     * @throws MavenReportException when an exception occurs
-     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
+     * {@inheritDoc}
      */
+    @Override
     protected void executeReport( Locale locale )
         throws MavenReportException
     {

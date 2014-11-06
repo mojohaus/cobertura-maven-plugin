@@ -26,7 +26,10 @@ import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.tasks.CheckTask;
 
 /**
- * Check the Last Instrumentation Results.
+ * Check the coverage percentages from the last instrumentation, and optionally
+ * fail the build if the targets are not met. To fail the build you need to set
+ * <code>configuration/check/haltOnFailure=true</code> in the plugin's
+ * configuration.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal check
@@ -36,7 +39,6 @@ import org.codehaus.mojo.cobertura.tasks.CheckTask;
 public class CoberturaCheckMojo
     extends AbstractCoberturaMojo
 {
-
     /**
      * The <a href="usage.html#Check">Check Configuration</a>.
      *
@@ -46,10 +48,7 @@ public class CoberturaCheckMojo
     private ConfigCheck check;
 
     /**
-     * Mojo main entry
-     *
-     * @throws MojoExecutionException
-     * @throws MojoFailureException
+     * {@inheritDoc}
      */
     public void execute()
         throws MojoExecutionException, MojoFailureException

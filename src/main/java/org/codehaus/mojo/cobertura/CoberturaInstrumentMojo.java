@@ -86,7 +86,7 @@ public class CoberturaInstrumentMojo
     private ConfigInstrumentation instrumentation;
 
     /**
-     * build up a command line from the parameters and run Cobertura to instrument the code.
+     * Build up a command line from the parameters and run Cobertura to instrument the code.
      *
      * @throws MojoExecutionException
      */

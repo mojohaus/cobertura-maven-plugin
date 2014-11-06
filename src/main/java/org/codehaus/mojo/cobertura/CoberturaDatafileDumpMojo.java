@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 /**
- * Cobertura Datafile Dump Mojo
+ * Output the contents of Cobertura's data file to the command line.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @version $Id$
@@ -40,11 +40,8 @@ import java.util.Iterator;
 public class CoberturaDatafileDumpMojo
     extends AbstractCoberturaMojo
 {
-
     /**
-     * Mojo main entry
-     *
-     * @throws MojoExecutionException
+     * {@inheritDoc}
      */
     public void execute()
         throws MojoExecutionException, MojoFailureException

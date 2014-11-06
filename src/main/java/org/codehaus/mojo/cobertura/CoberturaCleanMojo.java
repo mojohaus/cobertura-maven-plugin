@@ -23,7 +23,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Clean up rogue files that cobertura maven plugin is tracking.
+ * Clean up the files that Cobertura Maven Plugin has created during
+ * instrumentation.
  *
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
  * @goal clean
@@ -33,9 +34,7 @@ public class CoberturaCleanMojo
     extends AbstractCoberturaMojo
 {
     /**
-     * Mojo main entry
-     *
-     * @throws MojoExecutionException
+     * {@inheritDoc}
      */
     public void execute()
         throws MojoExecutionException, MojoFailureException
