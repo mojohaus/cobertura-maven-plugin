@@ -26,8 +26,9 @@ import org.codehaus.mojo.cobertura.configuration.ConfigCheck;
 import org.codehaus.mojo.cobertura.tasks.CheckTask;
 
 /**
- * Check the coverage percentages from the last instrumentation, and optionally
- * fail the build if the targets are not met. To fail the build you need to set
+ * Check the coverage percentages for unit tests from the last instrumentation,
+ * and optionally fail the build if the targets are not met. To fail the build
+ * you need to set
  * <code>configuration/check/haltOnFailure=true</code> in the plugin's
  * configuration.
  *

@@ -42,8 +42,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Instrument the compiled classes, run the tests, and generate a Cobertura
- * Report.
+ * Instrument the compiled classes, run the unit tests and generate a Cobertura
+ * report.
  *
  * @author <a href="will.gwaltney@sas.com">Will Gwaltney</a>
  * @author <a href="mailto:joakim@erdfelt.com">Joakim Erdfelt</a>
