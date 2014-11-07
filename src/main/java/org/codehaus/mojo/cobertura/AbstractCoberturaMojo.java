@@ -63,7 +63,7 @@ public abstract class AbstractCoberturaMojo
     private MavenProject project;
 
     /**
-     * Maximum memory to pass JVM as -Xmx of Cobertura processes.
+     * Maximum memory to pass to the JVM for Cobertura processes.
      *
      * @parameter expression="${cobertura.maxmem}" default-value="64m"
      */
@@ -90,7 +90,7 @@ public abstract class AbstractCoberturaMojo
     private MojoExecution mojoExecution;
 
     /**
-     * Only output coberura errors, avoid info messages.
+     * Only output Cobertura errors, avoid info messages.
      *
      * @parameter expression="${quiet}" default-value="false"
      */
@@ -115,7 +115,7 @@ public abstract class AbstractCoberturaMojo
     private boolean skip;
 
     /**
-     * Usually most of out cobertura mojos will not get executed on parent poms.
+     * Usually most of our Cobertura mojos will not get executed on parent poms.
      * Setting this parameter to <code>true</code> will force
      * the execution of this mojo, even if it would usually get skipped in this case.
      *

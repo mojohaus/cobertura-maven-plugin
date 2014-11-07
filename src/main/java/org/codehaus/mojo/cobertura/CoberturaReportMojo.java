@@ -54,7 +54,7 @@ public class CoberturaReportMojo
     extends AbstractMavenReport
 {
     /**
-     * The format of the report. (supports 'html' or 'xml'. defaults to 'html')
+     * The format of the report. Supports 'html' or 'xml'. Defaults to 'html'.
      *
      * @parameter expression="${cobertura.report.format}"
      * @deprecated
@@ -62,7 +62,7 @@ public class CoberturaReportMojo
     private String format;
 
     /**
-     * The format of the report. (can be 'html' and/or 'xml'. defaults to 'html')
+     * The formats of the report. Can be 'html' and/or 'xml'. Defaults to 'html'.
      *
      * @parameter
      */
@@ -77,7 +77,7 @@ public class CoberturaReportMojo
     private String encoding;
 
     /**
-     * Maximum memory to pass to JVM of Cobertura processes.
+     * Maximum memory to pass to the JVM for Cobertura processes.
      *
      * @parameter expression="${cobertura.maxmem}"
      */
@@ -112,7 +112,7 @@ public class CoberturaReportMojo
     private File outputDirectory;
 
     /**
-     * Only output cobertura errors, avoid info messages.
+     * Only output Cobertura errors, avoid info messages.
      *
      * @parameter expression="${quiet}" default-value="false"
      * @since 2.1

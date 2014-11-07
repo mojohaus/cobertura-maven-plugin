@@ -58,21 +58,21 @@ public class CoberturaInstrumentMojo
     private ArtifactFactory factory;
 
     /**
-     * Specifies whether or not to attach the cobertura artifact to the project
+     * Specifies whether or not to attach the Cobertura artifact to the project.
      *
      * @parameter expression="${cobertura.attach}" default-value="false"
      */
     private boolean attach;
 
     /**
-     * Specifies the classifier to use for the attached ser artifact
+     * Specifies the classifier to use for the attached ser artifact.
      *
      * @parameter expression="${cobertura.classifier}" default-value="cobertura"
      */
     private String classifier;
 
     /**
-     * Used for attaching the source jar to the project.
+     * Used for attaching the source JAR to the project.
      *
      * @component
      */
