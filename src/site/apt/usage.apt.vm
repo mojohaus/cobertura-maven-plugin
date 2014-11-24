@@ -2,8 +2,9 @@
  Usage
  ------
  Joakim Erdfelt
+ Dennis Lundberg
  ------
- Nov 22, 2005
+ 2014-11-24
  ------
 
 
@@ -123,3 +124,41 @@ Usage
   </build>
 </project>
 -------------------
+
+* Using different {reports}
+
+  Up to version 2.6 there were only one report available: <<<cobertura>>>, which
+  gave you a coverage report for your unit tests. Since there was only one, you
+  didn't have to configure it in any way.
+
+  Starting with version 2.7 a new report was added:
+  <<<cobertura-integration-test>>>, which gives you a coverage report for your
+  integration tests.
+
+  <<Note:>> Maven 2 is unable to run both reports in the same build, so you need
+  to configure the plugin to use only one report when building with Maven 2.
+
+  Both reports are enabled by default. If you want the old behaviour with only a
+  coverage report for your unit tests, you need to configure the plugin like
+  this when upgrading to version 2.7:
+
++-----
+<project>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>cobertura</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
++-----
