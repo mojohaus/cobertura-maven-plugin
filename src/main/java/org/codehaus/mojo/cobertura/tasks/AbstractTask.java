@@ -236,6 +236,17 @@ public abstract class AbstractTask
         }
 
         getLog().debug( "Working Directory: " + cl.getWorkingDirectory() );
+        try
+        {
+            String[] environmentVariables = cl.getEnvironmentVariables();
+            for ( String environmentVariable : environmentVariables )
+            {
+                getLog().debug( "Environment variable: " + environmentVariable );
+            }
+        }
+        catch( CommandLineException e ) {
+            // Ignore
+        }
         getLog().debug( "Executing command line:" );
         getLog().debug( cl.toString() );
 
