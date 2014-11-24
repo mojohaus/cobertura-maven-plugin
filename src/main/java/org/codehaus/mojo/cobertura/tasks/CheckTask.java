@@ -42,7 +42,7 @@ public class CheckTask
      */
     public CheckTask()
     {
-        super( "net.sourceforge.cobertura.check.Main" );
+        super( net.sourceforge.cobertura.check.CheckCoverageMain.class.getName() );
     }
 
     /**

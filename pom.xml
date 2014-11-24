@@ -88,6 +88,15 @@
       </roles>
       <timezone>+1</timezone>
     </developer>
+    <developer>
+      <id>dennisl</id>
+      <name>Dennis Lundberg</name>
+      <email>dennisl@codehaus.org</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>Europe/Stockholm</timezone>
+    </developer>
   </developers>
   <contributors>
     <contributor>
@@ -115,9 +124,10 @@
   </issueManagement>
 
   <properties>
-    <mojo.java.target>1.5</mojo.java.target>
+    <mojo.java.target>1.6</mojo.java.target>
     <mavenVersion>2.0.8</mavenVersion> <!-- MNG-3062 -->
-    <coberturaVersion>2.0.3</coberturaVersion>
+    <!-- Remember to update AbstractCoberturaTestCase when upgrading Cobertura -->
+    <coberturaVersion>2.1.0-SNAPSHOT</coberturaVersion>
   </properties>
   <!-- from MSITE-459 -->
   <build>
@@ -250,6 +260,20 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+    <repository>
+      <!-- @todo This is here so that we can use SNAPSHOT versions of Cobertura - remove before release -->
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <reporting>
     <plugins>

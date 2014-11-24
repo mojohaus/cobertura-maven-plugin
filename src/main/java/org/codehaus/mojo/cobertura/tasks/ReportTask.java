@@ -64,7 +64,7 @@ public class ReportTask
      */
     public ReportTask()
     {
-        super( "net.sourceforge.cobertura.reporting.Main" );
+        super( net.sourceforge.cobertura.reporting.ReportMain.class.getName() );
     }
 
     /**

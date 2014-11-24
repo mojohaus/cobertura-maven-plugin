@@ -48,7 +48,7 @@ public class InstrumentTask
      */
     public InstrumentTask()
     {
-        super( "net.sourceforge.cobertura.instrument.Main" );
+        super( net.sourceforge.cobertura.instrument.InstrumentMain.class.getName() );
     }
 
     /**

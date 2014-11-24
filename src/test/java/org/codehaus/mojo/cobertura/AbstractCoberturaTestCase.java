@@ -62,80 +62,51 @@ public abstract class AbstractCoberturaTestCase
 
         List pluginClasspath = new ArrayList();
 
-        Artifact artifact;
-
+        // Artifact artifact;
         // artifact = new ArtifactStub();
         // artifact.setFile( new File( PlexusTestCase.getBasedir() + "/target/classes" ) );
         // assertArtifactExists( artifact );
         // pluginClasspath.add( artifact );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "net.sourceforge.cobertura" );
-        artifact.setArtifactId( "cobertura" );
-        artifact.setVersion( "1.9.4.1" );
-        artifact.setFile(
-            new File( localRepository + "/net/sourceforge/cobertura/cobertura/1.9.4.1/cobertura-1.9.4.1.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        // Specify dependencies, that must match whatever is in the Cobertura version being used
+        // @todo We need to find a way to not have to repeat this info here
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "log4j" );
-        artifact.setArtifactId( "log4j" );
-        artifact.setVersion( "1.2.9" );
-        artifact.setFile( new File( localRepository + "/log4j/log4j/1.2.9/log4j-1.2.9.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        String asmVersion = "5.0.1";
+        String coberturaVersion = "2.1.0-SNAPSHOT";
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "org.apache.ant" );
-        artifact.setArtifactId( "ant" );
-        artifact.setVersion( "1.7.0" );
-        artifact.setFile( new File( localRepository + "/org/apache/ant/ant/1.7.0/ant-1.7.0.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura", coberturaVersion, "jar", localRepository ) );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "org.apache.ant" );
-        artifact.setArtifactId( "ant-launcher" );
-        artifact.setVersion( "1.7.0" );
-        artifact.setFile( new File( localRepository + "/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "ch.qos.logback", "logback-classic", "1.0.13", "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "ch.qos.logback", "logback-core", "1.0.13", "jar", localRepository ) );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "oro" );
-        artifact.setArtifactId( "oro" );
-        artifact.setVersion( "2.0.8" );
-        artifact.setFile( new File( localRepository + "/oro/oro/2.0.8/oro-2.0.8.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "org.apache.ant", "ant", "1.8.3", "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "org.apache.ant", "ant-launcher", "1.8.3", "jar", localRepository ) );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "asm" );
-        artifact.setArtifactId( "asm" );
-        artifact.setVersion( "3.0" );
-        artifact.setFile( new File( localRepository + "/asm/asm/3.0/asm-3.0.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "org.apache.commons", "commons-lang3", "3.3.2", "jar", localRepository ) );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "asm" );
-        artifact.setArtifactId( "asm-tree" );
-        artifact.setVersion( "3.0" );
-        artifact.setFile( new File( localRepository + "/asm/asm-tree/3.0/asm-tree-3.0.jar" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "org.ow2.asm", "asm", asmVersion, "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "org.ow2.asm", "asm-analysis", asmVersion, "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "org.ow2.asm", "asm-commons", asmVersion, "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "org.ow2.asm", "asm-tree", asmVersion, "jar", localRepository ) );
+        pluginClasspath.add( createArtifact( "org.ow2.asm", "asm-util", asmVersion, "jar", localRepository ) );
 
-        artifact = new ArtifactStub();
-        artifact.setGroupId( "net.sourceforge.cobertura" );
-        artifact.setArtifactId( "cobertura-runtime" );
-        artifact.setVersion( "1.9.4.1" );
-        artifact.setFile( new File(
-            localRepository + "/net/sourceforge/cobertura/cobertura-runtime/1.9.4.1/cobertura-runtime-1.9.4.1.pom" ) );
-        assertArtifactExists( artifact );
-        pluginClasspath.add( artifact );
+        pluginClasspath.add( createArtifact( "oro", "oro", "2.0.8", "jar", localRepository ) );
+
+        pluginClasspath.add( createArtifact( "org.slf4j", "slf4j-api", "1.7.5", "jar", localRepository ) );
+
+        pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura-runtime", coberturaVersion, "pom", localRepository ) );
 
         return pluginClasspath;
     }
 
+    private Artifact createArtifact( String groupId, String artifactId, String version, String type, String localRepository ) {
+        Artifact artifact;
+        artifact = new ArtifactStub();
+        artifact.setGroupId( groupId );
+        artifact.setArtifactId( artifactId );
+        artifact.setVersion( version );
+        artifact.setFile( new File( localRepository + "/" + groupId.replace( ".", "/" ) + "/" + artifactId + "/" + version + "/" + artifactId + "-" + version + "." + type ) );
+        assertArtifactExists( artifact );
+        return artifact;
+    }
 }
