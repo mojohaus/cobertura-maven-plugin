@@ -124,7 +124,12 @@
   </issueManagement>
 
   <properties>
-    <mojo.java.target>1.6</mojo.java.target>
+    <!--
+      Add a property that can be injected into the site
+      mojo.java.target won't work for that
+    -->
+    <javaVersion>1.6</javaVersion>
+    <mojo.java.target>${javaVersion}</mojo.java.target>
     <mavenVersion>2.0.8</mavenVersion> <!-- MNG-3062 -->
     <!-- Remember to update AbstractCoberturaTestCase when upgrading Cobertura -->
     <coberturaVersion>2.1.0-SNAPSHOT</coberturaVersion>

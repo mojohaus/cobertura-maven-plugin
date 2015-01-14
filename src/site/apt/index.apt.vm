@@ -19,7 +19,7 @@ Cobertura Maven Plugin
   identify which parts of your Java program are lacking test coverage.
   
 ------------  
-This plugin uses Cobertura version ${coberturaVersion}
+This plugin uses Cobertura version ${coberturaVersion} and requires Java ${javaVersion}.
 ------------  
 
 * Goals Overview
