@@ -5,7 +5,7 @@
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>30</version>
+    <version>34</version>
   </parent>
 
   <artifactId>cobertura-maven-plugin</artifactId>
