@@ -72,7 +72,7 @@ public abstract class AbstractCoberturaTestCase
         // @todo We need to find a way to not have to repeat this info here
 
         String asmVersion = "5.0.1";
-        String coberturaVersion = "2.1.0-SNAPSHOT";
+        String coberturaVersion = "2.1.1";
 
         pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura", coberturaVersion, "jar", localRepository ) );
 

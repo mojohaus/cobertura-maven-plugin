@@ -132,7 +132,7 @@
     <mojo.java.target>${javaVersion}</mojo.java.target>
     <mavenVersion>2.0.8</mavenVersion> <!-- MNG-3062 -->
     <!-- Remember to update AbstractCoberturaTestCase when upgrading Cobertura -->
-    <coberturaVersion>2.1.0-SNAPSHOT</coberturaVersion>
+    <coberturaVersion>2.1.1</coberturaVersion>
   </properties>
   <!-- from MSITE-459 -->
   <build>
