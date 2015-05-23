@@ -1,0 +1,4 @@
+org.codehaus.mojo.cobertura
+org.codehaus.mojo.cobertura.configuration
+org.codehaus.mojo.cobertura.stubs
+org.codehaus.mojo.cobertura.tasks

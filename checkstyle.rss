@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>Mojo's Maven plugin for Cobertura - Checkstyle report</title>
+    <link>http://mojo.codehaus.org/cobertura-maven-plugin/</link>
+    <description>Mojo's Maven plugin for Cobertura - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2005 - 2015 Codehaus</copyright>
+    <item>
+      <title>File: 25,
+             Errors: 16,
+             Warnings: 3,
+             Infos: 0
+      </title>
+            <link>http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.tasks.CommandLineArguments.java">org/codehaus/mojo/cobertura/tasks/CommandLineArguments.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaCleanMojo.java">org/codehaus/mojo/cobertura/CoberturaCleanMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil.java">org/codehaus/mojo/cobertura/configuration/MaxHeapSizeUtil.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-plugin.log4j-info.properties">cobertura-plugin/log4j-info.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaCheckIntegrationTestMojo.java">org/codehaus/mojo/cobertura/CoberturaCheckIntegrationTestMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.tasks.AbstractTask.java">org/codehaus/mojo/cobertura/tasks/AbstractTask.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.configuration.Regex.java">org/codehaus/mojo/cobertura/configuration/Regex.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-report_de.properties">cobertura-report_de.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-plugin.log4j-error.properties">cobertura-plugin/log4j-error.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaReportIntegrationTestMojo.java">org/codehaus/mojo/cobertura/CoberturaReportIntegrationTestMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaReportMojo.java">org/codehaus/mojo/cobertura/CoberturaReportMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaDatafileDumpMojo.java">org/codehaus/mojo/cobertura/CoberturaDatafileDumpMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-plugin.log4j-debug.properties">cobertura-plugin/log4j-debug.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.tasks.InstrumentTask.java">org/codehaus/mojo/cobertura/tasks/InstrumentTask.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation.java">org/codehaus/mojo/cobertura/configuration/ConfigInstrumentation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaCheckMojo.java">org/codehaus/mojo/cobertura/CoberturaCheckMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.tasks.CheckTask.java">org/codehaus/mojo/cobertura/tasks/CheckTask.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaMojoUtils.java">org/codehaus/mojo/cobertura/CoberturaMojoUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-report_en.properties">cobertura-report_en.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-report_nl.properties">cobertura-report_nl.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.CoberturaInstrumentMojo.java">org/codehaus/mojo/cobertura/CoberturaInstrumentMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.tasks.ReportTask.java">org/codehaus/mojo/cobertura/tasks/ReportTask.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#cobertura-report.properties">cobertura-report.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.AbstractCoberturaMojo.java">org/codehaus/mojo/cobertura/AbstractCoberturaMojo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://mojo.codehaus.org/cobertura-maven-plugin//checkstyle.html#org.codehaus.mojo.cobertura.configuration.ConfigCheck.java">org/codehaus/mojo/cobertura/configuration/ConfigCheck.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
