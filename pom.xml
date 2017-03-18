@@ -13,7 +13,7 @@
   <packaging>maven-plugin</packaging>
 
   <name>Mojo's Maven plugin for Cobertura</name>
-  <url>http://mojo.codehaus.org/cobertura-maven-plugin/</url>
+  <url>https://github.com/mojohaus/cobertura-maven-plugin/</url>
   <description>This is the Mojo's Maven plugin for Cobertura. Cobertura is a free Java tool that calculates the percentage of code accessed by
     tests. It can be used to identify which parts of your Java program are lacking test coverage.
     </description>
@@ -112,15 +112,15 @@
   <prerequisites>
     <maven>${mavenVersion}</maven>
   </prerequisites>
-
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
+        <connection>scm:git:https://github.com/mojohaus/cobertura-maven-plugin.git</connection>
+        <developerConnection>scm:git:https://github.com/mojohaus/cobertura-maven-plugin.git</developerConnection>
+        <url>https://github.com/mojohaus/cobertura-maven-plugin</url>
+      <tag>HEAD</tag>
   </scm>
   <issueManagement>
-    <system>JIRA</system>
-    <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
+    <system>Github</system>
+    <url>https://github.com/mojohaus/cobertura-maven-plugin/issues</url>
   </issueManagement>
 
   <properties>
