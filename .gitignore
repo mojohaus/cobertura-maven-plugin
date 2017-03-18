@@ -1,0 +1,61 @@
+# generated files
+bin/
+build/
+nbproject/
+gen/
+generated/
+libs/
+obj/
+external/
+target/
+*.releaseBackup
+
+# Eclipse project files
+#.classpath
+#.metadata
+#.project
+.loadpath
+tmp/**
+tmp/**/*
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+
+# IntelliJ project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+*.suo
+
+# NetBeans project files
+nbactions.xml
+nb-configuration.xml
+
+# gradle files
+.gradle/
+
+# Mac and emacs files
+.DS_Store
+*~
+*.bak
+
+# ProGuard output
+proguard-mapping.txt
+proguard-seeds.txt
+proguard-usage.txt
+
+# generated files
+bin/
+build/
+nbproject/
+gen/
+generated/
+libs/
+obj/
+external/
+target/
+integration/
+*.releaseBackup
