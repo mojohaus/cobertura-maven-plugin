@@ -85,6 +85,11 @@ public class InstrumentTask
             cmdLineArgs.addArg( "--ignoreMethodAnnotation", ignoreMethodAnnotation );
         }
 
+        for ( String ignoreClassAnnotation : config.getIgnoreClassAnnotations() )
+        {
+            cmdLineArgs.addArg( "--ignoreClassAnnotation", ignoreClassAnnotation );
+        }
+
         for ( String ignore : config.getIgnores() )
         {
             cmdLineArgs.addArg( "--ignore", ignore );
