@@ -5,7 +5,7 @@
   <parent>
     <artifactId>mojo-parent</artifactId>
     <groupId>org.codehaus.mojo</groupId>
-    <version>34</version>
+    <version>40</version>
   </parent>
 
   <artifactId>cobertura-maven-plugin</artifactId>
@@ -111,13 +111,14 @@
 
   <prerequisites>
     <maven>${mavenVersion}</maven>
-  </prerequisites>
-
+  </prerequisites> 
+        
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</developerConnection>
-    <url>http://svn.codehaus.org/mojo/trunk/mojo/cobertura-maven-plugin/</url>
+    <connection>scm:git:https://github.com/msiemczyk/cobertura-maven-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/msiemczyk/cobertura-maven-plugin.git</developerConnection>
+    <url>https://github.com/msiemczyk/cobertura-maven-plugin.git</url>
   </scm>
+  
   <issueManagement>
     <system>JIRA</system>
     <url>http://jira.codehaus.org/browse/MCOBERTURA</url>
@@ -128,13 +129,13 @@
       Add a property that can be injected into the site
       mojo.java.target won't work for that
     -->
-    <javaVersion>1.7</javaVersion>
-    <mojo.java.target>${javaVersion}</mojo.java.target>
     <mavenVersion>3.3.1</mavenVersion>
+    
     <!-- Remember to update AbstractCoberturaTestCase when upgrading Cobertura -->
-    <coberturaVersion>2.1.2-SNAPSHOT</coberturaVersion>
+    <coberturaVersion>2.1.2-AGFA-2</coberturaVersion>
     <logbackVersion>1.0.13</logbackVersion>
   </properties>
+  
   <!-- from MSITE-459 -->
   <build>
     <extensions>
@@ -192,26 +193,23 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      </dependency>
+      <version>${mavenVersion}</version><!--$NO-MVN-MAN-VER$-->
+    </dependency>
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-api</artifactId>
       <version>3.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-      <version>2.2.1</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.apache.maven.doxia</groupId>
+      		<artifactId>doxia-sink-api</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-impl</artifactId>
       <version>3.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.aether</groupId>
-      <artifactId>aether-api</artifactId>
-      <version>0.9.0.M2</version>
     </dependency>
     <dependency>
       <groupId>commons-lang</groupId>
@@ -240,10 +238,16 @@
       <artifactId>junit</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.maven.shared</groupId>
+      <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>1.1</version>
+      <version>3.3.0</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-compat</artifactId>
+        <version>3.3.1</version>
+        <scope>test</scope>
     </dependency>
   </dependencies>
 
