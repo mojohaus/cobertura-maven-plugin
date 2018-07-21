@@ -2,7 +2,7 @@
  * #%L
  * Mojo's Maven plugin for Cobertura
  * %%
- * Copyright (C) 2005 - 2013 Codehaus
+ * Copyright (C) 2005 - 2018 Codehaus
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +19,6 @@
  */
 package org.codehaus.mojo.cobertura;
 
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.artifact.ArtifactUtils;
-import org.apache.maven.artifact.factory.ArtifactFactory;
-import org.apache.maven.artifact.handler.ArtifactHandler;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.MavenProjectHelper;
-import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
-import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
-import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,6 +29,17 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.ArtifactUtils;
+import org.apache.maven.artifact.handler.ArtifactHandler;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProjectHelper;
+import org.apache.maven.repository.RepositorySystem;
+import org.codehaus.mojo.cobertura.configuration.ConfigInstrumentation;
+import org.codehaus.mojo.cobertura.tasks.InstrumentTask;
+import org.codehaus.plexus.util.FileUtils;
+import org.codehaus.plexus.util.IOUtil;
+
 /**
  * Instrument the compiled classes.
  *
@@ -47,15 +47,14 @@ import java.util.Set;
  * @goal instrument
  * @requiresDependencyResolution compile
  */
-public class CoberturaInstrumentMojo
-    extends AbstractCoberturaMojo
+public class CoberturaInstrumentMojo extends AbstractCoberturaMojo
 {
     /**
-     * Artifact factory.
-     *
+     * Maven repository system.
+     * 
      * @component
      */
-    private ArtifactFactory factory;
+    private RepositorySystem repoSystem;
 
     /**
      * Specifies whether or not to attach the Cobertura artifact to the project.
@@ -150,14 +149,16 @@ public class CoberturaInstrumentMojo
             {
                 getDataFile().getParentFile().mkdirs();
             }
-
+            
             // Execute the instrumentation task.
             InstrumentTask task = new InstrumentTask();
             setTaskDefaults( task );
+            
             List<Artifact> classpath = new ArrayList<Artifact>();
             /* need project class path */
             classpath.addAll( pluginClasspathList );
             classpath.addAll( getProject().getArtifacts() );
+            
             task.setPluginClasspathList( classpath );
             task.setConfig( instrumentation );
             task.setDestinationDir( instrumentedDirectory );
@@ -229,7 +230,7 @@ public class CoberturaInstrumentMojo
         throws MojoExecutionException
     {
         Map<String, Artifact> pluginArtifactMap = ArtifactUtils.artifactMapByVersionlessId( pluginClasspathList );
-        Artifact coberturaArtifact = pluginArtifactMap.get( "net.sourceforge.cobertura:cobertura-runtime" );
+        Artifact coberturaArtifact = pluginArtifactMap.get( "net.sourceforge.cobertura:cobertura" );
 
         if ( coberturaArtifact == null )
         {
@@ -256,7 +257,7 @@ public class CoberturaInstrumentMojo
      */
     private Artifact artifactScopeToProvided( Artifact artifact )
     {
-        return factory.createArtifact( artifact.getGroupId(), artifact.getArtifactId(), artifact.getVersion(),
-                                       Artifact.SCOPE_PROVIDED, artifact.getType() );
+        return repoSystem.createArtifact( artifact.getGroupId(),
+            artifact.getArtifactId(), artifact.getVersion(), Artifact.SCOPE_PROVIDED, artifact.getType() );
     }
 }

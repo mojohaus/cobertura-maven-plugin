@@ -72,7 +72,7 @@ public abstract class AbstractCoberturaTestCase
         // @todo We need to find a way to not have to repeat this info here
 
         String asmVersion = "5.0.1";
-        String coberturaVersion = "2.1.1";
+        String coberturaVersion = "2.1.2-AGFA-2";
 
         pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura", coberturaVersion, "jar", localRepository ) );
 
@@ -94,7 +94,7 @@ public abstract class AbstractCoberturaTestCase
 
         pluginClasspath.add( createArtifact( "org.slf4j", "slf4j-api", "1.7.5", "jar", localRepository ) );
 
-        pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura-runtime", coberturaVersion, "pom", localRepository ) );
+        pluginClasspath.add( createArtifact( "net.sourceforge.cobertura", "cobertura", coberturaVersion, "jar", localRepository ) );
 
         return pluginClasspath;
     }
