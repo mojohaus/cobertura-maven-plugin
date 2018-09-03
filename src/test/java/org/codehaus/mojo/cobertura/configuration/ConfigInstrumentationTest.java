@@ -46,4 +46,13 @@ public class ConfigInstrumentationTest
         assertEquals( expectedValue128m, configInstrumentation.getMaxmem() );
 
     }
+    public void testMaxPermgen()
+    {
+        final String expectedValue128m = "128m";
+
+        configInstrumentation.setMaxPermgen( expectedValue128m );
+
+        assertEquals( expectedValue128m, configInstrumentation.getMaxPermgen() );
+
+    }
 }

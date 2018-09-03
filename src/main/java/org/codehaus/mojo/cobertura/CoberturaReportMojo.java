@@ -28,6 +28,7 @@ import org.apache.maven.project.MavenProject;
 import org.apache.maven.reporting.AbstractMavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
+import org.codehaus.mojo.cobertura.configuration.MaxPermgenSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.CommandLineArguments;
 import org.codehaus.mojo.cobertura.tasks.ReportTask;
 
@@ -82,6 +83,13 @@ public class CoberturaReportMojo
      * @parameter expression="${cobertura.maxmem}"
      */
     private String maxmem = "64m";
+
+    /**
+     * Maximum permgen to pass to the JVM for Cobertura processes.
+     *
+     * @parameter expression="${cobertura.maxpermgen}"
+     */
+    private String maxpermgen = "";
 
     /**
      * <p>
@@ -179,6 +187,10 @@ public class CoberturaReportMojo
         if ( MaxHeapSizeUtil.getInstance().envHasMavenMaxMemSetting() )
         {
             maxmem = MaxHeapSizeUtil.getInstance().getMavenMaxMemSetting();
+        }
+        if ( MaxPermgenSizeUtil.getInstance().envHasMavenMaxPermgenSetting() )
+        {
+            maxpermgen = MaxPermgenSizeUtil.getInstance().getMavenMaxPermgenSetting();
         }
     }
 
@@ -341,6 +353,7 @@ public class CoberturaReportMojo
 
         // task specifics
         task.setMaxmem( maxmem );
+        task.setMaxPermgen( maxpermgen );
         task.setDataFile( curDataFile );
         task.setOutputDirectory( curOutputDirectory );
         task.setCompileSourceRoots( curCompileSourceRoots );

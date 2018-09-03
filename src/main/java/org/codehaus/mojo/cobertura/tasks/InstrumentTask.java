@@ -65,6 +65,11 @@ public class InstrumentTask
             this.setMaxmem( config.getMaxmem() );
         }
 
+        if ( StringUtils.isNotEmpty( config.getMaxPermgen() ) )
+        {
+            this.setMaxPermgen( config.getMaxPermgen() );
+        }
+
         if ( dataFile != null )
         {
             cmdLineArgs.addArg( "--datafile", dataFile.getAbsolutePath() );
@@ -107,11 +112,12 @@ public class InstrumentTask
         {
             if ( getLog().isDebugEnabled() )
             {
-                getLog().debug( "Config : " + config );
-                getLog().debug( "Basedir: " + config.getBasedir() );
-                getLog().debug( "Include: " + includes );
-                getLog().debug( "Exclude: " + excludes );
-                getLog().debug( "Max Mem: " + config.getMaxmem() );
+                getLog().debug( "Config     : " + config );
+                getLog().debug( "Basedir    : " + config.getBasedir() );
+                getLog().debug( "Include    : " + includes );
+                getLog().debug( "Exclude    : " + excludes );
+                getLog().debug( "Max Mem    : " + config.getMaxmem() );
+                getLog().debug( "Max PermGen: " + config.getMaxPermgen() );
             }
 
             @SuppressWarnings( "unchecked" ) List<String> filenames =

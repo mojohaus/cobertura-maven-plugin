@@ -91,6 +91,11 @@ public class CheckTask
             this.setMaxmem( config.getMaxmem() );
         }
 
+        if ( StringUtils.isNotEmpty( config.getMaxPermgen() ) )
+        {
+            this.setMaxPermgen( config.getMaxPermgen() );
+        }
+
         for ( Regex regex : config.getRegexes() )
         {
             cmdLineArgs.addArg( "--regex", regex.toString() );

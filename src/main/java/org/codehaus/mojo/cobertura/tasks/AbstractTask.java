@@ -54,6 +54,8 @@ public abstract class AbstractTask
 
     private String maxmem;
 
+    private String maxpermgen;
+
     private List<Artifact> pluginClasspathList;
 
     private String taskClass;
@@ -70,6 +72,7 @@ public abstract class AbstractTask
         taskClass = taskClassname;
         cmdLineArgs = new CommandLineArguments();
         maxmem = "64m";
+        maxpermgen = "";
     }
 
     /**
@@ -185,6 +188,10 @@ public abstract class AbstractTask
         }
 
         cl.createArg().setValue( "-Xmx" + maxmem );
+
+        if (!"".equals(maxpermgen)) {
+            cl.createArg().setValue( "-XX:MaxPermSize=" + maxpermgen );
+        }
 
         cl.createArg().setValue( taskClass );
 
@@ -319,6 +326,14 @@ public abstract class AbstractTask
     }
 
     /**
+     * @return the configured -XX:MaxPermSize option.
+     */
+    public String getMaxPermgen()
+    {
+        return maxpermgen;
+    }
+
+    /**
      * @return Returns the pluginClasspathList.
      */
     public List<Artifact> getPluginClasspathList()
@@ -354,6 +369,16 @@ public abstract class AbstractTask
     public void setMaxmem( String maxmem )
     {
         this.maxmem = maxmem;
+    }
+
+    /**
+     * Set the -XX:MaxPermSize value for the jvm.
+     *
+     * @param maxpermgen the memory size.
+     */
+    public void setMaxPermgen( String maxpermgen )
+    {
+        this.maxpermgen = maxpermgen;
     }
 
     /**
