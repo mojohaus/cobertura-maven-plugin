@@ -51,6 +51,11 @@ public class ConfigCheck
     private String maxmem;
 
     /**
+     * The maximum permgen size to use for the check phase.
+     */
+    private String maxpermgen;
+
+    /**
      * add a regex to the set used to scan the reports.
      *
      * @param regex the regex to add.
@@ -204,5 +209,27 @@ public class ConfigCheck
     public void setMaxmem( String maxmem )
     {
         this.maxmem = maxmem;
+    }
+
+    /**
+     * Get the maxpermgen setting.
+     *
+     * @return the maxpermgen setting.
+     */
+    public String getMaxPermgen()
+    {
+        return maxpermgen;
+    }
+
+    /**
+     * Sets the max PermGen for the JVM used to run the <code>CheckTask</code> task.
+     * <p/>
+     * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
+     *
+     * @param maxpermgen the value to which maxpermgen will be set
+     */
+    public void setMaxPermgen( String maxpermgen )
+    {
+        this.maxpermgen = maxpermgen;
     }
 }

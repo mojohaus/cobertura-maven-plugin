@@ -41,6 +41,8 @@ public class ConfigInstrumentation
 
     private String maxmem;
 
+    private String maxpermgen;
+
     private boolean ignoreTrivial;
 
     private List<String> ignoreMethodAnnotations;
@@ -66,12 +68,20 @@ public class ConfigInstrumentation
         {
             this.maxmem = "64m";
         }
+        if ( MaxPermgenSizeUtil.getInstance().envHasMavenMaxPermgenSetting() )
+        {
+            maxpermgen = MaxPermgenSizeUtil.getInstance().getMavenMaxPermgenSetting();
+        }
+        else
+        {
+            this.maxpermgen = "";
+        }
     }
 
     /**
      * Add an Exclude to the underlying list.
      *
-     * @param exclude the exlude string.
+     * @param exclude the exclude string.
      */
     public void addExclude( String exclude )
     {
@@ -174,6 +184,27 @@ public class ConfigInstrumentation
     public void setMaxmem( String maxmem )
     {
         this.maxmem = maxmem;
+    }
+
+    /**
+     * Get the maxpermgen setting.
+     *
+     * @return the maxpermgen setting.
+     */
+    public String getMaxPermgen()
+    {
+        return maxpermgen;
+    }
+
+    /**
+     * Sets the max PermGen for the JVM used to run the <code>InstrumentationTask</code> task.
+     * The format is "<value><size>". Ex: "64m" where 64 is the value, and "m" denotes megabytes.
+     *
+     * @param maxpermgen the value to which maxpermgen will be set
+     */
+    public void setMaxPermgen( String maxpermgen )
+    {
+        this.maxpermgen = maxpermgen;
     }
 
     /**
@@ -288,6 +319,13 @@ public class ConfigInstrumentation
         {
             sb.append( " maxmem=\"" );
             sb.append( getMaxmem() );
+            sb.append( "\"" );
+        }
+
+        if ( 0 != getMaxPermgen().length() )
+        {
+            sb.append( " maxpermgen=\"" );
+            sb.append( getMaxPermgen() );
             sb.append( "\"" );
         }
 

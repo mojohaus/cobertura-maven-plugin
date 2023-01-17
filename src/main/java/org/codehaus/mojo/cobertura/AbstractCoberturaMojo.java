@@ -40,6 +40,7 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.mojo.cobertura.configuration.MaxHeapSizeUtil;
+import org.codehaus.mojo.cobertura.configuration.MaxPermgenSizeUtil;
 import org.codehaus.mojo.cobertura.tasks.AbstractTask;
 
 import java.io.File;
@@ -70,6 +71,8 @@ public abstract class AbstractCoberturaMojo
     // Duplicate def to please MojoTestCase.
     // Use only default-value once tests have been refactored to IT's
     private String maxmem = "64m";
+
+    private String maxpermgen = "";
 
     /**
      * <p>
@@ -144,6 +147,14 @@ public abstract class AbstractCoberturaMojo
         else
         {
             task.setMaxmem( maxmem );
+        }
+        if ( MaxPermgenSizeUtil.getInstance().envHasMavenMaxPermgenSetting() )
+        {
+            maxpermgen = MaxPermgenSizeUtil.getInstance().getMavenMaxPermgenSetting();
+        }
+        else
+        {
+            task.setMaxPermgen( maxpermgen );
         }
         task.setQuiet( quiet );
     }
