@@ -45,6 +45,8 @@ public class ConfigInstrumentation
 
     private List<String> ignoreMethodAnnotations;
 
+    private List<String> ignoreClassAnnotations;
+
     /**
      * Construct a new ConfigInstrumentation object.
      */
@@ -55,6 +57,7 @@ public class ConfigInstrumentation
         this.ignores = new ArrayList<String>();
         this.ignoreTrivial = false;
         this.ignoreMethodAnnotations = new ArrayList<String>();
+        this.ignoreClassAnnotations = new ArrayList<String>();
 
         this.basedir = new File( System.getProperty( "user.dir" ) );
 
@@ -97,6 +100,16 @@ public class ConfigInstrumentation
     public void addIgnoreMethodAnnotation( String ignoreMethodAnnotation )
     {
         this.ignoreMethodAnnotations.add( ignoreMethodAnnotation );
+    }
+
+    /**
+     * Add an IgnoreClassAnnotation to the underlying list.
+     *
+     * @param ignoreClassAnnotation the ignore string.
+     */
+    public void addIgnoreClassAnnotation( String ignoreClassAnnotation )
+    {
+        this.ignoreClassAnnotations.add( ignoreClassAnnotation);
     }
 
     /**
@@ -219,6 +232,24 @@ public class ConfigInstrumentation
         this.ignoreMethodAnnotations = ignoreMethodAnnotations;
     }
 
+    /**
+     * Get the ignoreClassAnnotations setting.
+     *
+     * @return the ignoreClassAnnotations setting.
+     */
+    public List<String> getIgnoreClassAnnotations() {
+        return ignoreClassAnnotations;
+    }
+
+    /**
+     * IgnoreClassAnnotations switch used to specify an annotation that, when present on a class,
+     * will cause Cobertura to ignore that class in the coverage report.
+     *
+     * @param ignoreClassAnnotations
+     */
+    public void setIgnoreClassAnnotations(List<String> ignoreClassAnnotations) {
+        this.ignoreClassAnnotations = ignoreClassAnnotations;
+    }
 
     /**
      * {@inheritDoc}
@@ -299,6 +330,22 @@ public class ConfigInstrumentation
         {
             sb.append( " ignoreMethodAnnotations=\"" );
             Iterator<String> it = this.ignoreMethodAnnotations.iterator();
+            while ( it.hasNext() )
+            {
+                String ignore = (String) it.next();
+                sb.append( ignore );
+                if ( it.hasNext() )
+                {
+                    sb.append( " " );
+                }
+            }
+            sb.append( "\"" );
+        }
+
+        if ( !this.ignoreClassAnnotations.isEmpty() )
+        {
+            sb.append( " ignoreClassAnnotations=\"" );
+            Iterator<String> it = this.ignoreClassAnnotations.iterator();
             while ( it.hasNext() )
             {
                 String ignore = (String) it.next();
