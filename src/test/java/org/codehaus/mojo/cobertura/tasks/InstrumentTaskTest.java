@@ -89,4 +89,13 @@ public class InstrumentTaskTest
 
         assertEquals( expectedValue128m, task.getMaxmem() );
     }
+
+    public void testMaxPermgen()
+    {
+        final String expectedValue128m = "128m";
+
+        task.setMaxPermgen( expectedValue128m );
+
+        assertEquals( expectedValue128m, task.getMaxPermgen() );
+    }
 }
